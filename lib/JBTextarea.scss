@@ -35,6 +35,7 @@
             width: 100%;
             box-sizing: border-box;
             min-height: var(--jb-textarea-min-height , 80px);
+            height: var(--jb-textarea-min-height , 80px);
             max-height: var(--jb-textarea-max-height , none);
             background-color: transparent;
             padding: 6px 12px 4px 12px;
