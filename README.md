@@ -45,6 +45,8 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-textarea-bgcolor                 | background color of input                                                                     |
 | --jb-textarea-border-botton-width     | border bottom thickness desualt is `3px`                                                      |
 | --jb-textarea-label-font-size         | font size of input label defualt is `0.8em`                                                   |
+| --jb-textarea-value-font-size         | font size of input value defualt is `1.1em`                                                   |
+| --jb-textarea-value-color             | color of value defualt in `initial`                                                           |
 | --jb-textarea-message-font-size       | font size of message we show under input                                                      |
 | --jb-textarea-message-error-color     | change color of error we show under input defualt is `red`                                    |
 | --jb-textarea-min-height              | minimum height of text area defualt is `80px`                                                 |
