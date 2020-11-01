@@ -1,12 +1,12 @@
 .jb-textarea-web-component {
     width: 100%;
-    margin: 12px 0;
+    margin: var(--jb-textarea-margin , 12px 0);
     direction: rtl;
     label {
         width: 100%;
         margin: 4px 0px;
         display: block;
-        font-size: 0.8em;
+        font-size: var(--jb-textarea-label-font-size , 0.8em);
         color: #1f1735;
     }
 
@@ -14,10 +14,10 @@
         width: 100%;
         box-sizing: border-box;
         min-height: 80px;
-        border: solid 1px #f7f6f6;
-        background-color: #f7f6f6;
-        border-bottom: solid 3px #f7f6f6;
-        border-radius: 16px;
+        border: solid var(--jb-textarea-border-width , 1px) var(--jb-textarea-border-color , #f7f6f6);
+        background-color: var(--jb-textarea-bgcolor , #f7f6f6);
+        border-bottom: solid var(--jb-textarea-border-botton-width , 3px) var(--jb-textarea-border-color , #f7f6f6);
+        border-radius: var(--jb-textarea-border-radius , 16px) ;
         display: block;
         transition: ease 0.3s all;
         overflow: hidden;
@@ -25,7 +25,7 @@
         justify-content: space-between;
 
         &:focus-within {
-            border-color: #1e2832;
+            border-color: var(--jb-textarea-border-color-focus ,  #1e2832);
         }
 
         textarea {
@@ -48,14 +48,14 @@
         }
     }
     .message-box{
-        font-size: 0.7em;
+        font-size: var(--jb-textarea-message-font-size , 0.7em) ;
         padding: 2px 8px;
         color: #929292;
         &:empty{
             padding: 0;
         }
         &.error{
-            color: red;
+            color: var(--jb-textarea-message-error-color , red);
         }
     }
 
