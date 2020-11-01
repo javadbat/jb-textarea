@@ -15,6 +15,12 @@ document.querySelector("jb-textarea").value;
 document.querySelector("jb-textarea").value = "salam";
 set value to salam
 ```
+### events
+
+```js
+document.querySelector("jb-textarea").addEventListener('change',changeFunc);
+```
+
 ### set custome style
 
 in some cases in your project you need to change defualt style of web-component for example you need zero margin or different border-radius and etc.    
