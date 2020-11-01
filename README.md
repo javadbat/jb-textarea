@@ -18,8 +18,18 @@ set value to salam
 ### events
 
 ```js
-document.querySelector("jb-textarea").addEventListener('change',changeFunc);
+document.querySelector("jb-textarea").addEventListener('change',func);
+document.querySelector("jb-textarea").addEventListener('keydown',func);
+document.querySelector("jb-textarea").addEventListener('keyup',func);
+document.querySelector("jb-textarea").addEventListener('keypress',func);
 ```
+### auto height grow
+
+you can set `autoHeight` to true so when user type something and text overflow a textarea height component will grow by itself in boundary of `--jb-textarea-min-height` and `--jb-textarea-max-height` that you set by css variable 
+```js
+document.querySelector("jb-textarea").autoHeight = true;
+```
+the good point of set boundary with css variable is you can set different min or max base on device by CSS media queries.
 
 ### set custome style
 
@@ -29,7 +39,7 @@ if you want to set a custom style to this web-component all you need is to set c
 | -------------                         | -------------                                                                                 |
 | --jb-textarea-margin                  | web-component margin defualt is `0 12px`                                                      |
 | --jb-textarea-border-radius           | web-component border-radius defualt is `16px`                                                 |
-| --jb-textarea-border-width            | web-component border-width defualt is `1px`                                                 |
+| --jb-textarea-border-width            | web-component border-width defualt is `1px`                                                   |
 | --jb-textarea-border-color            | border color of select in normal mode                                                         |
 | --jb-textarea-border-color-focus      | border color of select in normal mode                                                         |
 | --jb-textarea-bgcolor                 | background color of input                                                                     |
@@ -37,3 +47,5 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-textarea-label-font-size         | font size of input label defualt is `0.8em`                                                   |
 | --jb-textarea-message-font-size       | font size of message we show under input                                                      |
 | --jb-textarea-message-error-color     | change color of error we show under input defualt is `red`                                    |
+| --jb-textarea-min-height              | minimum height of text area defualt is `80px`                                                 |
+| --jb-textarea-max-height              | minimum height of text area defualt is `none`                                                 |
