@@ -51,3 +51,5 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-textarea-message-error-color     | change color of error we show under input defualt is `red`                                    |
 | --jb-textarea-min-height              | minimum height of text area defualt is `80px`                                                 |
 | --jb-textarea-max-height              | minimum height of text area defualt is `none`                                                 |
+| --jb-textarea-placeholder-color       | placeholder color defualt is 'initial'                                                        |
+| --jb-textarea-placeholder-font-size   | placeholder font-size defualt is `initial`                                                    |

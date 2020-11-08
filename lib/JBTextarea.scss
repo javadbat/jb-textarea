@@ -50,6 +50,10 @@
             &:focus {
                 outline: none;
             }
+            &::placeholder {
+                color:  var(--jb-textarea-placeholder-color , initial);
+                font-size:  var(--jb-textarea-placeholder-font-size , initial);
+            }
         }
     }
     .message-box{
