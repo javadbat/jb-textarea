@@ -1,1 +1,1 @@
-import './dist/JBTextarea'
+import './dist/JBTextarea';
