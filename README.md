@@ -1,12 +1,25 @@
 # jb-textarea
-simple textarea web component
-## usage
+
+simple textarea web component to input long text
+
+- lightweight
+- zero dependancy
+- help you manage validation in easy way
+- config auto height grow ability with max height
+- web component so you can use it with any framework you need
+
+sample: <https://codepen.io/javadbat/pen/poRZVXe>
+
+## installation and setup
+
 ```cmd
 npm i jb-textarea
-```
+``
+`
 ```html
 <jb-textarea label="توضیحات" value="" message="متن زیر باکس"></jb-textarea>
 ```
+
 ## get and set value
 
 ```js
@@ -15,6 +28,7 @@ document.querySelector("jb-textarea").value;
 document.querySelector("jb-textarea").value = "salam";
 set value to salam
 ```
+
 ### events
 
 ```js
@@ -23,12 +37,15 @@ document.querySelector("jb-textarea").addEventListener('keydown',func);
 document.querySelector("jb-textarea").addEventListener('keyup',func);
 document.querySelector("jb-textarea").addEventListener('keypress',func);
 ```
+
 ### auto height grow
 
 you can set `autoHeight` to true so when user type something and text overflow a textarea height component will grow by itself in boundary of `--jb-textarea-min-height` and `--jb-textarea-max-height` that you set by css variable 
+
 ```js
 document.querySelector("jb-textarea").autoHeight = true;
 ```
+
 the good point of set boundary with css variable is you can set different min or max base on device by CSS media queries.
 
 ### set custome style
