@@ -1,6 +1,7 @@
 {
   "name": "jb-textarea",
   "description": "textarea web component",
+  "type": "module",
   "author": {
 		"name": "mohammad javad bathaei",
 		"email": "javadbat@gmail.com"
@@ -11,7 +12,7 @@
     "select",
     "web component"
   ],
-  "version": "1.1.1",
+  "version": "1.1.2",
   "bugs": "https://github.com/javadbat/jb-textarea/issues",
   "license": "MIT",
   "files": [
