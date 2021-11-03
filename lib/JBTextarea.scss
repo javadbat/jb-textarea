@@ -41,7 +41,7 @@
             display: block;
             font-family: inherit;
             font-size: var(--jb-textarea-value-font-size , 1.1em);
-            color: #1f1735;
+            color: var(--jb-textarea-value-color, #1f1735);
             margin: 0;
             border-radius: 0;
             resize: vertical;
