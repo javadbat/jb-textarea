@@ -70,3 +70,4 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-textarea-max-height              | minimum height of text area defualt is `none`                                                 |
 | --jb-textarea-placeholder-color       | placeholder color defualt is 'initial'                                                        |
 | --jb-textarea-placeholder-font-size   | placeholder font-size defualt is `initial`                                                    |
+| --jb-textarea-label-color             | label color defualt is `#1f1735`                                                              |

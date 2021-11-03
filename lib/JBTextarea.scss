@@ -6,7 +6,7 @@
         margin: 4px 0px;
         display: block;
         font-size: var(--jb-textarea-label-font-size , 0.8em);
-        color: #1f1735;
+        color: var(--jb-textarea-label-color, #1f1735);
         &.--hide{
             display: none;
         }
