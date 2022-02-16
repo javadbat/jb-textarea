@@ -1,12 +1,14 @@
 import HTML from './JBTextarea.html';
 import CSS from './JBTextarea.scss';
-class JBTextareaWebComponent extends HTMLElement {
+import { JBTextareaElements, JBTextareaValidationItem, ValidationResult, ValidationResultItem, ValidationResultSummary } from './Types';
+export class JBTextareaWebComponent extends HTMLElement {
+    #value = '';
     get value() {
-        return this._value;
+        return this.#value;
     }
     set value(value) {
-        this._value = value;
-        this._textareaElement.value = value;
+        this.#value = value;
+        this.#textareaElement.value = value;
         if(this.autoHeight){
             this.changeHeightToContentSize();
         }
@@ -16,32 +18,41 @@ class JBTextareaWebComponent extends HTMLElement {
         this.initWebComponent();
         this.initProp();
     }
+    #textareaElement!: HTMLTextAreaElement;
+    #elements!: JBTextareaElements;
     initWebComponent() {
-        this._shadowRoot = this.attachShadow({
+        const shadowRoot = this.attachShadow({
             mode: 'open'
         });
-        this._html = `<style>${CSS}</style>` + '\n' + HTML;
-        this._element = document.createElement('template');
-        this._element.innerHTML = this._html;
-        this._shadowRoot.appendChild(this._element.content.cloneNode(true));
-        this._textareaElement = this._shadowRoot.querySelector('.textarea-box textarea');
+        const html = `<style>${CSS}</style>` + '\n' + HTML;
+        const element = document.createElement('template');
+        element.innerHTML = html;
+        shadowRoot.appendChild(element.content.cloneNode(true));
+        this.#textareaElement = shadowRoot.querySelector('.textarea-box textarea')!;
+        this.#elements = {
+            textarea: this.#textareaElement,
+            label: shadowRoot.querySelector('label')!,
+            labelValue:shadowRoot.querySelector('label .label-value')!,
+            messageBox:shadowRoot.querySelector('.message-box')!
+        }
         this.registerEventListener();
     }
     registerEventListener() {
-        this._textareaElement.addEventListener('change', this.onInputChange.bind(this));
-        this._textareaElement.addEventListener('keypress', this.onInputKeyPress.bind(this));
-        this._textareaElement.addEventListener('keyup', this.onInputKeyup.bind(this));
-        this._textareaElement.addEventListener('keydown', this.onInputKeyDown.bind(this));
-        this._textareaElement.addEventListener('input', this.onInputInput.bind(this));
+        this.#textareaElement.addEventListener('change', this.onInputChange.bind(this));
+        this.#textareaElement.addEventListener('keypress', this.onInputKeyPress.bind(this));
+        this.#textareaElement.addEventListener('keyup', this.onInputKeyup.bind(this));
+        this.#textareaElement.addEventListener('keydown', this.onInputKeyDown.bind(this));
+        this.#textareaElement.addEventListener('input', this.onInputInput.bind(this));
+    }
+    validationList:JBTextareaValidationItem[] = [];
+    autoHeight = false;
+    validation:ValidationResultSummary = {
+        isValid: null,
+        message: null
     }
     initProp() {
-        this.validationList = [];
         this.value = this.getAttribute('value') || '';
-        this.autoHeight = false;
-        this.validation = {
-            isValid: null,
-            message: null
-        };
+
     }
     static get observedAttributes() {
         return ['label', 'message', 'value', 'placeholder'];
@@ -53,18 +64,18 @@ class JBTextareaWebComponent extends HTMLElement {
     onAttributeChange(name, value) {
         switch (name) {
             case 'label':
-                this._shadowRoot.querySelector('label .label-value').innerHTML = value;
+                this.#elements.labelValue.innerHTML = value;
                 if(value == null || value == undefined || value == ""){
-                    this._shadowRoot.querySelector('label').classList.add('--hide');
+                    this.#elements.label.classList.add('--hide');
                 }else{
-                    this._shadowRoot.querySelector('label').classList.remove('--hide');
+                    this.#elements.label.classList.remove('--hide');
                 }
                 break;
             case 'message':
-                this._shadowRoot.querySelector('.message-box').innerHTML = value;
+                this.#elements.messageBox.innerHTML = value;
                 break;
             case 'placeholder':
-                this._textareaElement.setAttribute('placeholder', value);
+                this.#textareaElement.setAttribute('placeholder', value);
                 break;
             case 'value':
                 this.value = value;
@@ -73,8 +84,8 @@ class JBTextareaWebComponent extends HTMLElement {
 
     }
     changeHeightToContentSize() {
-        this._textareaElement.style.height = "4px";
-        this._textareaElement.style.height = (this._textareaElement.scrollHeight)+"px";
+        this.#textareaElement.style.height = "4px";
+        this.#textareaElement.style.height = (this.#textareaElement.scrollHeight)+"px";
     }
     onInputKeyDown(e){
         const keyDownnInitObj = {
@@ -108,7 +119,7 @@ class JBTextareaWebComponent extends HTMLElement {
     onInputKeyup(e) {
         const inputText = e.target.value;
         //here is the rare  time we update _value directly becuase we want trigger event that may read value directly from dom
-        this._value = inputText;
+        this.#value = inputText;
         this.triggerInputValidation(false);
         const keyUpInitObj = {
             key:e.key,
@@ -127,7 +138,7 @@ class JBTextareaWebComponent extends HTMLElement {
         const inputText = e.target.value;
         this.triggerInputValidation(true);
         //here is the rare  time we update _value directly becuase we want trigger event that may read value directly from dom
-        this._value = inputText;
+        this.#value = inputText;
         const validationObject = this.checkInputValidation(inputText);
         const event = new CustomEvent('change',{
             detail: {
@@ -140,18 +151,20 @@ class JBTextareaWebComponent extends HTMLElement {
     triggerInputValidation(showError = true) {
         // this method is for use out of component  for example if user click on submit button and developer want to check if all fields are valid
         //takeAction determine if we want to show user error in web component difualtManner or developer will handle it by himself
-        const inputText = this._textareaElement.value;
+        const inputText = this.#textareaElement.value;
         const validationResult = this.checkInputValidation(inputText);
         if (showError == true && !validationResult.isAllValid) {
             const firstFault = validationResult.validationList.find(x => !x.isValid);
-            this.showValidationError(firstFault.message);
+            if(firstFault){
+                this.showValidationError(firstFault.message);
+            }
         } else if (validationResult.isAllValid) {
             this.clearValidationError();
         }
         return validationResult;
     }
-    checkInputValidation(inputText){
-        const validationResult = {
+    checkInputValidation(inputText):ValidationResult{
+        const validationResult:ValidationResult = {
             validationList: [],
             isAllValid: true
         };
@@ -165,7 +178,7 @@ class JBTextareaWebComponent extends HTMLElement {
         return validationResult;
     }
     checkValidation(text, validation) {
-        var testRes = validation.validator.test(text);
+        const testRes = validation.validator.test(text);
         validation.validator.lastIndex = 0;
         if (!testRes) {
             return {
@@ -185,8 +198,8 @@ class JBTextareaWebComponent extends HTMLElement {
             isValid: false,
             message: error
         };
-        this._shadowRoot.querySelector('.message-box').innerHTML = error;
-        this._shadowRoot.querySelector('.message-box').classList.add('error');
+        this.#elements.messageBox.innerHTML = error;
+        this.#elements.messageBox.classList.add('error');
     }
     clearValidationError() {
         this.validation = {
@@ -194,8 +207,8 @@ class JBTextareaWebComponent extends HTMLElement {
             message: null
         };
         const text = this.getAttribute('message') || '';
-        this._shadowRoot.querySelector('.message-box').innerHTML = text;
-        this._shadowRoot.querySelector('.message-box').classList.remove('error');
+        this.#elements.messageBox.innerHTML = text;
+        this.#elements.messageBox.classList.remove('error');
     }
 }
 

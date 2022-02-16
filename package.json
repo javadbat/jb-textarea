@@ -12,7 +12,7 @@
     "select",
     "web component"
   ],
-  "version": "1.1.4",
+  "version": "2.0.0",
   "bugs": "https://github.com/javadbat/jb-textarea/issues",
   "license": "MIT",
   "files": [
@@ -22,6 +22,7 @@
     "dist/"
   ],
   "main": "index.js",
+  "types": "./dist/JBTextarea.d.ts",
   "repository": {
 		"type": "git",
 		"url": "git@github.com:javadbat/jb-textarea.git"
