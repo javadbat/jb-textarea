@@ -12,10 +12,10 @@ sample: <https://codepen.io/javadbat/pen/poRZVXe>
 
 ## installation and setup
 
-```cmd
+```bash
 npm i jb-textarea
-``
-`
+```
+
 ```html
 <jb-textarea label="توضیحات" value="" message="متن زیر باکس"></jb-textarea>
 ```
