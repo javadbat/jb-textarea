@@ -1,6 +1,6 @@
 import HTML from './jb-textarea.html';
 import CSS from './jb-textarea.scss';
-import { JBTextareaElements, JBTextareaValidationItem, ValidationResult, ValidationResultItem, ValidationResultSummary } from './types1';
+import { JBTextareaElements, JBTextareaValidationItem, ValidationResult, ValidationResultItem, ValidationResultSummary } from './types';
 export { JBTextareaValidationItem };
 export class JBTextareaWebComponent extends HTMLElement {
   #value = '';
