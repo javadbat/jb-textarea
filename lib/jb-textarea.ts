@@ -1,8 +1,12 @@
 import HTML from './jb-textarea.html';
 import CSS from './jb-textarea.scss';
-import { JBTextareaElements, JBTextareaValidationItem, ValidationResult, ValidationResultItem, ValidationResultSummary } from './types';
-export { JBTextareaValidationItem };
-export class JBTextareaWebComponent extends HTMLElement {
+import { ValidationHelper } from 'jb-validation';
+import { WithValidation } from 'jb-validation/types';
+import { JBTextareaElements, ValidationValue } from './types';
+//export all internal type for user easier access
+export { ValidationValue };
+
+export class JBTextareaWebComponent extends HTMLElement implements WithValidation {
   #value = '';
   get value() {
     return this.#value;
@@ -11,17 +15,24 @@ export class JBTextareaWebComponent extends HTMLElement {
     this.#value = value;
     this.#textareaElement.value = value;
     if (this.autoHeight) {
-      this.changeHeightToContentSize();
+      this.#changeHeightToContentSize();
     }
+  }
+  #isAutoValidationDisabled = false;
+  get isAutoValidationDisabled(): boolean {
+    return this.#isAutoValidationDisabled;
+  }
+  set isAutoValidationDisabled(value: boolean) {
+    this.#isAutoValidationDisabled = value;
   }
   constructor() {
     super();
-    this.initWebComponent();
-    this.initProp();
+    this.#initWebComponent();
+    this.#initProp();
   }
   #textareaElement!: HTMLTextAreaElement;
   #elements!: JBTextareaElements;
-  initWebComponent() {
+  #initWebComponent() {
     const shadowRoot = this.attachShadow({
       mode: 'open'
     });
@@ -36,23 +47,22 @@ export class JBTextareaWebComponent extends HTMLElement {
       labelValue: shadowRoot.querySelector('label .label-value')!,
       messageBox: shadowRoot.querySelector('.message-box')!
     }
-    this.registerEventListener();
+    this.#registerEventListener();
   }
-  registerEventListener() {
-    this.#elements.textarea.addEventListener('change', (e) => this.onInputChange(e));
-    this.#elements.textarea.addEventListener('beforeinput', this.onInputBeforeInput.bind(this));
-    this.#elements.textarea.addEventListener('input', (e) => this.onInputInput((e as unknown as InputEvent)));
-    this.#elements.textarea.addEventListener('keypress', this.onInputKeyPress.bind(this));
-    this.#elements.textarea.addEventListener('keyup', this.onInputKeyup.bind(this));
-    this.#elements.textarea.addEventListener('keydown', this.onInputKeyDown.bind(this));
+  #registerEventListener() {
+    this.#elements.textarea.addEventListener('change', (e) => this.#onInputChange(e));
+    this.#elements.textarea.addEventListener('beforeinput', this.#onInputBeforeInput.bind(this));
+    this.#elements.textarea.addEventListener('input', (e) => this.#onInputInput((e as unknown as InputEvent)));
+    this.#elements.textarea.addEventListener('keypress', this.#onInputKeyPress.bind(this));
+    this.#elements.textarea.addEventListener('keyup', this.#onInputKeyup.bind(this));
+    this.#elements.textarea.addEventListener('keydown', this.#onInputKeyDown.bind(this));
   }
-  validationList: JBTextareaValidationItem[] = [];
   autoHeight = false;
-  validation: ValidationResultSummary = {
-    isValid: null,
-    message: null
+  #validation = new ValidationHelper<ValidationValue>(this.showValidationError.bind(this), this.clearValidationError.bind(this), () => this.value, () => this.value, () => []);
+  get validation(){
+    return this.#validation;
   }
-  initProp() {
+  #initProp() {
     this.value = this.getAttribute('value') || '';
 
   }
@@ -61,9 +71,9 @@ export class JBTextareaWebComponent extends HTMLElement {
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     // do something when an attribute has changed
-    this.onAttributeChange(name, newValue);
+    this.#onAttributeChange(name, newValue);
   }
-  onAttributeChange(name: string, value: string) {
+  #onAttributeChange(name: string, value: string) {
     switch (name) {
       case 'label':
         this.#elements.labelValue.innerHTML = value;
@@ -85,11 +95,11 @@ export class JBTextareaWebComponent extends HTMLElement {
     }
 
   }
-  changeHeightToContentSize() {
+  #changeHeightToContentSize() {
     this.#textareaElement.style.height = "4px";
     this.#textareaElement.style.height = (this.#textareaElement.scrollHeight) + "px";
   }
-  onInputBeforeInput(e: InputEvent) {
+  #onInputBeforeInput(e: InputEvent) {
     this.#dispatchBeforeInputEvent(e);
   }
   #dispatchBeforeInputEvent(e: InputEvent): boolean {
@@ -112,7 +122,7 @@ export class JBTextareaWebComponent extends HTMLElement {
     }
     return event.defaultPrevented;
   }
-  onInputKeyDown(e: KeyboardEvent) {
+  #onInputKeyDown(e: KeyboardEvent) {
     const keyDownnInitObj: KeyboardEventInit = {
       key: e.key,
       keyCode: e.keyCode,
@@ -139,7 +149,7 @@ export class JBTextareaWebComponent extends HTMLElement {
       e.preventDefault();
     }
   }
-  onInputKeyPress(e: KeyboardEvent) {
+  #onInputKeyPress(e: KeyboardEvent) {
     const keyPressInitObj: KeyboardEventInit = {
       key: e.key,
       keyCode: e.keyCode,
@@ -166,9 +176,9 @@ export class JBTextareaWebComponent extends HTMLElement {
       e.preventDefault();
     }
   }
-  onInputInput(e: InputEvent) {
+  #onInputInput(e: InputEvent) {
     if (this.autoHeight) {
-      this.changeHeightToContentSize();
+      this.#changeHeightToContentSize();
     }
     this.#triggerInputEvent(e);
   }
@@ -188,7 +198,7 @@ export class JBTextareaWebComponent extends HTMLElement {
     const event = new InputEvent("input", inputInitObject);
     this.dispatchEvent(event);
   }
-  onInputKeyup(e: KeyboardEvent) {
+  #onInputKeyup(e: KeyboardEvent) {
     const inputText = (e.target as HTMLTextAreaElement).value;
     //here is the rare  time we update _value directly becuase we want trigger event that may read value directly from dom
     this.#value = inputText;
@@ -215,87 +225,36 @@ export class JBTextareaWebComponent extends HTMLElement {
     const event = new KeyboardEvent('keyup', keyUpInitObj);
     this.dispatchEvent(event);
   }
-  onInputChange(e: Event) {
+  #onInputChange(e: Event) {
     const inputText = (e.target as HTMLTextAreaElement).value;
-    this.triggerInputValidation(true);
     //here is the rare  time we update _value directly becuase we want trigger event that may read value directly from dom
     this.#value = inputText;
-    const validationObject = this.checkInputValidation(inputText);
-    const event = new CustomEvent('change', {
-      detail: {
-        isValid: validationObject.isAllValid,
-        validationObject: validationObject,
-      },
-    });
+    this.#checkValidity(true);
+    const event = new Event('change');
     this.dispatchEvent(event);
   }
+  /**
+   * 
+   * @param showError wether to show error or not 
+   * @deprecated use .validation.checkValidity instead
+   */
   triggerInputValidation(showError = true) {
-    // this method is for use out of component  for example if user click on submit button and developer want to check if all fields are valid
-    //takeAction determine if we want to show user error in web component difualtManner or developer will handle it by himself
-    const inputText = this.#textareaElement.value;
-    const validationResult = this.checkInputValidation(inputText);
-    if (showError == true && !validationResult.isAllValid) {
-      const firstFault = validationResult.validationList.find(x => !x.isValid);
-      if (firstFault && firstFault.message) {
-        this.showValidationError(firstFault.message);
-      }
-    } else if (validationResult.isAllValid) {
-      this.clearValidationError();
-    }
-    return validationResult;
+    this.validation.checkValidity(showError);
   }
-  checkInputValidation(inputText: string): ValidationResult {
-    const validationResult: ValidationResult = {
-      validationList: [],
-      isAllValid: true
-    };
-    this.validationList.forEach((validation: JBTextareaValidationItem) => {
-      const res = this.checkValidation(inputText, validation);
-      validationResult.validationList.push(res);
-      if (!res.isValid) {
-        validationResult.isAllValid = false;
-      }
-    });
-    return validationResult;
-  }
-  checkValidation(text: string, validation: JBTextareaValidationItem) {
-    let testRes = true;
-    if (validation.validator instanceof RegExp) {
-      testRes = validation.validator.test(text);
-      validation.validator.lastIndex = 0;
-    }
-    if (typeof validation.validator == "function") {
-      testRes = validation.validator(text);
-    }
-    if (!testRes) {
-      return {
-        isValid: false,
-        message: validation.message,
-        validation: validation
-      };
-    }
-    return {
-      isValid: true,
-      message: '',
-      validation: validation
-    };
-  }
+
   showValidationError(error: string) {
-    this.validation = {
-      isValid: false,
-      message: error
-    };
     this.#elements.messageBox.innerHTML = error;
     this.#elements.messageBox.classList.add('error');
   }
   clearValidationError() {
-    this.validation = {
-      isValid: true,
-      message: null
-    };
     const text = this.getAttribute('message') || '';
     this.#elements.messageBox.innerHTML = text;
     this.#elements.messageBox.classList.remove('error');
+  }
+  #checkValidity(showError: boolean) {
+    if (!this.isAutoValidationDisabled) {
+      return this.#validation.checkValidity(showError);
+    }
   }
 }
 

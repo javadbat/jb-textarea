@@ -1,1 +1,1 @@
-import './dist/JBTextarea.js';
+export {JBTextareaWebComponent} from './dist/jb-textarea.js';

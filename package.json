@@ -9,10 +9,11 @@
   "keywords": [
     "jb",
     "jb-textarea",
-    "select",
-    "web component"
+    "textarea",
+    "web component",
+    "web-component"
   ],
-  "version": "2.2.0",
+  "version": "3.0.0",
   "bugs": "https://github.com/javadbat/jb-textarea/issues",
   "license": "MIT",
   "files": [
@@ -22,9 +23,12 @@
     "dist/"
   ],
   "main": "index.js",
-  "types": "./dist/JBTextarea.d.ts",
+  "types": "./dist/web-component/jb-textarea/lib/jb-textarea.d.ts",
   "repository": {
 		"type": "git",
 		"url": "git@github.com:javadbat/jb-textarea.git"
+  },
+  "dependencies": {
+    "jb-validation":">=0.0.2"
   }
 }
