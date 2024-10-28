@@ -1,12 +1,16 @@
 import HTML from './jb-textarea.html';
 import CSS from './jb-textarea.scss';
 import { ValidationHelper } from 'jb-validation';
-import { WithValidation } from 'jb-validation/types';
+import { ValidationItem, ValidationResult, WithValidation } from 'jb-validation/types';
+import type { JBFormInputStandards } from 'jb-form/types'
 import { JBTextareaElements, ValidationValue } from './types';
 //export all internal type for user easier access
 export { ValidationValue };
 
-export class JBTextareaWebComponent extends HTMLElement implements WithValidation {
+export class JBTextareaWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<string> {
+  static get formAssociated() {
+    return true;
+  }
   #value = '';
   get value() {
     return this.#value;
@@ -25,8 +29,43 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   set isAutoValidationDisabled(value: boolean) {
     this.#isAutoValidationDisabled = value;
   }
+  #disabled = false;
+  get disabled() {
+    return this.#disabled;
+  }
+  set disabled(value: boolean) {
+    this.#disabled = value;
+    this.#elements.textarea.disabled = value;
+    if (value) {
+      //TODO: remove as any when typescript support
+      (this.#internals as any).states?.add("disabled");
+    } else {
+      (this.#internals as any).states?.delete("disabled");
+    }
+  }
+  #required = false;
+  set required(value: boolean) {
+    this.#required = value;
+    this.#validation.checkValidity(false);
+  }
+  get required() {
+    return this.#required;
+  }
+  #internals?: ElementInternals;
+
+  get name() {
+    return this.getAttribute('name') || '';
+  }
+  initialValue = "";
+  get isDirty(): boolean {
+    return this.#value !== this.initialValue;
+  }
   constructor() {
     super();
+    if (typeof this.attachInternals == "function") {
+      //some browser dont support attachInternals
+      this.#internals = this.attachInternals();
+    }
     this.#initWebComponent();
     this.#initProp();
   }
@@ -58,8 +97,8 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.#elements.textarea.addEventListener('keydown', this.#onInputKeyDown.bind(this));
   }
   autoHeight = false;
-  #validation = new ValidationHelper<ValidationValue>(this.showValidationError.bind(this), this.clearValidationError.bind(this), () => this.value, () => this.value, () => []);
-  get validation(){
+  #validation = new ValidationHelper<ValidationValue>(this.showValidationError.bind(this), this.clearValidationError.bind(this), () => this.value, () => this.#value, this.#getInsideValidation.bind(this), this.#setValidationResult.bind(this));
+  get validation() {
     return this.#validation;
   }
   #initProp() {
@@ -67,7 +106,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
 
   }
   static get observedAttributes() {
-    return ['label', 'message', 'value', 'placeholder'];
+    return ['label', 'message', 'value', 'placeholder',"required"];
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     // do something when an attribute has changed
@@ -91,6 +130,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
         break;
       case 'value':
         this.value = value;
+        break;
+      case 'required':
+        this.required = value === '' || value ==='true';
         break;
     }
 
@@ -202,7 +244,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     const inputText = (e.target as HTMLTextAreaElement).value;
     //here is the rare  time we update _value directly becuase we want trigger event that may read value directly from dom
     this.#value = inputText;
-    this.triggerInputValidation(false);
+    this.#checkValidity(false);
     const keyUpInitObj: KeyboardEventInit = {
       key: e.key,
       keyCode: e.keyCode,
@@ -227,19 +269,11 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   #onInputChange(e: Event) {
     const inputText = (e.target as HTMLTextAreaElement).value;
-    //here is the rare  time we update _value directly becuase we want trigger event that may read value directly from dom
+    //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
     this.#value = inputText;
     this.#checkValidity(true);
     const event = new Event('change');
     this.dispatchEvent(event);
-  }
-  /**
-   * 
-   * @param showError wether to show error or not 
-   * @deprecated use .validation.checkValidity instead
-   */
-  triggerInputValidation(showError = true) {
-    this.validation.checkValidity(showError);
   }
 
   showValidationError(error: string) {
@@ -251,10 +285,67 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.#elements.messageBox.innerHTML = text;
     this.#elements.messageBox.classList.remove('error');
   }
+  #getInsideValidation(): ValidationItem<ValidationValue>[] {
+    const validationList: ValidationItem<ValidationValue>[] = [];
+    if (this.required) {
+      validationList.push({
+        validator: /.{1}/g,
+        message: this.getAttribute("label") +" "+ "میبایست حتما وارد شود",
+        stateType: "valueMissing"
+      });
+    }
+    return validationList;
+  }
   #checkValidity(showError: boolean) {
     if (!this.isAutoValidationDisabled) {
       return this.#validation.checkValidity(showError);
     }
+  }
+  /**
+ * @description this method called on every checkValidity calls and update validation result of #internal
+ */
+  #setValidationResult(result: ValidationResult<ValidationValue>) {
+    if (result.isAllValid) {
+      this.#internals.setValidity({}, '');
+    } else {
+      const states: ValidityStateFlags = {};
+      let message = "";
+      result.validationList.forEach((res) => {
+        if (!res.isValid) {
+          if (res.validation.stateType) { states[res.validation.stateType] = true; }
+          if (message == '') { message = res.message; }
+        }
+      });
+      this.#internals.setValidity(states, message);
+    }
+  }
+  get validationMessage() {
+    return this.#internals.validationMessage;
+  }
+  /**
+ * @public
+ * @description this method used to check for validity but doesn't show error to user and just return the result
+ * this method used by #internal of component
+ */
+  checkValidity(): boolean {
+    const validationResult = this.#validation.checkValidity(false);
+    if (!validationResult.isAllValid) {
+      const event = new CustomEvent('invalid');
+      this.dispatchEvent(event);
+    }
+    return validationResult.isAllValid;
+  }
+  /**
+  * @public
+ * @description this method used to check for validity and show error to user
+ */
+  reportValidity(): boolean {
+    const validationResult = this.#validation.checkValidity(true);
+    if (!validationResult.isAllValid) {
+      const event = new CustomEvent('invalid');
+      this.dispatchEvent(event);
+    }
+    return validationResult.isAllValid;
   }
 }
 
