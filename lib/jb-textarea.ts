@@ -1,8 +1,8 @@
 import HTML from './jb-textarea.html';
 import CSS from './jb-textarea.scss';
 import { ValidationHelper } from 'jb-validation';
-import { ValidationItem, ValidationResult, WithValidation } from 'jb-validation/types';
-import type { JBFormInputStandards } from 'jb-form/types'
+import type { ValidationItem, ValidationResult, WithValidation } from 'jb-validation/types';
+import type { JBFormInputStandards } from 'jb-form/types';
 import { JBTextareaElements, ValidationValue } from './types';
 //export all internal type for user easier access
 export { ValidationValue };
