@@ -1,3 +1,7 @@
+:host(:focus),
+:host(:focus-visible) {
+    outline: none;
+}
 .jb-textarea-web-component {
     width: 100%;
     margin: var(--jb-textarea-margin , 12px 0);
