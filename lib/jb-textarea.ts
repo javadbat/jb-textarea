@@ -1,7 +1,6 @@
 import HTML from './jb-textarea.html';
 import CSS from './jb-textarea.scss';
-import { ValidationHelper } from 'jb-validation';
-import type { ValidationItem, ValidationResult, WithValidation } from 'jb-validation';
+import { ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
 import { JBTextareaElements, ValidationValue } from './types';
 //export all internal type for user easier access
@@ -273,10 +272,16 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
     this.#value = inputText;
     this.#checkValidity(true);
-    const event = new Event('change');
-    this.dispatchEvent(event);
+    const dispatchedEvent = this.#dispatchChangeEvent();
+    if(dispatchedEvent.defaultPrevented){
+      e.preventDefault();
+    }
   }
-
+  #dispatchChangeEvent(){
+    const event = new Event('change',{bubbles:true,cancelable:true});
+    this.dispatchEvent(event);
+    return event;
+  }
   showValidationError(error: string) {
     this.#elements.messageBox.innerHTML = error;
     this.#elements.messageBox.classList.add('error');
