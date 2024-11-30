@@ -45,7 +45,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   #required = false;
   set required(value: boolean) {
     this.#required = value;
-    this.#validation.checkValidity(false);
+    this.#validation.checkValiditySync({showError:false});
   }
   get required() {
     return this.#required;
@@ -97,7 +97,14 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.#elements.textarea.addEventListener('keydown', this.#onInputKeyDown.bind(this));
   }
   autoHeight = false;
-  #validation = new ValidationHelper<ValidationValue>(this.showValidationError.bind(this), this.clearValidationError.bind(this), () => this.value, () => this.#value, this.#getInsideValidation.bind(this), this.#setValidationResult.bind(this));
+  #validation = new ValidationHelper<ValidationValue>({
+    clearValidationError:this.clearValidationError.bind(this),
+    getInputtedValue:() => this.#value,
+    getValueString:() => this.value,
+    getInsideValidations:this.#getInsideValidation.bind(this),
+    setValidationResult:this.#setValidationResult.bind(this),
+    showValidationError:this.showValidationError.bind(this)
+  });
   get validation() {
     return this.#validation;
   }
@@ -304,7 +311,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   #checkValidity(showError: boolean) {
     if (!this.isAutoValidationDisabled) {
-      return this.#validation.checkValidity(showError);
+      return this.#validation.checkValidity({showError});
     }
   }
   /**
@@ -334,7 +341,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
  * this method used by #internal of component
  */
   checkValidity(): boolean {
-    const validationResult = this.#validation.checkValidity(false);
+    const validationResult = this.#validation.checkValiditySync({showError:false});
     if (!validationResult.isAllValid) {
       const event = new CustomEvent('invalid');
       this.dispatchEvent(event);
@@ -346,7 +353,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
  * @description this method used to check for validity and show error to user
  */
   reportValidity(): boolean {
-    const validationResult = this.#validation.checkValidity(true);
+    const validationResult = this.#validation.checkValiditySync({showError:true});
     if (!validationResult.isAllValid) {
       const event = new CustomEvent('invalid');
       this.dispatchEvent(event);
