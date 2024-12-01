@@ -1,6 +1,6 @@
 import HTML from './jb-textarea.html';
 import CSS from './jb-textarea.scss';
-import { ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
+import { ShowValidationErrorInput, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
 import { JBTextareaElements, ValidationValue } from './types';
 //export all internal type for user easier access
@@ -289,8 +289,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.dispatchEvent(event);
     return event;
   }
-  showValidationError(error: string) {
-    this.#elements.messageBox.innerHTML = error;
+  showValidationError(error: ShowValidationErrorInput | string) {
+    const message = typeof error == "string"?error:error.message;
+    this.#elements.messageBox.innerHTML = message;
     this.#elements.messageBox.classList.add('error');
   }
   clearValidationError() {
