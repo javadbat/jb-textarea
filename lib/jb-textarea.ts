@@ -99,9 +99,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   autoHeight = false;
   #validation = new ValidationHelper<ValidationValue>({
     clearValidationError:this.clearValidationError.bind(this),
-    getInputtedValue:() => this.#value,
+    getValue:() => this.#value,
     getValueString:() => this.value,
-    getInsideValidations:this.#getInsideValidation.bind(this),
+    getValidations:this.#getInsideValidation.bind(this),
     setValidationResult:this.#setValidationResult.bind(this),
     showValidationError:this.showValidationError.bind(this)
   });
