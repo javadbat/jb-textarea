@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useImperativeHandle, useState, CSSProperties 
 import 'jb-textarea';
 // eslint-disable-next-line no-duplicate-imports
 import {JBTextareaWebComponent, type ValidationValue} from 'jb-textarea';
-import { useEvent } from '../../../common/hooks/use-event.js';
+import { useBindEvent } from '../../../../common/hooks/use-event.js';
 import { type ValidationItem } from "jb-validation";
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -88,12 +88,12 @@ const JBTextarea = React.forwardRef((props:JBTextareaProps, ref) => {
         element.current.autoHeight = props.autoHeight || false;
       }
     }, [props.autoHeight]);
-    useEvent(element.current, 'change', onChange);
-    useEvent(element.current, 'keydown', onKeydown);
-    useEvent(element.current, 'input', onInput);
-    useEvent(element.current, 'keyup', onKeyup);
-    useEvent(element.current, 'focus', onFocus);
-    useEvent(element.current, 'blur', onBlur);
+    useBindEvent(element, 'change', onChange);
+    useBindEvent(element, 'keydown', onKeydown);
+    useBindEvent(element, 'input', onInput);
+    useBindEvent(element, 'keyup', onKeyup);
+    useBindEvent(element, 'focus', onFocus);
+    useBindEvent(element, 'blur', onBlur);
     return (
       <jb-textarea placeholder={props.placeholder} class={props.className} style={props.style} ref={element} label={props.label} message={props.message} name={props.name}></jb-textarea>
     );

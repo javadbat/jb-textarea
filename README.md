@@ -1,14 +1,23 @@
 # jb-textarea
 
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-textarea)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-textarea/master/LICENSE)
+[![NPM Downloads](https://img.shields.io/npm/dw/jb-textarea)](https://www.npmjs.com/package/jb-textarea)
+
 simple textarea web component to input long text
 
 - lightweight
 - zero dependency
+- advance validation with [jb-validation](https://github.com/javadbat/jb-validation) module
 - help you manage validation in easy way
 - config auto height grow ability with max height
 - web component so you can use it with any framework you need
 
 sample: <https://codepen.io/javadbat/pen/poRZVXe>
+
+## using with JS frameworks
+
+to use this component in **react** see [`jb-textarea/react`](https://github.com/javadbat/jb-textarea/tree/main/react);
 
 ## installation and setup
 
@@ -120,7 +129,7 @@ if you want to set a custom style to this web-component all you need is to set c
 
 ## Other Related Docs:
 
-- see [jb-textarea-react](https://github.com/javadbat/jb-textarea-react) if you want to use this component in react.
+- see [`jb-textarea/react`](https://github.com/javadbat/jb-textarea/tree/main/react) if you want to use this component in react.
 
 - see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/master/docs/component-list.md) for more components.
 

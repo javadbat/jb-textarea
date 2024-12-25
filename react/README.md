@@ -16,7 +16,7 @@ npm i jb-textarea-react
 ```
 
 ```jsx
-import {JBTextarea} from 'jb-textarea-react';
+import {JBTextarea} from 'jb-textarea/react';
 
 <JBTextarea label="label" value={valueState} message="text under the box"></JBTextarea>
 ```
