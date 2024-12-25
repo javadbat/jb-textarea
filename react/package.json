@@ -1,0 +1,35 @@
+{
+  "name": "jb-textarea-react",
+  "description": "textarea react component",
+  "type": "module",
+  "author": {
+		"name": "mohammad javad bathaei",
+		"email": "javadbat@gmail.com"
+	},
+  "keywords": [
+    "jb",
+    "jb-textarea",
+    "textarea",
+    "long input",
+    "multiline input",
+    "react component"
+  ],
+  "version": "3.2.0",
+  "bugs": "https://github.com/javadbat/jb-textarea-react/issues",
+  "license": "MIT",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/",
+    "dist/"
+  ],
+  "main": "index.js",
+  "types": "./dist/react-component/jb-textarea/lib/JBTextarea.d.ts",
+  "repository": {
+		"type": "git",
+		"url": "git@github.com:javadbat/jb-textarea-react.git"
+  },
+  "dependencies": {
+    "jb-textarea": ">=3.2.0"
+  }
+}
