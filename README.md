@@ -1,7 +1,7 @@
 # jb-textarea
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-textarea)
-[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-textarea/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-textarea/main/LICENSE)
 [![NPM Downloads](https://img.shields.io/npm/dw/jb-textarea)](https://www.npmjs.com/package/jb-textarea)
 
 simple textarea web component to input long text
@@ -131,6 +131,6 @@ if you want to set a custom style to this web-component all you need is to set c
 
 - see [`jb-textarea/react`](https://github.com/javadbat/jb-textarea/tree/main/react) if you want to use this component in react.
 
-- see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/master/docs/component-list.md) for more components.
+- see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/main/docs/component-list.md) for more components.
 
-- use [Contribution Guide](https://github.com/javadbat/design-system/blob/master/docs/contribution-guide.md) if you want to contribute in this component.
+- use [Contribution Guide](https://github.com/javadbat/design-system/blob/main/docs/contribution-guide.md) if you want to contribute in this component.
