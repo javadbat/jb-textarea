@@ -23,5 +23,7 @@ export const reactComponentList: ReactComponentBuildConfig[] = [
       "jb-textarea": "JBTextarea",
       "jb-validation": "JBValidation"
     },
+    umdName: "JBTextareaReact",
+    dir: "./react"
   },
 ];
