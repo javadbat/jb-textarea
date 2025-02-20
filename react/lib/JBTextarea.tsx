@@ -3,8 +3,8 @@ import React, { useRef, useEffect, useImperativeHandle, useState, CSSProperties 
 import 'jb-textarea';
 // eslint-disable-next-line no-duplicate-imports
 import {JBTextareaWebComponent, type ValidationValue} from 'jb-textarea';
-import { useBindEvent } from '../../../../common/hooks/use-event.js';
 import { type ValidationItem } from "jb-validation";
+import { EventProps, useEvents } from './events-hook.js';
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
@@ -22,7 +22,7 @@ declare global {
     }
 }
 // eslint-disable-next-line react/display-name
-const JBTextarea = React.forwardRef((props:JBTextareaProps, ref) => {
+const JBTextarea = React.forwardRef((props:Props, ref) => {
   {
     //we set this state so when ref change we have a render and our event listener will be updated
     const [refChangeCount , refChangeCountSetter] = useState(0);
@@ -35,36 +35,7 @@ const JBTextarea = React.forwardRef((props:JBTextareaProps, ref) => {
     useEffect(()=>{
       refChangeCountSetter(refChangeCount+1);
     },[element.current]);
-    function onChange(e:JBTextareaEventType<Event>) {
-      if (props.onChange) {
-        props.onChange(e);
-      }
-    }
-    function onKeydown(e:JBTextareaEventType<KeyboardEvent>) {
-      if (props.onKeydown) {
-        props.onKeydown(e);
-      }
-    }
-    function onInput(e:JBTextareaEventType<InputEvent>) {
-      if (props.onInput) {
-        props.onInput(e);
-      }
-    }
-    function onKeyup(e:JBTextareaEventType<KeyboardEvent>) {
-      if (props.onKeyup) {
-        props.onKeyup(e);
-      }
-    }
-    function onFocus(e:JBTextareaEventType<FocusEvent>) {
-      if (props.onFocus && e instanceof FocusEvent) {
-        props.onFocus(e);
-      }
-    }
-    function onBlur(e:JBTextareaEventType<FocusEvent>) {
-      if (props.onBlur && e instanceof FocusEvent) {
-        props.onBlur(e);
-      }
-    }
+
     useEffect(() => {
       const value:string = props.value || '';
       if(element.current){
@@ -88,30 +59,16 @@ const JBTextarea = React.forwardRef((props:JBTextareaProps, ref) => {
         element.current.autoHeight = props.autoHeight || false;
       }
     }, [props.autoHeight]);
-    useBindEvent(element, 'change', onChange);
-    useBindEvent(element, 'keydown', onKeydown);
-    useBindEvent(element, 'input', onInput);
-    useBindEvent(element, 'keyup', onKeyup);
-    useBindEvent(element, 'focus', onFocus);
-    useBindEvent(element, 'blur', onBlur);
+    useEvents(element,props);
     return (
       <jb-textarea placeholder={props.placeholder} class={props.className} style={props.style} ref={element} label={props.label} message={props.message} name={props.name}></jb-textarea>
     );
   }
 });
-export type JBTextareaEventType<T> = T & {
-    target: JBTextareaWebComponent
-}
-type JBTextareaProps = {
+
+export type Props = EventProps & {
     label?: string,
     value?: string | null | undefined,
-    onChange?: (e:JBTextareaEventType<Event>)=>void,
-    onFocus?:(e:JBTextareaEventType<FocusEvent>)=>void,
-    onBlur?:(e:JBTextareaEventType<FocusEvent>)=>void,
-    onKeydown?: (e:JBTextareaEventType<KeyboardEvent>)=>void,
-    onKeyup?: (e:JBTextareaEventType<KeyboardEvent>)=>void,
-    onInput?: (e:JBTextareaEventType<InputEvent>)=>void,
-    onBeforeinput?: (e:JBTextareaEventType<InputEvent>)=>void,
     placeholder?:string,
     className?: string,
     style?:CSSProperties,

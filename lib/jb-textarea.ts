@@ -4,7 +4,7 @@ import { ShowValidationErrorInput, ValidationHelper, type ValidationItem, type V
 import type { JBFormInputStandards } from 'jb-form';
 import { JBTextareaElements, ValidationValue } from './types';
 //export all internal type for user easier access
-export { ValidationValue };
+export * from './types.js';
 
 export class JBTextareaWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<string> {
   static get formAssociated() {
