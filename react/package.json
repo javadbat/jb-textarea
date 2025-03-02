@@ -24,7 +24,7 @@
     "dist/"
   ],
   "main": "index.js",
-  "types": "./dist/web-component/jb-textarea/react/lib/JBTextarea.d.ts",
+  "types": "./dist/JBTextarea.d.ts",
   "repository": {
 		"type": "git",
 		"url": "git@github.com:javadbat/jb-textarea.git"
