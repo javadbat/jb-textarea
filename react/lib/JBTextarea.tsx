@@ -1,10 +1,10 @@
 /* eslint-disable no-inner-declarations */
-import React, { useRef, useEffect, useImperativeHandle, useState, CSSProperties } from 'react';
+import React, { useRef, useImperativeHandle, CSSProperties } from 'react';
 import 'jb-textarea';
 // eslint-disable-next-line no-duplicate-imports
-import {JBTextareaWebComponent, type ValidationValue} from 'jb-textarea';
-import { type ValidationItem } from "jb-validation";
+import {JBTextareaWebComponent} from 'jb-textarea';
 import { EventProps, useEvents } from './events-hook.js';
+import { JBTextareaAttributes, useJBTextareaAttribute } from './attributes-hook.js';
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
@@ -25,40 +25,13 @@ declare global {
 const JBTextarea = React.forwardRef((props:Props, ref) => {
   {
     //we set this state so when ref change we have a render and our event listener will be updated
-    const [refChangeCount , refChangeCountSetter] = useState(0);
     const element = useRef<JBTextareaWebComponent>(null);
     useImperativeHandle(
       ref,
-      () => (element ? element.current : {}),
+      () => (element ? element.current : undefined),
       [element],
     );
-    useEffect(()=>{
-      refChangeCountSetter(refChangeCount+1);
-    },[element.current]);
-
-    useEffect(() => {
-      const value:string = props.value || '';
-      if(element.current){
-        element.current.value = value;
-      }
-    }, [props.value]);
-
-    useEffect(() => {
-      if(element.current){
-        element.current.validation.list = props.validationList || [];
-      }
-    }, [props.validationList]);
-    useEffect(() => {
-      if(element.current && props.required!== undefined){
-        props.required?element.current.setAttribute("required",''):element.current.removeAttribute("required");
-      }
-    }, [props.required]);
-
-    useEffect(() => {
-      if(element.current){
-        element.current.autoHeight = props.autoHeight || false;
-      }
-    }, [props.autoHeight]);
+    useJBTextareaAttribute(element, props);
     useEvents(element,props);
     return (
       <jb-textarea placeholder={props.placeholder} class={props.className} style={props.style} ref={element} label={props.label} message={props.message} name={props.name}></jb-textarea>
@@ -66,16 +39,12 @@ const JBTextarea = React.forwardRef((props:Props, ref) => {
   }
 });
 
-export type Props = EventProps & {
+export type Props = EventProps & JBTextareaAttributes & {
     label?: string,
-    value?: string | null | undefined,
     placeholder?:string,
     className?: string,
-    style?:CSSProperties,
-    validationList?:ValidationItem<ValidationValue>[],
-    autoHeight?: boolean,
     message?:string,
+    style?:CSSProperties,
     name?:string,
-    required?:boolean
 }
 export {JBTextarea};

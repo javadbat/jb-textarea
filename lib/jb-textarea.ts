@@ -1,6 +1,6 @@
 import HTML from './jb-textarea.html';
 import CSS from './jb-textarea.scss';
-import { ShowValidationErrorInput, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
+import { ShowValidationErrorParameters, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
 import { JBTextareaElements, ValidationValue } from './types';
 //export all internal type for user easier access
@@ -113,7 +113,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
 
   }
   static get observedAttributes() {
-    return ['label', 'message', 'value', 'placeholder',"required"];
+    return ['label', 'message', 'value', 'placeholder',"required","error"];
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     // do something when an attribute has changed
@@ -141,6 +141,8 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
       case 'required':
         this.required = value === '' || value ==='true';
         break;
+      case "error":
+        this.reportValidity();
     }
 
   }
@@ -289,7 +291,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.dispatchEvent(event);
     return event;
   }
-  showValidationError(error: ShowValidationErrorInput | string) {
+  showValidationError(error: ShowValidationErrorParameters | string) {
     const message = typeof error == "string"?error:error.message;
     this.#elements.messageBox.innerHTML = message;
     this.#elements.messageBox.classList.add('error');
@@ -301,6 +303,13 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   #getInsideValidation(): ValidationItem<ValidationValue>[] {
     const validationList: ValidationItem<ValidationValue>[] = [];
+    if(this.getAttribute("error") !== null && this.getAttribute("error").trim().length > 0){
+      validationList.push({
+        validator: undefined,
+        message: this.getAttribute("error"),
+        stateType: "customError"
+      });
+    }
     if (this.required) {
       validationList.push({
         validator: /.{1}/g,

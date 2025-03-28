@@ -16,6 +16,13 @@ export const Normal:Story = {
     placeholder:'please type here'
   }
 };
+export const WithError:Story = {
+  args:{
+    label:'with error',
+    message:'message under textarea',
+    error:'error message',
+  }
+};
 export const WithValidation:Story = {
   args:{
     label:'validation',
