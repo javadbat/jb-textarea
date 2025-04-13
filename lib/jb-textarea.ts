@@ -3,8 +3,10 @@ import CSS from './jb-textarea.scss';
 import { ShowValidationErrorParameters, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
 import { JBTextareaElements, ValidationValue } from './types';
+import {defineColors} from 'jb-core/theme';
 //export all internal type for user easier access
 export * from './types.js';
+
 
 export class JBTextareaWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<string> {
   static get formAssociated() {
@@ -75,6 +77,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
       mode: 'open',
       delegatesFocus:true
     });
+    defineColors();
     const html = `<style>${CSS}</style>` + '\n' + HTML;
     const element = document.createElement('template');
     element.innerHTML = html;
@@ -293,13 +296,13 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   showValidationError(error: ShowValidationErrorParameters | string) {
     const message = typeof error == "string"?error:error.message;
+    this.#internals.states?.add("invalid");
     this.#elements.messageBox.innerHTML = message;
-    this.#elements.messageBox.classList.add('error');
   }
   clearValidationError() {
     const text = this.getAttribute('message') || '';
+    this.#internals.states?.delete("invalid");
     this.#elements.messageBox.innerHTML = text;
-    this.#elements.messageBox.classList.remove('error');
   }
   #getInsideValidation(): ValidationItem<ValidationValue>[] {
     const validationList: ValidationItem<ValidationValue>[] = [];
