@@ -108,7 +108,7 @@ if you want to set a custom style to this web-component all you need is to set c
 | css variable name                     | description                                                                                   |
 | -------------                         | -------------                                                                                 |
 | --jb-textarea-margin                  | web-component margin default is `0 12px`                                                      |
-| --jb-textarea-border-radius           | web-component border-radius default is `16px`                                                 |
+| --jb-textarea-border-radius           | web-component border-radius                                                                   |
 | --jb-textarea-border-width            | web-component border-width default is `1px`                                                   |
 | --jb-textarea-border-color            | border color of select in normal mode                                                         |
 | --jb-textarea-border-color-focus      | border color of select in normal mode                                                         |
@@ -118,12 +118,12 @@ if you want to set a custom style to this web-component all you need is to set c
 | --jb-textarea-value-font-size         | font size of input value default is `1.1em`                                                   |
 | --jb-textarea-value-color             | color of value default in `initial`                                                           |
 | --jb-textarea-message-font-size       | font size of message we show under input                                                      |
-| --jb-textarea-message-error-color     | change color of error we show under input default is `red`                                    |
+| --jb-textarea-message-error-color     | change color of error we show under input                                                     |
 | --jb-textarea-min-height              | minimum height of text area default is `80px`                                                 |
 | --jb-textarea-max-height              | minimum height of text area default is `none`                                                 |
 | --jb-textarea-placeholder-color       | placeholder color default is 'initial'                                                        |
 | --jb-textarea-placeholder-font-size   | placeholder font-size default is `initial`                                                    |
-| --jb-textarea-label-color             | label color default is `#1f1735`                                                              |    
+| --jb-textarea-label-color             | label color                                                                                   |    
 | --jb-textarea-value-color             | value color                                                                                   |
 
 

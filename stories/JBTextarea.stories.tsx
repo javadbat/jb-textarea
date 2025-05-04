@@ -4,7 +4,7 @@ import JBTextAreaTestPage from './samples/JBTextAreaTestPage';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<Props> = {
-  title: "Example/form elements/JBTextarea",
+  title: "Components/form elements/JBTextarea",
   component: JBTextarea,
 };
 export default meta;

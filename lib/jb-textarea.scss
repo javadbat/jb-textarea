@@ -24,7 +24,7 @@
         border: solid var(--jb-textarea-border-width , 1px) var(--border-color);
         background-color: var(--input-box-bg-color);
         border-bottom: solid var(--jb-textarea-border-bottom-width , 3px) var(--border-color);
-        border-radius: var(--jb-textarea-border-radius , 16px) ;
+        border-radius: var(--border-radius) ;
         display: block;
         transition: ease 0.3s all;
         overflow: hidden;
