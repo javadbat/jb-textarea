@@ -34,7 +34,7 @@ const JBTextarea = React.forwardRef((props:Props, ref) => {
     useJBTextareaAttribute(element, props);
     useEvents(element,props);
     return (
-      <jb-textarea placeholder={props.placeholder} class={props.className} style={props.style} ref={element} label={props.label} message={props.message} name={props.name}></jb-textarea>
+      <jb-textarea placeholder={props.placeholder} class={props.className} style={props.style} ref={element} label={props.label} message={props.message}></jb-textarea>
     );
   }
 });
@@ -45,6 +45,5 @@ export type Props = EventProps & JBTextareaAttributes & {
     className?: string,
     message?:string,
     style?:CSSProperties,
-    name?:string,
 }
 export {JBTextarea};

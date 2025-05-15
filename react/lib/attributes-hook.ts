@@ -8,6 +8,8 @@ export type JBTextareaAttributes = {
   autoHeight?: boolean,
   required?:boolean
   error?: string,
+  name?:string,
+
 }
 export function useJBTextareaAttribute(element: RefObject<JBTextareaWebComponent>, props: JBTextareaAttributes) {
 
@@ -42,4 +44,13 @@ export function useJBTextareaAttribute(element: RefObject<JBTextareaWebComponent
       element?.current?.removeAttribute('error');
     }
   }, [props.error]);
+
+    useEffect(() => {
+    if (props.name) {
+      element?.current?.setAttribute('name', props.name || '');
+    } else {
+      element?.current?.removeAttribute('name');
+    }
+  }, [props.name]);
+
 }

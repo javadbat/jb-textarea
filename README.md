@@ -33,7 +33,7 @@ npm i jb-textarea
 
 ```js
 document.querySelector("jb-textarea").value;
-// retun inputed text
+// return inputted text
 document.querySelector("jb-textarea").value = "salam";
 set value to salam
 ```
@@ -73,6 +73,7 @@ const result = document.getElementByTagName('jb-textarea').validation.addValidat
 ### check validation
 
 like any other jb design system you can access validation by `validation` property:
+
 ```js
 //access validation module
 document.getElementByTagName('jb-textarea').validation
@@ -105,6 +106,7 @@ the good point of set boundary with css variable is you can set different min or
 
 in some cases in your project you need to change default style of web-component for example you need zero margin or different border-radius and etc.    
 if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component 
+
 | css variable name                     | description                                                                                   |
 | -------------                         | -------------                                                                                 |
 | --jb-textarea-margin                  | web-component margin default is `0 12px`                                                      |
