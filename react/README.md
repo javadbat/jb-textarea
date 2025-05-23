@@ -89,28 +89,7 @@ the good point of set boundary with css variable is you can set different min or
 
 ## set custom style
 
-in some cases in your project you need to change default style of web-component for example you need zero margin or different border-radius and etc.    
-if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component 
-| css variable name                     | description                                                                                   |
-| -------------                         | -------------                                                                                 |
-| --jb-textarea-margin                  | web-component margin default is `0 12px`                                                      |
-| --jb-textarea-border-radius           | web-component border-radius default is `16px`                                                 |
-| --jb-textarea-border-width            | web-component border-width default is `1px`                                                   |
-| --jb-textarea-border-color            | border color of select in normal mode                                                         |
-| --jb-textarea-border-color-focus      | border color of select in normal mode                                                         |
-| --jb-textarea-bgcolor                 | background color of input                                                                     |
-| --jb-textarea-border-botton-width     | border bottom thickness default is `3px`                                                      |
-| --jb-textarea-label-font-size         | font size of input label default is `0.8em`                                                   |
-| --jb-textarea-value-font-size         | font size of input value default is `1.1em`                                                   |
-| --jb-textarea-value-color             | color of value default in `initial`                                                           |
-| --jb-textarea-message-font-size       | font size of message we show under input                                                      |
-| --jb-textarea-message-error-color     | change color of error we show under input default is `red`                                    |
-| --jb-textarea-min-height              | minimum height of text area default is `80px`                                                 |
-| --jb-textarea-max-height              | minimum height of text area default is `none`                                                 |
-| --jb-textarea-placeholder-color       | placeholder color default is 'initial'                                                        |
-| --jb-textarea-placeholder-font-size   | placeholder font-size default is `initial`                                                    |
-| --jb-textarea-label-color             | label color default is `#1f1735`                                                              |    
-| --jb-textarea-value-color             | value color                                                                                   |
+ see see [jb-textarea](https://github.com/javadbat/jb-textarea) document. there is no difference between these 2 in styling.
 
 ## Other Related Docs:
 

@@ -52,6 +52,24 @@ export const ActionTest:Story = {
     placeholder:'please type here'
   }
 };
+export const InlineStart:Story = {
+  render: (args) => <JBTextarea {...args}>
+    <div style={{width:'100%', height:'100%', backgroundColor:'red'}} slot="inline-start-section"></div>
+  </JBTextarea>,
+  args:{
+    label:'text',
+    placeholder:'please type here'
+  }
+};
+export const InlineEnd:Story = {
+  render: (args) => <JBTextarea {...args}>
+    <div style={{width:'100%', height:'100%', backgroundColor:'red'}} slot="inline-end-section"></div>
+  </JBTextarea>,
+  args:{
+    label:'text',
+    placeholder:'please type here'
+  }
+};
 
 export const RTL = {
   args:{

@@ -4,16 +4,19 @@
 :host(:focus-visible) {
     outline: none;
 }
+
 .jb-textarea-web-component {
     width: 100%;
-    margin: var(--jb-textarea-margin , 12px 0);
+    margin: var(--jb-textarea-margin, 12px 0);
+
     label {
         width: 100%;
         margin: 4px 0px;
         display: block;
-        font-size: var(--jb-textarea-label-font-size , 0.8em);
+        font-size: var(--jb-textarea-label-font-size, 0.8em);
         color: var(--label-color);
-        &.--hide{
+
+        &.--hide {
             display: none;
         }
     }
@@ -21,46 +24,71 @@
     .textarea-box {
         width: 100%;
         box-sizing: border-box;
-        border: solid var(--jb-textarea-border-width , 1px) var(--border-color);
+        border: solid var(--jb-textarea-border-width, 1px) var(--border-color);
         background-color: var(--input-box-bg-color);
-        border-bottom: solid var(--jb-textarea-border-bottom-width , 3px) var(--border-color);
-        border-radius: var(--border-radius) ;
-        display: block;
+        border-bottom: solid var(--jb-textarea-border-bottom-width, 3px) var(--border-color);
+        border-radius: var(--border-radius);
+        overflow: var(--jb-input-box-overflow, hidden);
+        display: grid;
+        grid-template-columns: auto 1fr auto;
         transition: ease 0.3s all;
         overflow: hidden;
-        display: flex;
-        justify-content: space-between;
-
         textarea {
             border: none;
             width: 100%;
             box-sizing: border-box;
-            min-height: var(--jb-textarea-min-height , 80px);
-            height: var(--jb-textarea-min-height , 80px);
-            max-height: var(--jb-textarea-max-height , none);
+            min-height: var(--jb-textarea-min-height, 80px);
+            height: var(--jb-textarea-min-height, 80px);
+            max-height: var(--jb-textarea-max-height, none);
             background-color: transparent;
             padding: 6px 12px 4px 12px;
             display: block;
             font-family: inherit;
-            font-size: var(--jb-textarea-value-font-size , 1.1em);
+            font-size: var(--jb-textarea-value-font-size, 1.1em);
             margin: 0;
             border-radius: 0;
             resize: vertical;
             color: var(--value-color);
+
             &:focus {
                 outline: none;
             }
+
             &::placeholder {
-                color:  var(--placeholder-color);
-                font-size:  var(--jb-textarea-placeholder-font-size , initial);
+                color: var(--placeholder-color);
+                font-size: var(--jb-textarea-placeholder-font-size, initial);
             }
         }
+
+        .inline-start-section-wrapper, .inline-end-section-wrapper {
+            display: flex;
+            height: 100%;
+            width: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        ::slotted([slot="inline-start-section"]),
+        ::slotted([slot="inline-end-section"]) {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 100%;
+            overflow-y: hidden;
+            background-color: transparent;
+            padding: 8px 16px;
+            width: auto;
+            box-sizing: border-box;
+        }
     }
-    .message-box{
-        font-size: var(--jb-textarea-message-font-size , 0.7em) ;
+
+    .message-box {
+        font-size: var(--jb-textarea-message-font-size, 0.7em);
         padding: 2px 8px;
         color: var(--message-color);
-        &:empty{
+
+        &:empty {
             padding: 0;
         }
     }

@@ -1,5 +1,5 @@
 /* eslint-disable no-inner-declarations */
-import React, { useRef, useImperativeHandle, CSSProperties } from 'react';
+import React, { useRef, useImperativeHandle, CSSProperties, type PropsWithChildren } from 'react';
 import 'jb-textarea';
 // eslint-disable-next-line no-duplicate-imports
 import {JBTextareaWebComponent} from 'jb-textarea';
@@ -34,16 +34,20 @@ const JBTextarea = React.forwardRef((props:Props, ref) => {
     useJBTextareaAttribute(element, props);
     useEvents(element,props);
     return (
-      <jb-textarea placeholder={props.placeholder} class={props.className} style={props.style} ref={element} label={props.label} message={props.message}></jb-textarea>
+      <jb-textarea placeholder={props.placeholder} class={props.className} style={props.style} ref={element} label={props.label} message={props.message}>
+        {props.children}
+      </jb-textarea>
     );
   }
 });
 
-export type Props = EventProps & JBTextareaAttributes & {
+type JBTextareaProps = EventProps & JBTextareaAttributes & {
     label?: string,
     placeholder?:string,
     className?: string,
     message?:string,
     style?:CSSProperties,
 }
+export type Props = PropsWithChildren<JBTextareaProps> & React.HTMLAttributes<JBTextareaWebComponent>;
+// export type Props = PropsWithChildren<JBTextareaProps> & React.HTMLAttributes<JBTextareaWebComponent>;
 export {JBTextarea};
