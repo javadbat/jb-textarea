@@ -158,7 +158,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.#dispatchBeforeInputEvent(e);
   }
   #dispatchBeforeInputEvent(e: InputEvent): boolean {
-    const event = createInputEvent('beforeinput',e, {cancelable:true});
+    const event = createInputEvent('beforeinput', e, { cancelable: true });
     this.dispatchEvent(event);
     if (event.defaultPrevented) {
       e.preventDefault();
@@ -166,7 +166,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     return event.defaultPrevented;
   }
   #onInputKeyDown(e: KeyboardEvent) {
-    const event = createKeyboardEvent("keydown",e, {cancelable:true});
+    const event = createKeyboardEvent("keydown", e, { cancelable: true });
     const isEventNotPrevented = this.dispatchEvent(event);
     if (!isEventNotPrevented) {
       //if event prevented by e.preventDefault();
@@ -174,7 +174,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     }
   }
   #onInputKeyPress(e: KeyboardEvent) {
-    const event = createKeyboardEvent('keypress',e, {cancelable:true});
+    const event = createKeyboardEvent('keypress', e, { cancelable: true });
     const isEventNotPrevented = this.dispatchEvent(event);
     if (!isEventNotPrevented) {
       //if event prevented by e.preventDefault();
@@ -209,15 +209,25 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
     this.#value = inputText;
     this.#checkValidity(false);
-    const event = createKeyboardEvent('keyup', e,{cancelable:false});
+    const event = createKeyboardEvent('keyup', e, { cancelable: true });
+
     this.dispatchEvent(event);
-    if (e.key == "Enter") {
-      this.#onInputEnter(e);
+    if (event.defaultPrevented) {
+      //if event prevented by e.preventDefault();
+      e.preventDefault();
+    } else {
+      if (e.key == "Enter") {
+        this.#onInputEnter(e);
+      }
     }
+
   }
   #onInputEnter(e: KeyboardEvent): void {
-    const event = createKeyboardEvent("enter", e, { cancelable: false })
+    const event = createKeyboardEvent("enter", e, { cancelable: true })
     this.dispatchEvent(event);
+    if (event.defaultPrevented) {
+      e.preventDefault();
+    }
   }
   #onInputChange(e: Event) {
     const inputText = (e.target as HTMLTextAreaElement).value;
