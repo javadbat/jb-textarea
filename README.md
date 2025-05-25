@@ -93,6 +93,8 @@ document.querySelector("jb-textarea").addEventListener('keydown',func);
 document.querySelector("jb-textarea").addEventListener('keyup',func);
 document.querySelector("jb-textarea").addEventListener('keypress',func);
 document.querySelector("jb-textarea").addEventListener('input',func);
+// custom Keyboard event that raise when user press enter
+document.querySelector("jb-textarea").addEventListener('enter',func);
 ```
 
 ## auto height grow

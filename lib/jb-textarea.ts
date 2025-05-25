@@ -3,7 +3,8 @@ import CSS from './jb-textarea.scss';
 import { ShowValidationErrorParameters, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
 import { JBTextareaElements, ValidationValue } from './types';
-import {registerDefaultVariables} from 'jb-core/theme';
+import { registerDefaultVariables } from 'jb-core/theme';
+import { createInputEvent, createKeyboardEvent } from 'jb-core';
 //export all internal type for user easier access
 export * from './types.js';
 
@@ -47,7 +48,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   #required = false;
   set required(value: boolean) {
     this.#required = value;
-    this.#validation.checkValiditySync({showError:false});
+    this.#validation.checkValiditySync({ showError: false });
   }
   get required() {
     return this.#required;
@@ -75,7 +76,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   #initWebComponent() {
     const shadowRoot = this.attachShadow({
       mode: 'open',
-      delegatesFocus:true
+      delegatesFocus: true
     });
     registerDefaultVariables();
     const html = `<style>${CSS}</style>` + '\n' + HTML;
@@ -101,12 +102,12 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   autoHeight = false;
   #validation = new ValidationHelper<ValidationValue>({
-    clearValidationError:this.clearValidationError.bind(this),
-    getValue:() => this.#value,
-    getValueString:() => this.value,
-    getValidations:this.#getInsideValidation.bind(this),
-    setValidationResult:this.#setValidationResult.bind(this),
-    showValidationError:this.showValidationError.bind(this)
+    clearValidationError: this.clearValidationError.bind(this),
+    getValue: () => this.#value,
+    getValueString: () => this.value,
+    getValidations: this.#getInsideValidation.bind(this),
+    setValidationResult: this.#setValidationResult.bind(this),
+    showValidationError: this.showValidationError.bind(this)
   });
   get validation() {
     return this.#validation;
@@ -116,7 +117,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
 
   }
   static get observedAttributes() {
-    return ['label', 'message', 'value', 'placeholder',"required","error"];
+    return ['label', 'message', 'value', 'placeholder', "required", "error"];
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     // do something when an attribute has changed
@@ -142,7 +143,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
         this.value = value;
         break;
       case 'required':
-        this.required = value === '' || value ==='true';
+        this.required = value === '' || value === 'true';
         break;
       case "error":
         this.reportValidity();
@@ -157,19 +158,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.#dispatchBeforeInputEvent(e);
   }
   #dispatchBeforeInputEvent(e: InputEvent): boolean {
-    const eventInitDict = {
-      bubbles: e.bubbles,
-      cancelable: e.cancelable,
-      composed: e.composed,
-      data: e.data,
-      isComposing: e.isComposing,
-      inputType: e.inputType,
-      dataTransfer: e.dataTransfer,
-      view: e.view,
-      detail: e.detail,
-      targetRanges: e.getTargetRanges(),
-    };
-    const event = new InputEvent('beforeinput', eventInitDict);
+    const event = createInputEvent('beforeinput',e, {cancelable:true});
     this.dispatchEvent(event);
     if (event.defaultPrevented) {
       e.preventDefault();
@@ -177,26 +166,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     return event.defaultPrevented;
   }
   #onInputKeyDown(e: KeyboardEvent) {
-    const keyDownnInitObj: KeyboardEventInit = {
-      key: e.key,
-      keyCode: e.keyCode,
-      code: e.code,
-      ctrlKey: e.ctrlKey,
-      shiftKey: e.shiftKey,
-      altKey: e.altKey,
-      charCode: e.charCode,
-      which: e.which,
-      cancelable: true,
-      location: e.location,
-      detail: e.detail,
-      bubbles: e.bubbles,
-      composed: e.composed,
-      isComposing: e.isComposing,
-      metaKey: e.metaKey,
-      repeat: e.repeat,
-      view: e.view
-    };
-    const event = new KeyboardEvent("keydown", keyDownnInitObj);
+    const event = createKeyboardEvent("keydown",e, {cancelable:true});
     const isEventNotPrevented = this.dispatchEvent(event);
     if (!isEventNotPrevented) {
       //if event prevented by e.preventDefault();
@@ -204,26 +174,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     }
   }
   #onInputKeyPress(e: KeyboardEvent) {
-    const keyPressInitObj: KeyboardEventInit = {
-      key: e.key,
-      keyCode: e.keyCode,
-      code: e.code,
-      ctrlKey: e.ctrlKey,
-      shiftKey: e.shiftKey,
-      altKey: e.altKey,
-      charCode: e.charCode,
-      which: e.which,
-      cancelable: true,
-      location: e.location,
-      detail: e.detail,
-      bubbles: e.bubbles,
-      composed: e.composed,
-      isComposing: e.isComposing,
-      metaKey: e.metaKey,
-      repeat: e.repeat,
-      view: e.view
-    };
-    const event = new KeyboardEvent('keypress', keyPressInitObj);
+    const event = createKeyboardEvent('keypress',e, {cancelable:true});
     const isEventNotPrevented = this.dispatchEvent(event);
     if (!isEventNotPrevented) {
       //if event prevented by e.preventDefault();
@@ -253,30 +204,19 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.dispatchEvent(event);
   }
   #onInputKeyup(e: KeyboardEvent) {
+
     const inputText = (e.target as HTMLTextAreaElement).value;
-    //here is the rare  time we update _value directly becuase we want trigger event that may read value directly from dom
+    //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
     this.#value = inputText;
     this.#checkValidity(false);
-    const keyUpInitObj: KeyboardEventInit = {
-      key: e.key,
-      keyCode: e.keyCode,
-      code: e.code,
-      ctrlKey: e.ctrlKey,
-      shiftKey: e.shiftKey,
-      altKey: e.altKey,
-      charCode: e.charCode,
-      which: e.which,
-      bubbles: e.bubbles,
-      cancelable: e.cancelable,
-      composed: e.composed,
-      detail: e.detail,
-      isComposing: e.isComposing,
-      location: e.location,
-      metaKey: e.metaKey,
-      repeat: e.repeat,
-      view: e.view
-    };
-    const event = new KeyboardEvent('keyup', keyUpInitObj);
+    const event = createKeyboardEvent('keyup', e,{cancelable:false});
+    this.dispatchEvent(event);
+    if (e.key == "Enter") {
+      this.#onInputEnter(e);
+    }
+  }
+  #onInputEnter(e: KeyboardEvent): void {
+    const event = createKeyboardEvent("enter", e, { cancelable: false })
     this.dispatchEvent(event);
   }
   #onInputChange(e: Event) {
@@ -285,17 +225,17 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.#value = inputText;
     this.#checkValidity(true);
     const dispatchedEvent = this.#dispatchChangeEvent();
-    if(dispatchedEvent.defaultPrevented){
+    if (dispatchedEvent.defaultPrevented) {
       e.preventDefault();
     }
   }
-  #dispatchChangeEvent(){
-    const event = new Event('change',{bubbles:true,cancelable:true});
+  #dispatchChangeEvent() {
+    const event = new Event('change', { bubbles: true, cancelable: true });
     this.dispatchEvent(event);
     return event;
   }
   showValidationError(error: ShowValidationErrorParameters | string) {
-    const message = typeof error == "string"?error:error.message;
+    const message = typeof error == "string" ? error : error.message;
     this.#internals.states?.add("invalid");
     this.#elements.messageBox.innerHTML = message;
   }
@@ -306,7 +246,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   #getInsideValidation(): ValidationItem<ValidationValue>[] {
     const validationList: ValidationItem<ValidationValue>[] = [];
-    if(this.getAttribute("error") !== null && this.getAttribute("error").trim().length > 0){
+    if (this.getAttribute("error") !== null && this.getAttribute("error").trim().length > 0) {
       validationList.push({
         validator: undefined,
         message: this.getAttribute("error"),
@@ -316,7 +256,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     if (this.required) {
       validationList.push({
         validator: /.{1}/g,
-        message: this.getAttribute("label") +" "+ "میبایست حتما وارد شود",
+        message: this.getAttribute("label") + " " + "میبایست حتما وارد شود",
         stateType: "valueMissing"
       });
     }
@@ -324,7 +264,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   #checkValidity(showError: boolean) {
     if (!this.isAutoValidationDisabled) {
-      return this.#validation.checkValidity({showError});
+      return this.#validation.checkValidity({ showError });
     }
   }
   /**
@@ -354,7 +294,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
  * this method used by #internal of component
  */
   checkValidity(): boolean {
-    const validationResult = this.#validation.checkValiditySync({showError:false});
+    const validationResult = this.#validation.checkValiditySync({ showError: false });
     if (!validationResult.isAllValid) {
       const event = new CustomEvent('invalid');
       this.dispatchEvent(event);
@@ -366,7 +306,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
  * @description this method used to check for validity and show error to user
  */
   reportValidity(): boolean {
-    const validationResult = this.#validation.checkValiditySync({showError:true});
+    const validationResult = this.#validation.checkValiditySync({ showError: true });
     if (!validationResult.isAllValid) {
       const event = new CustomEvent('invalid');
       this.dispatchEvent(event);

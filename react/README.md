@@ -69,12 +69,14 @@ if `isValid` is `true` the value of input is valid.
 
 ## events
 
-```js
+```JSX
 <JBTextarea  onChange={(e)=>{}}></JBTextarea>
 <JBTextarea  onKeydown={(e)=>{}}></JBTextarea>
 <JBTextarea  onKeyup={(e)=>{}}></JBTextarea>
 <JBTextarea  onKeypress={(e)=>{}}></JBTextarea>
 <JBTextarea  onInput={(e)=>{}}></JBTextarea>
+// custom event for when user press enter
+<JBTextarea  onEnter={(e)=>{}}></JBTextarea>
 ```
 
 ## auto height grow

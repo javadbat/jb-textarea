@@ -17,7 +17,8 @@ export type EventProps = {
   onKeyDown?: (e: JBTextareaEventType<KeyboardEvent>) => void,
   onKeyUp?: (e: JBTextareaEventType<KeyboardEvent>) => void,
   onInput?: (e: JBTextareaEventType<InputEvent>) => void,
-  onBeforeinput?: (e: JBTextareaEventType<InputEvent>) => void,
+  onBeforeInput?: (e: JBTextareaEventType<InputEvent>) => void,
+  onEnter?: (e: JBTextareaEventType<KeyboardEvent>) => void,
 
 }
 export function useEvents(element: RefObject<JBTextareaWebComponent>, props: EventProps) {
@@ -26,7 +27,9 @@ export function useEvents(element: RefObject<JBTextareaWebComponent>, props: Eve
   useEvent(element, 'change', props.onChange);
   useEvent(element, 'keydown', props.onKeyDown);
   useEvent(element, 'input', props.onInput);
+  useEvent(element, 'beforeinput', props.onBeforeInput);
   useEvent(element, 'keyup', props.onKeyUp);
   useEvent(element, 'focus', props.onFocus);
   useEvent(element, 'blur', props.onBlur);
+  useEvent(element, 'enter', props.onEnter);
 }
