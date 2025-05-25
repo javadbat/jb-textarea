@@ -93,7 +93,7 @@ document.querySelector("jb-textarea").addEventListener('keydown',func);
 document.querySelector("jb-textarea").addEventListener('keyup',func);
 document.querySelector("jb-textarea").addEventListener('keypress',func);
 document.querySelector("jb-textarea").addEventListener('input',func);
-// custom Keyboard event that raise when user press enter
+// custom Keyboard event that raise when user press enter (unlike jb-input this enter event raise after keypress because it could be cancelled with prevent default)
 document.querySelector("jb-textarea").addEventListener('enter',func);
 ```
 

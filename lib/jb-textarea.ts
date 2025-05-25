@@ -179,6 +179,10 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     if (!isEventNotPrevented) {
       //if event prevented by e.preventDefault();
       e.preventDefault();
+    }else{
+       if (e.key == "Enter") {
+        this.#onInputEnter(e);
+      }
     }
   }
   #onInputInput(e: InputEvent) {
@@ -215,15 +219,11 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     if (event.defaultPrevented) {
       //if event prevented by e.preventDefault();
       e.preventDefault();
-    } else {
-      if (e.key == "Enter") {
-        this.#onInputEnter(e);
-      }
     }
 
   }
   #onInputEnter(e: KeyboardEvent): void {
-    const event = createKeyboardEvent("enter", e, { cancelable: true })
+    const event = createKeyboardEvent("enter", e, { cancelable: true });
     this.dispatchEvent(event);
     if (event.defaultPrevented) {
       e.preventDefault();

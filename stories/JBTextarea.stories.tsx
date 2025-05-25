@@ -49,7 +49,9 @@ export const OnEnterTest:Story = {
   args:{
     label:'text',
     placeholder:'please hit enter with shift key and without shift key',
-    onEnter:(e)=>{alert("shift key:"+(e.shiftKey?'true':'false'))}
+    onEnter:(e)=>{
+        alert("shift key:"+(e.shiftKey?'true':'false'))
+    }
   }
 };
 
