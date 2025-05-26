@@ -179,13 +179,16 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     if (!isEventNotPrevented) {
       //if event prevented by e.preventDefault();
       e.preventDefault();
-    }else{
-       if (e.key == "Enter") {
+    } else {
+      if (e.key == "Enter") {
         this.#onInputEnter(e);
       }
     }
   }
   #onInputInput(e: InputEvent) {
+    const inputText = (e.target as HTMLTextAreaElement).value;
+    //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
+    this.#value = inputText;
     if (this.autoHeight) {
       this.#changeHeightToContentSize();
     }
