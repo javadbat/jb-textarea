@@ -1,10 +1,10 @@
-import HTML from './jb-textarea.html';
 import CSS from './jb-textarea.scss';
 import { ShowValidationErrorParameters, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
 import { JBTextareaElements, ValidationValue } from './types';
 import { registerDefaultVariables } from 'jb-core/theme';
 import { createInputEvent, createKeyboardEvent } from 'jb-core';
+import { renderHTML } from './render';
 //export all internal type for user easier access
 export * from './types.js';
 
@@ -79,7 +79,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
       delegatesFocus: true
     });
     registerDefaultVariables();
-    const html = `<style>${CSS}</style>` + '\n' + HTML;
+    const html = `<style>${CSS}</style>` + '\n' + renderHTML();
     const element = document.createElement('template');
     element.innerHTML = html;
     shadowRoot.appendChild(element.content.cloneNode(true));
