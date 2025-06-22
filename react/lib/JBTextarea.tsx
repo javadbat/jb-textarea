@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable no-inner-declarations */
 import React, { useRef, useImperativeHandle, CSSProperties, type PropsWithChildren } from 'react';
 import 'jb-textarea';
@@ -5,7 +6,7 @@ import 'jb-textarea';
 import {JBTextareaWebComponent} from 'jb-textarea';
 import { EventProps, useEvents } from './events-hook.js';
 import { JBTextareaAttributes, useJBTextareaAttribute } from './attributes-hook.js';
-declare global {
+declare module "react" {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
       interface IntrinsicElements {
