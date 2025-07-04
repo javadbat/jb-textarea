@@ -97,6 +97,6 @@ the good point of set boundary with css variable is you can set different min or
 
 - see [jb-textarea](https://github.com/javadbat/jb-textarea) if you want to use this component as a web-component in other frameworks.
 
-- see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/main/docs/component-list.md) for more components.
+- see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components.
 
 - use [Contribution Guide](https://github.com/javadbat/design-system/blob/main/docs/contribution-guide.md) if you want to contribute in this component.
