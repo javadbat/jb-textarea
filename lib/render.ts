@@ -3,7 +3,7 @@ export function renderHTML(): string {
   <div class="jb-textarea-web-component">
     <label class="--hide" part="label"><span class="label-value"></span><span>:</span></label>
     <div class="textarea-box" part="textarea-box">
-        <div class="block-start-section-wrapper" part="start-end-section-wrapper">
+        <div class="block-start-section-wrapper" part="block-start-section-wrapper">
           <slot name="block-start-section"></slot>
         </div>
         <div class="inline-start-section-wrapper" part="inline-start-section-wrapper">
