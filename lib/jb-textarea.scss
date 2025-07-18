@@ -31,9 +31,12 @@
         overflow: var(--jb-input-box-overflow, hidden);
         display: grid;
         grid-template-columns: auto 1fr auto;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: "slot-block-start slot-block-start slot-block-start" "slot-inline-start textarea slot-inline-end" "slot-block-end slot-block-end slot-block-end";
         transition: ease 0.3s all;
         overflow: hidden;
         textarea {
+            grid-area: textarea;
             border: none;
             width: 100%;
             box-sizing: border-box;
@@ -59,7 +62,17 @@
                 font-size: var(--jb-textarea-placeholder-font-size, initial);
             }
         }
-
+        .block-start-section-wrapper{grid-area: slot-block-start;}
+        .block-end-section-wrapper{grid-area: slot-block-end;}
+        .inline-start-section-wrapper{grid-area: slot-inline-start;}
+        .inline-end-section-wrapper{grid-area: slot-inline-end;}
+        .block-start-section-wrapper, .block-end-section-wrapper{
+            display: flex;
+            height: auto;
+            width: 100%;
+            align-items: center;
+            justify-content: start;
+        }
         .inline-start-section-wrapper, .inline-end-section-wrapper {
             display: flex;
             height: 100%;
@@ -67,7 +80,20 @@
             align-items: center;
             justify-content: center;
         }
-
+        ::slotted([slot="block-start-section"]),
+        ::slotted([slot="block-end-section"]) {
+            height: auto;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            background-color: transparent;
+            padding: 8px 16px;
+            width: auto;
+            box-sizing: border-box;
+        }
         ::slotted([slot="inline-start-section"]),
         ::slotted([slot="inline-end-section"]) {
             height: 100%;

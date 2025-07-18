@@ -146,7 +146,7 @@ we have `label`, `textarea-box`, `textarea`, `message` as a supported part in ou
 
 ## add custom element in textarea box
 
-in jb-textarea you can put icon or any other custom html DOM in textarea box. to doing so you just have to place custom DOM in `jb-textarea` tag and add `slot="inline-start-section"` or `slot="inline-end-section"` to place it before or after input field.
+in jb-textarea you can put icon or any other custom html DOM in textarea box. to doing so you just have to place custom DOM in `jb-textarea` tag and add `slot="inline-start-section"` or `slot="inline-end-section"` or `slot="block-start-section"` or `slot="block-end-section"` to place it before or after input field.
 example:
 
 ```HTML

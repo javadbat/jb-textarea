@@ -81,6 +81,26 @@ export const InlineEnd:Story = {
   }
 };
 
+export const BlockStart:Story = {
+  render: (args) => <JBTextarea {...args}>
+    <div style={{width:'100%', height:'2rem', backgroundColor:'red'}} slot="block-start-section"></div>
+  </JBTextarea>,
+  args:{
+    label:'text',
+    placeholder:'please type here'
+  }
+};
+
+export const BlockEnd:Story = {
+  render: (args) => <JBTextarea {...args}>
+    <div style={{width:'100%', height:'2rem', backgroundColor:'red'}} slot="block-end-section"></div>
+  </JBTextarea>,
+  args:{
+    label:'text',
+    placeholder:'please type here'
+  }
+};
+
 export const RTL = {
   args:{
     label:'متن',
