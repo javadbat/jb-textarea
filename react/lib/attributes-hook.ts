@@ -9,7 +9,7 @@ export type JBTextareaAttributes = {
   required?:boolean
   error?: string,
   name?:string,
-
+  disabled?:boolean
 }
 export function useJBTextareaAttribute(element: RefObject<JBTextareaWebComponent>, props: JBTextareaAttributes) {
 
@@ -25,6 +25,13 @@ export function useJBTextareaAttribute(element: RefObject<JBTextareaWebComponent
       element.current.validation.list = props.validationList || [];
     }
   }, [props.validationList]);
+
+  useEffect(() => {
+    if(element.current && props.disabled!== undefined){
+      props.disabled?element.current.disabled = true:element.current.disabled = false
+    }
+  }, [element.current,props.disabled]);
+
   useEffect(() => {
     if(element.current && props.required!== undefined){
       props.required?element.current.setAttribute("required",''):element.current.removeAttribute("required");

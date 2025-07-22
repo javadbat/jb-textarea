@@ -129,12 +129,15 @@ we have `label`, `textarea-box`, `textarea`, `message` as a supported part in ou
 | --jb-textarea-border-radius           | web-component border-radius                                                                   |
 | --jb-textarea-border-width            | web-component border-width default is `1px`                                                   |
 | --jb-textarea-border-color            | border color of select in normal mode                                                         |
+| --jb-textarea-border-color-disabled   | border color when disabled                                                                    |
 | --jb-textarea-border-color-focus      | border color of select in normal mode                                                         |
 | --jb-textarea-bgcolor                 | background color of input                                                                     |
+| --jb-textarea-bgcolor-disabled        | background color of input when disabled                                                       |
 | --jb-textarea-border-bottom-width     | border bottom thickness default is `3px`                                                      |
 | --jb-textarea-label-font-size         | font size of input label default is `0.8em`                                                   |
 | --jb-textarea-value-font-size         | font size of input value default is `1.1em`                                                   |
-| --jb-textarea-value-color             | color of value default in `initial`                                                           |
+| --jb-textarea-value-color             | color of value                                                                                |
+| --jb-textarea-value-color-disabled    | color of value when disabled                                                                  |
 | --jb-textarea-message-font-size       | font size of message we show under input                                                      |
 | --jb-textarea-message-error-color     | change color of error we show under input                                                     |
 | --jb-textarea-min-height              | minimum height of text area default is `80px`                                                 |
@@ -142,7 +145,7 @@ we have `label`, `textarea-box`, `textarea`, `message` as a supported part in ou
 | --jb-textarea-placeholder-color       | placeholder color default is 'initial'                                                        |
 | --jb-textarea-placeholder-font-size   | placeholder font-size default is `initial`                                                    |
 | --jb-textarea-label-color             | label color                                                                                   |    
-| --jb-textarea-value-color             | value color                                                                                   |
+| --jb-textarea-label-color-disabled    | label color when disabled                                                                     |
 
 ## add custom element in textarea box
 

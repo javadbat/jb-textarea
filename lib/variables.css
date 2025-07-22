@@ -1,15 +1,23 @@
 :host{
   --border-radius:var(--jb-textarea-border-radius , var(--jb-radius));
   /*colors*/
-  --border-color:var(--jb-textarea-border-color, var(--jb-neutral-10));
+  --base-border-color:var(--jb-textarea-border-color, var(--jb-neutral-10));
+  --border-color:var(--base-border-color);
   --message-color:var(--jb-textarea-message-color, var(--jb-text-secondary));
   --label-color: var(--jb-textarea-label-color, var(--jb-text-primary));
   --value-color: var(--jb-textarea-value-color,  var(--jb-text-primary));
   --placeholder-color:  var(--jb-input-placeholder-color, var(--jb-neutral-6));
-  --input-box-bg-color:var(--jb-textarea-bgcolor, var(--jb-neutral-10));
+  --base-bg-color:var(--jb-textarea-bgcolor, var(--jb-neutral-10));
+  --input-box-bg-color: var(--base-bg-color);
 }
 :host(:state(invalid)){
   --message-color:var(--jb-textarea-message-error-color, var(--jb-red));
+}
+:host(:state(disabled)){
+  --input-box-bg-color: var(--jb-textarea-bgcolor-disabled, hsl(from var(--base-bg-color) h 12% 66.1));
+  --border-color: var(--jb-textarea-border-color-disabled, hsl(from var(--base-border-color) h 12% 66.1));
+  --value-color:var(--jb-textarea-value-color-disabled, var(--jb-neutral-3));
+  --label-color:var(--jb-textarea-label-color-disabled, var(--jb-neutral-3));
 }
 :host(:focus-within){
   --border-color:var(--jb-textarea-border-color-focus, var(--jb-neutral));

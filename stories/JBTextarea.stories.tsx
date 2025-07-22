@@ -55,6 +55,22 @@ export const OnEnterTest:Story = {
   }
 };
 
+export const Disabled:Story = {
+  args:{
+    label:'disabled',
+    placeholder:'this textarea is disabled',
+    disabled:true
+  }
+};
+
+export const DisabledWithValue:Story = {
+  args:{
+    label:'disabled',
+    value:'here is the textarea value',
+    disabled:true
+  }
+};
+
 export const ActionTest:Story = {
   render: (args) => <JBTextAreaTestPage {...args}></JBTextAreaTestPage>,
   args:{
