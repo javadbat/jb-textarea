@@ -15,8 +15,8 @@ simple textarea web component to input long text
 
 ## Demo
 
-[storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea)
-[codepen][https://codepen.io/javadbat/pen/poRZVXe]
+- [storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea)
+- [codepen][https://codepen.io/javadbat/pen/poRZVXe]
 
 ## using with JS frameworks
 
@@ -24,7 +24,7 @@ to use this component in **react** see [`jb-textarea/react`](https://github.com/
 
 ## installation and setup
 
-```bash
+```sh
 npm i jb-textarea
 ```
 
