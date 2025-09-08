@@ -127,6 +127,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     switch (name) {
       case 'label':
         this.#elements.labelValue.innerHTML = value;
+        this.#internals.ariaLabel = value;
         if (value == null || value == undefined || value == "") {
           this.#elements.label.classList.add('--hide');
         } else {
@@ -134,10 +135,14 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
         }
         break;
       case 'message':
-        this.#elements.messageBox.innerHTML = value;
+        this.#internals.ariaDescription = value;
+        if (!this.#elements.messageBox.classList.contains("error")) {
+          this.#elements.messageBox.innerHTML = value;
+        }
         break;
       case 'placeholder':
         this.#textareaElement.setAttribute('placeholder', value);
+        this.#internals.ariaPlaceholder = value;
         break;
       case 'value':
         this.value = value;
