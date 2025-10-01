@@ -29,7 +29,7 @@ npm i jb-textarea
 ```
 
 ```html
-<jb-textarea label="توضیحات" value="" message="متن زیر باکس"></jb-textarea>
+<jb-textarea label="description" value="" message="text under the textarea box"></jb-textarea>
 ```
 
 ## get and set value
@@ -37,8 +37,8 @@ npm i jb-textarea
 ```js
 document.querySelector("jb-textarea").value;
 // return inputted text
-document.querySelector("jb-textarea").value = "salam";
-set value to salam
+document.querySelector("jb-textarea").value = "hello";
+set value to hello
 ```
 ### set validation
 

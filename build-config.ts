@@ -6,10 +6,12 @@ export const webComponentList: WebComponentBuildConfig[] = [
     path: "./lib/jb-textarea.ts",
     outputPath: "./dist/jb-textarea.js",
     umdName: "JBTextarea",
-    external: ["jb-validation", "jb-core"],
+    external: ["jb-validation", "jb-core", "jb-core/theme","jb-core/i18n"],
     globals: {
       "jb-validation": "JBValidation",
-      "jb-core": "JBCore"
+      "jb-core": "JBCore",
+      "jb-core/theme":"JBCoreTheme",
+      "jb-core/i18n":"JBCoreI18N"
     },
   },
 ];

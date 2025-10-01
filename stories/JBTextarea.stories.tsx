@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {JBTextarea, Props} from 'jb-textarea/react';
-import JBTextAreaTestPage from './samples/JBTextAreaTestPage';
 import type { Meta, StoryObj } from '@storybook/react';
-
+import "./styles/styles.css"
 const meta: Meta<Props> = {
   title: "Components/form elements/JBTextarea",
   component: JBTextarea,
@@ -14,6 +13,13 @@ export const Normal:Story = {
   args:{
     label:'text',
     placeholder:'please type here'
+  }
+};
+export const Required:Story = {
+  args:{
+    label:'required text',
+    message:'focus and unfocus to textarea to see the error',
+    required:true
   }
 };
 export const WithError:Story = {
@@ -72,7 +78,30 @@ export const DisabledWithValue:Story = {
 };
 
 export const ActionTest:Story = {
-  render: (args) => <JBTextAreaTestPage {...args}></JBTextAreaTestPage>,
+  render: (args) => {
+     const [textVal, textValSetter] = useState('');
+  const [autoGrowTextVal, autoGrowTextValSetter] = useState('');
+  function onTextAreaKeydown(e){
+    e.preventDefault();
+  }
+  return (
+    <div>
+      <h2>test grow ability</h2>
+      <JBTextarea value={autoGrowTextVal} onChange={(e)=>{autoGrowTextValSetter(e.target.value);}} label="type to grow" autoHeight={true}></JBTextarea>
+      <button onClick={()=>{autoGrowTextValSetter('');}}>clean</button>
+      <button onClick={()=>{autoGrowTextValSetter('sss eeee ggggg'.repeat(200));}}>longText</button>
+      <h3>grow with min and max height</h3>
+      <div className="grow-with-custom-limit">
+        <JBTextarea label="48 to 120" autoHeight={true}></JBTextarea>
+      </div>
+      <h3>test value binding to state</h3>
+      <JBTextarea value={textVal} onChange={(e)=>{textValSetter(e.target.value);}} label="see the bottom"></JBTextarea>
+      <p>{textVal}</p>
+      <h3>test events (check console log)</h3>
+      <JBTextarea onKeyDown={onTextAreaKeydown} onFocus={(e)=>{console.log(e);}} onBlur={(e)=>{console.log(e);}} label="see value after "></JBTextarea>
+    </div>
+  );
+  },
   args:{
     label:'text',
     placeholder:'please type here'

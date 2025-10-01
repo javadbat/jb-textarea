@@ -4,6 +4,7 @@ import { ShowValidationErrorParameters, ValidationHelper, type ValidationItem, t
 import type { JBFormInputStandards } from 'jb-form';
 import { JBTextareaElements, ValidationValue } from './types';
 import { registerDefaultVariables } from 'jb-core/theme';
+import { getRequiredMessage, i18n } from 'jb-core/i18n';
 import { createInputEvent, createKeyboardEvent } from 'jb-core';
 import { renderHTML } from './render';
 //export all internal type for user easier access
@@ -93,14 +94,21 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     }
     this.#registerEventListener();
   }
+
   #registerEventListener() {
     this.#elements.textarea.addEventListener('change', (e) => this.#onInputChange(e));
     this.#elements.textarea.addEventListener('beforeinput', this.#onInputBeforeInput.bind(this));
     this.#elements.textarea.addEventListener('input', (e) => this.#onInputInput((e as unknown as InputEvent)));
+    this.#elements.textarea.addEventListener('blur', (e) => this.#onInputBlur((e as unknown as FocusEvent)));
     this.#elements.textarea.addEventListener('keypress', this.#onInputKeyPress.bind(this));
     this.#elements.textarea.addEventListener('keyup', this.#onInputKeyup.bind(this));
     this.#elements.textarea.addEventListener('keydown', this.#onInputKeyDown.bind(this));
   }
+
+  #onInputBlur(e: FocusEvent){
+    this.#validation.checkValidity({showError:true})
+  }
+
   autoHeight = false;
   #validation = new ValidationHelper<ValidationValue>({
     clearValidationError: this.clearValidationError.bind(this),
@@ -110,20 +118,25 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     setValidationResult: this.#setValidationResult.bind(this),
     showValidationError: this.showValidationError.bind(this)
   });
+
   get validation() {
     return this.#validation;
   }
+
   #initProp() {
     this.value = this.getAttribute('value') || '';
 
   }
+
   static get observedAttributes() {
     return ['label', 'message', 'value', 'placeholder', "required", "error"];
   }
+
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     // do something when an attribute has changed
     this.#onAttributeChange(name, newValue);
   }
+
   #onAttributeChange(name: string, value: string) {
     switch (name) {
       case 'label':
@@ -156,13 +169,16 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     }
 
   }
+
   #changeHeightToContentSize() {
     this.#textareaElement.style.height = "4px";
     this.#textareaElement.style.height = (this.#textareaElement.scrollHeight) + "px";
   }
+
   #onInputBeforeInput(e: InputEvent) {
     this.#dispatchBeforeInputEvent(e);
   }
+
   #dispatchBeforeInputEvent(e: InputEvent): boolean {
     const event = createInputEvent('beforeinput', e, { cancelable: true });
     this.dispatchEvent(event);
@@ -171,6 +187,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     }
     return event.defaultPrevented;
   }
+
   #onInputKeyDown(e: KeyboardEvent) {
     const event = createKeyboardEvent("keydown", e, { cancelable: true });
     const isEventNotPrevented = this.dispatchEvent(event);
@@ -179,6 +196,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
       e.preventDefault();
     }
   }
+  
   #onInputKeyPress(e: KeyboardEvent) {
     const event = createKeyboardEvent('keypress', e, { cancelable: true });
     const isEventNotPrevented = this.dispatchEvent(event);
@@ -275,7 +293,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     if (this.required) {
       validationList.push({
         validator: /.{1}/g,
-        message: this.getAttribute("label") + " " + "میبایست حتما وارد شود",
+        message: getRequiredMessage(i18n,this.getAttribute("label")),
         stateType: "valueMissing"
       });
     }
