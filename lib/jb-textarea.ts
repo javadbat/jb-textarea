@@ -69,6 +69,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     if (typeof this.attachInternals == "function") {
       //some browser dont support attachInternals
       this.#internals = this.attachInternals();
+      this.#internals.role = "textbox"
     }
     this.#initWebComponent();
     this.#initProp();
