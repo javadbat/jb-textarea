@@ -60,6 +60,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   get name() {
     return this.getAttribute('name') || '';
   }
+  set name(value:string){
+    this.setAttribute('name', value);
+  }
   initialValue = "";
   get isDirty(): boolean {
     return this.#value !== this.initialValue;

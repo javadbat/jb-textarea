@@ -56,7 +56,7 @@ you can set validation to your input by creating a validationList array and pass
     ];
 ```
 ```jsx
-    <JBInput validationList={validationList}></JBInput>
+    <JBTextarea validationList={validationList}></JBTextarea>
 ```
 
 ## check validation

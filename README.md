@@ -2,9 +2,10 @@
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-textarea)
 [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-textarea/main/LICENSE)
-[![NPM Downloads](https://img.shields.io/npm/dw/jb-textarea)](https://www.npmjs.com/package/jb-textarea)
+[![NPM Version](https://img.shields.io/npm/v/jb-textarea)](https://www.npmjs.com/package/jb-textarea)
+![GitHub Created At](https://img.shields.io/github/created-at/javadbat/jb-textarea)
 
-simple textarea web component to input long text
+Simple textarea web component to input long text
 
 - lightweight
 - zero dependency
