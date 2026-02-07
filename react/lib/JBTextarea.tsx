@@ -3,10 +3,11 @@
 import React, { useRef, useImperativeHandle, type PropsWithChildren } from 'react';
 import 'jb-textarea';
 // eslint-disable-next-line no-duplicate-imports
-import {JBTextareaWebComponent} from 'jb-textarea';
-import { EventProps, useEvents } from './events-hook.js';
-import { JBTextareaAttributes, useJBTextareaAttribute } from './attributes-hook.js';
+import type {JBTextareaWebComponent} from 'jb-textarea';
+import { type EventProps, useEvents } from './events-hook.js';
+import { type JBTextareaAttributes, useJBTextareaAttribute } from './attributes-hook.js';
 import type { JBElementStandardProps } from 'jb-core/react';
+
 declare module "react" {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
@@ -33,11 +34,11 @@ const JBTextarea = React.forwardRef((props:Props, ref) => {
       () => (element ? element.current : undefined),
       [element],
     );
-    const {onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad, name,autoHeight,disabled,error,required,validationList,value,...otherProps} = props;
+    const {onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad, placeholder, name,autoHeight,disabled,error,required,validationList,value,...otherProps} = props;
     useJBTextareaAttribute(element, {autoHeight,disabled,error,required,validationList,value});
     useEvents(element,{onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad});
     return (
-      <jb-textarea ref={element} name={name} label={props.label} message={props.message} {...otherProps}>
+      <jb-textarea ref={element} name={name} label={props.label} message={props.message} placeholder={placeholder} {...otherProps}>
         {props.children}
       </jb-textarea>
     );
@@ -47,7 +48,8 @@ const JBTextarea = React.forwardRef((props:Props, ref) => {
 type JBTextareaProps = EventProps & JBTextareaAttributes & {
     label?: string,
     message?:string,
-    name?:string
+    name?:string,
+    placeholder?:string
 }
 export type Props = PropsWithChildren<JBTextareaProps> & React.HTMLAttributes<JBTextareaWebComponent> & JBElementStandardProps;
 export {JBTextarea};

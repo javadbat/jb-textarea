@@ -157,6 +157,8 @@ example:
 <jb-textarea>
     <div slot="inline-start-section">before</div>
     <div slot="inline-end-section">after</div>
+    <div slot="block-start-section">in Top</div>
+    <div slot="block-end-section">in Bottom</div>
 </jb-textarea>
 ```
 
