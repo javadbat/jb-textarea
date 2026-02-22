@@ -51,5 +51,5 @@ type JBTextareaProps = EventProps & JBTextareaAttributes & {
     name?:string,
     placeholder?:string
 }
-export type Props = PropsWithChildren<JBTextareaProps> & React.HTMLAttributes<JBTextareaWebComponent> & JBElementStandardProps;
+export type Props = PropsWithChildren<JBTextareaProps> & JBElementStandardProps<JBTextareaWebComponent, keyof JBTextareaProps>;
 export {JBTextarea};
