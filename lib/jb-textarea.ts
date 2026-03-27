@@ -82,7 +82,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   #initWebComponent() {
     const shadowRoot = this.attachShadow({
       mode: 'open',
-      delegatesFocus: true
+      delegatesFocus: true,
+      clonable:true,
+      serializable:true
     });
     registerDefaultVariables();
     const html = `<style>${CSS} ${VariablesCSS}</style>` + '\n' + renderHTML();
