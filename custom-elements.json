@@ -1,0 +1,288 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "lib/jb-textarea.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Form-associated multiline text input web component with label, helper message, validation, auto-height growth, adornment slots, CSS parts, and CSS variable customization.",
+          "name": "JBTextareaWebComponent",
+          "tagName": "jb-textarea",
+          "customElement": true,
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "attributes": [
+            {
+              "name": "value",
+              "description": "Initial textarea value from markup. Prefer the value property for programmatic updates.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "label",
+              "description": "Visible label text and accessible aria label.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "message",
+              "description": "Helper text shown below the textarea when no validation error is visible.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "name",
+              "description": "Form field name.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "placeholder",
+              "description": "Placeholder forwarded to the inner textarea.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "required",
+              "description": "Enables required validation.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "name": "error",
+              "description": "External validation error message. When the attribute changes, the component updates its validation UI.",
+              "type": {
+                "text": "string"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "Canonical textarea value submitted with forms.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "autoHeight",
+              "description": "When true, grows the inner textarea height to fit content within CSS min/max height boundaries.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "validation",
+              "description": "jb-validation helper. Set validation.list for custom validation rules.",
+              "type": {
+                "text": "ValidationHelper<string>"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "description": "Disables the inner textarea and sets the disabled custom state.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "description": "Enables required validation.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "initialValue",
+              "description": "Baseline value used by isDirty.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "isDirty",
+              "description": "True when current value differs from initialValue.",
+              "type": {
+                "text": "boolean"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "validationMessage",
+              "description": "Current native validation message from ElementInternals.",
+              "type": {
+                "text": "string"
+              },
+              "readonly": true
+            }
+          ],
+          "methods": [
+            {
+              "name": "checkValidity",
+              "description": "Runs validation without showing the error message and returns whether the textarea is valid.",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "name": "reportValidity",
+              "description": "Runs validation, shows the first error message, and returns whether the textarea is valid.",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "description": "Cancelable event fired when the user commits the textarea value."
+            },
+            {
+              "name": "input",
+              "description": "Fired on each user input after value is updated."
+            },
+            {
+              "name": "beforeinput",
+              "description": "Cancelable event fired before the inner textarea changes."
+            },
+            {
+              "name": "keydown",
+              "description": "Cancelable keyboard event re-dispatched from the inner textarea."
+            },
+            {
+              "name": "keyup",
+              "description": "Cancelable keyboard event re-dispatched from the inner textarea."
+            },
+            {
+              "name": "keypress",
+              "description": "Cancelable keyboard event re-dispatched from the inner textarea."
+            },
+            {
+              "name": "enter",
+              "description": "Cancelable keyboard event fired from keypress when Enter is pressed."
+            },
+            {
+              "name": "invalid",
+              "description": "Dispatched when checkValidity or reportValidity finds an invalid value."
+            }
+          ],
+          "slots": [
+            {
+              "name": "inline-start-section",
+              "description": "Inline content before the textarea."
+            },
+            {
+              "name": "inline-end-section",
+              "description": "Inline content after the textarea."
+            },
+            {
+              "name": "block-start-section",
+              "description": "Block content above the textarea inside the textarea box."
+            },
+            {
+              "name": "block-end-section",
+              "description": "Block content below the textarea inside the textarea box."
+            }
+          ],
+          "cssParts": [
+            {
+              "name": "label",
+              "description": "The label element."
+            },
+            {
+              "name": "textarea-box",
+              "description": "The wrapper around textarea and slot sections."
+            },
+            {
+              "name": "textarea",
+              "description": "The inner native textarea."
+            },
+            {
+              "name": "message",
+              "description": "The helper or validation message element."
+            },
+            {
+              "name": "inline-start-section-wrapper",
+              "description": "Wrapper for the inline-start-section slot."
+            },
+            {
+              "name": "inline-end-section-wrapper",
+              "description": "Wrapper for the inline-end-section slot."
+            },
+            {
+              "name": "block-start-section-wrapper",
+              "description": "Wrapper for the block-start-section slot."
+            },
+            {
+              "name": "block-end-section-wrapper",
+              "description": "Wrapper for the block-end-section slot."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--jb-textarea-min-height",
+              "description": "Minimum textarea height used by autoHeight."
+            },
+            {
+              "name": "--jb-textarea-max-height",
+              "description": "Maximum textarea height used by autoHeight."
+            },
+            {
+              "name": "--jb-textarea-border-color",
+              "description": "Border color in normal state."
+            },
+            {
+              "name": "--jb-textarea-border-color-focus",
+              "description": "Border color in focus state."
+            },
+            {
+              "name": "--jb-textarea-message-error-color",
+              "description": "Validation error message color."
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "JBTextareaWebComponent",
+          "declaration": {
+            "name": "JBTextareaWebComponent",
+            "module": "lib/jb-textarea.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "jb-textarea",
+          "declaration": {
+            "name": "JBTextareaWebComponent",
+            "module": "lib/jb-textarea.ts"
+          }
+        }
+      ]
+    }
+  ]
+}

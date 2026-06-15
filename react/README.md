@@ -14,7 +14,7 @@ simple textarea react component to input long text
 
 - [codeSandbox preview](https://3f63dj.csb.app/samples/jb-textarea) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBTextarea.tsx) if you want to see and play with code
 
-- [storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea)
+Storybook: [JBTextarea docs](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea)
 
 ## Installation
 ```sh
@@ -26,6 +26,25 @@ import {JBTextarea} from 'jb-textarea/react';
 
 <JBTextarea label="label" value={valueState} message="text under the box"></JBTextarea>
 ```
+
+## When to use
+
+Use `JBTextarea` when the user needs to enter multi-line text, long descriptions, comments, notes, or any free-form text that can span multiple lines.
+
+## Props
+
+| prop | type | description |
+| --- | --- | --- |
+| `value` | `string \| null \| undefined` | Controlled textarea value. `null` and `undefined` are normalized to an empty string. |
+| `label` | `string` | Visible label text and accessible label. |
+| `message` | `string` | Helper text shown when no validation error is visible. |
+| `name` | `string` | Form field name. |
+| `placeholder` | `string` | Placeholder forwarded to the inner textarea. |
+| `validationList` | `ValidationItem<ValidationValue>[]` | Custom validation rules from `jb-validation`. |
+| `autoHeight` | `boolean` | Lets the textarea grow between configured min and max height. |
+| `required` | `boolean` | Enables required validation. |
+| `error` | `string` | External validation error message. |
+| `disabled` | `boolean` | Disables the textarea. |
 
 ## get and set value
 
@@ -76,13 +95,28 @@ if `isValid` is `true` the value of input is valid.
 ## Events
 ```JSX
 <JBTextarea  onChange={(e)=>{}}></JBTextarea>
-<JBTextarea  onKeydown={(e)=>{}}></JBTextarea>
-<JBTextarea  onKeyup={(e)=>{}}></JBTextarea>
-<JBTextarea  onKeypress={(e)=>{}}></JBTextarea>
+<JBTextarea  onKeyDown={(e)=>{}}></JBTextarea>
+<JBTextarea  onKeyUp={(e)=>{}}></JBTextarea>
+<JBTextarea  onBeforeInput={(e)=>{}}></JBTextarea>
 <JBTextarea  onInput={(e)=>{}}></JBTextarea>
+<JBTextarea  onFocus={(e)=>{}}></JBTextarea>
+<JBTextarea  onBlur={(e)=>{}}></JBTextarea>
 // custom event for when user press enter
 <JBTextarea  onEnter={(e)=>{}}></JBTextarea>
 ```
+
+| prop | event |
+| --- | --- |
+| `onChange` | `change` |
+| `onInput` | `input` |
+| `onBeforeInput` | `beforeinput` |
+| `onKeyDown` | `keydown` |
+| `onKeyUp` | `keyup` |
+| `onFocus` | `focus` |
+| `onBlur` | `blur` |
+| `onEnter` | `enter` |
+| `onLoad` | `load` |
+| `onInit` | `init` |
 
 ## auto height grow
 
@@ -109,3 +143,11 @@ For web-component behavior, events, slots, and CSS variables, see [`jb-textarea`
 - see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components.
 
 - use [Contribution Guide](https://github.com/javadbat/design-system/blob/main/docs/contribution-guide.md) if you want to contribute in this component.
+
+## AI agent notes
+
+- Import `JBTextarea` from `jb-textarea/react`; the wrapper imports and registers the underlying `jb-textarea` web component.
+- Use `value` for controlled text and `onChange` or `onInput` to update React state.
+- Use `autoHeight` for growing textareas and CSS variables for min/max height.
+- Use exact React prop casing such as `onKeyDown`, `onKeyUp`, and `onBeforeInput`.
+- Use `error` for externally controlled validation errors.

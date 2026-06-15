@@ -14,28 +14,21 @@ Simple textarea web component to input long text
 - config auto height grow ability with max height
 - web component so you can use it with any framework you need
 
+## When to use
+
+Use `jb-textarea` when the user needs to enter multi-line text, long descriptions, comments, notes, or any free-form text that can span multiple lines.
+
+Use `jb-input` for single-line text fields.
+
 ## Demo
 
 - [storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea)
-- [codepen][https://codepen.io/javadbat/pen/poRZVXe]
+- [codepen](https://codepen.io/javadbat/pen/poRZVXe)
 
 ## Using With JS Frameworks
 - [<img src="https://img.shields.io/badge/React.js-jb--textarea%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-textarea/tree/main/react)
 
 ## Installation
-
-## Attributes/Properties
-
-| name | type | description |
-| --- | --- | --- |
-| `value` | property/attribute | Current textarea value. |
-| `label` | attribute | Textarea label. |
-| `message` | attribute | Helper or validation message under the textarea. |
-| `name` | attribute | Form field name. |
-| `required` | attribute | Marks the textarea as required. |
-| `autoHeight` | property | Lets the textarea grow between configured min and max height. |
-| `validation.list` | property | Custom validators from `jb-validation`. |
-| `change` | event | Fired when the value changes. |
 
 ```sh
 npm i jb-textarea
@@ -44,6 +37,40 @@ npm i jb-textarea
 ```html
 <jb-textarea label="description" value="" message="text under the textarea box"></jb-textarea>
 ```
+
+## API reference
+
+### Attributes
+
+| name | type | default | description |
+| --- | --- | --- | --- |
+| [`value`](#get-and-set-value) | `string` | `""` | Initial textarea value from markup. Prefer the property for runtime updates. |
+| `label` | `string` | `""` | Visible label text and accessible aria label. |
+| `message` | `string` | `""` | Helper text shown below the textarea when no validation error is visible. |
+| `name` | `string` | `""` | Form field name. |
+| `placeholder` | `string` | `""` | Placeholder forwarded to the inner textarea. |
+| [`required`](#set-validation) | `boolean` | `false` | Enables required validation. |
+| [`error`](#set-validation) | `string` | `""` | External validation error message. |
+
+### Properties
+
+| name | type | readonly | description |
+| --- | --- | --- | --- |
+| [`value`](#get-and-set-value) | `string` | no | Canonical textarea value submitted with forms. |
+| [`autoHeight`](#auto-height-grow) | `boolean` | no | Lets the textarea grow between configured min and max height. |
+| `validation` | `ValidationHelper<string>` | yes | Validation helper from `jb-validation`; set `validation.list` for custom rules. |
+| `disabled` | `boolean` | no | Disables the inner textarea and sets the `disabled` custom state. |
+| `required` | `boolean` | no | Enables required validation. |
+| `initialValue` | `string` | no | Baseline value used by `isDirty`. |
+| `isDirty` | `boolean` | yes | `true` when current `value` differs from `initialValue`. |
+| `validationMessage` | `string` | yes | Current native validation message from `ElementInternals`. |
+
+### Methods
+
+| name | returns | description |
+| --- | --- | --- |
+| `checkValidity()` | `boolean` | Runs validation without showing the error message. Dispatches `invalid` when invalid. |
+| `reportValidity()` | `boolean` | Runs validation and shows the first error message. Dispatches `invalid` when invalid. |
 
 ## get and set value
 
@@ -83,7 +110,7 @@ for simple usage you can set validation to your input:
         },
     ];
 //2- pass a function that returns the validation list so on each validation process we execute your callback function and get the needed validation list
-const result = document.getElementByTagName('jb-textarea').validation.addValidationListGetter(getterFunction)
+const result = document.querySelector('jb-textarea').validation.addValidationListGetter(getterFunction)
 ```
 
 ### check validation
@@ -92,13 +119,25 @@ like any other jb design system you can access validation by `validation` proper
 
 ```js
 //access validation module
-document.getElementByTagName('jb-textarea').validation
+document.querySelector('jb-textarea').validation
 // check if input pass all the validations. showError is a boolean that determine your intent to show error to user on invalid status.
-const result = document.getElementByTagName('jb-textarea').validation.checkValidity(showError)
+const result = document.querySelector('jb-textarea').validation.checkValidity({showError})
 
 ```
 
 ## Events
+
+| event | cancelable | when it fires |
+| --- | --- | --- |
+| `input` | native behavior | On each user edit after `value` is updated. |
+| `beforeinput` | yes | Before the inner textarea value changes. Call `event.preventDefault()` to block the edit. |
+| `change` | yes | When the user commits the textarea value. |
+| `keydown` | yes | Re-dispatched from the inner textarea. |
+| `keyup` | yes | Re-dispatched from the inner textarea. |
+| `keypress` | yes | Re-dispatched from the inner textarea. |
+| `enter` | yes | From `keypress` when Enter is pressed. |
+| `invalid` | no | When `checkValidity()` or `reportValidity()` finds an invalid value. |
+
 ```js
 document.querySelector("jb-textarea").addEventListener('change',func);
 document.querySelector("jb-textarea").addEventListener('keydown',func);
@@ -130,8 +169,14 @@ jb-textarea::part(label){
 jb-textarea:states(invalid)::part(label){
   color:red;
 }
+jb-textarea:states(invalid)::part(textarea-box){
+  border-color:red;
+}
+jb-textarea:states(disabled)::part(textarea){
+  cursor:not-allowed;
+}
 ```
-we have `label`, `textarea-box`, `textarea`, `message` as a supported part in our component. you can also combine them with `disabled`, `invalid` states for different style in different states.
+we have `label`, `textarea-box`, `textarea`, `message`, `inline-start-section-wrapper`, `inline-end-section-wrapper`, `block-start-section-wrapper`, and `block-end-section-wrapper` as supported parts in our component. you can also combine them with `disabled`, `invalid` states for different style in different states.
 
 2. using CSS variable
 
@@ -167,6 +212,14 @@ we have `label`, `textarea-box`, `textarea`, `message` as a supported part in ou
 ## add custom element in textarea box
 
 in jb-textarea you can put icon or any other custom html DOM in textarea box. to doing so you just have to place custom DOM in `jb-textarea` tag and add `slot="inline-start-section"` or `slot="inline-end-section"` or `slot="block-start-section"` or `slot="block-end-section"` to place it before or after input field.
+
+| slot | description |
+| --- | --- |
+| `inline-start-section` | Inline content before the textarea. |
+| `inline-end-section` | Inline content after the textarea. |
+| `block-start-section` | Block content above the textarea inside the textarea box. |
+| `block-end-section` | Block content below the textarea inside the textarea box. |
+
 example:
 
 ```HTML
@@ -178,9 +231,37 @@ example:
 </jb-textarea>
 ```
 
+## Accessibility notes
+
+- The component is form-associated and submits `value` as its form value.
+- `label` is exposed as the component aria label.
+- `message` is exposed as the component aria description when no validation error is visible.
+- `placeholder` is forwarded to the inner textarea and exposed as aria placeholder.
+- `disabled`, `invalid`, and validation state are synchronized with `ElementInternals` where the browser supports it.
+- The shadow root uses `delegatesFocus`, so focusing `<jb-textarea>` focuses the inner native textarea.
+
 ## Related Docs
 - see [`jb-textarea/react`](https://github.com/javadbat/jb-textarea/tree/main/react) if you want to use this component in react.
 
 - see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components.
 
 - use [Contribution Guide](https://github.com/javadbat/design-system/blob/main/docs/contribution-guide.md) if you want to contribute in this component.
+
+## AI agent notes
+
+This package includes [`custom-elements.json`](./custom-elements.json) so documentation tools, IDEs, and AI coding agents can discover the tag name, attributes, properties, events, slots, CSS parts, CSS variables, and public methods.
+
+The package also exposes `"customElements": "custom-elements.json"` in `package.json`, which gives tools a stable package-level pointer to the manifest. This field is documented by the Custom Elements Manifest project in its [Referencing manifests from npm packages](https://github.com/webcomponents/custom-elements-manifest#referencing-manifests-from-npm-packages) section.
+
+In `custom-elements.json`, the `exports` array describes what this module makes available:
+
+| kind | meaning |
+| --- | --- |
+| `js` | A JavaScript/TypeScript export from the module, such as `JBTextareaWebComponent`. |
+| `custom-element-definition` | The custom element registration for a tag name, such as `jb-textarea`. |
+
+- Import `jb-textarea` once before using `<jb-textarea>`.
+- Use `jb-textarea` for multi-line text and `jb-input` for single-line text.
+- Use `.value` for the canonical submitted text.
+- Use `autoHeight` when the textarea should grow with content, and control bounds with `--jb-textarea-min-height` and `--jb-textarea-max-height`.
+- Set `error` for externally controlled validation errors; the component observes the attribute and updates its validation UI.
