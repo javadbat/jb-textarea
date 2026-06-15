@@ -21,7 +21,7 @@ Simple textarea web component to input long text
 
 ## using with JS frameworks
 
-to use this component in **react** see [`jb-textarea/react`](https://github.com/javadbat/jb-textarea/tree/main/react);
+- [<img src="https://img.shields.io/badge/React.js-jb--textarea%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-textarea/tree/main/react)
 
 ## installation and setup
 
