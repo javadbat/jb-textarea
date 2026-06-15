@@ -19,11 +19,23 @@ Simple textarea web component to input long text
 - [storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea)
 - [codepen][https://codepen.io/javadbat/pen/poRZVXe]
 
-## using with JS frameworks
-
+## Using With JS Frameworks
 - [<img src="https://img.shields.io/badge/React.js-jb--textarea%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-textarea/tree/main/react)
 
-## installation and setup
+## Installation
+
+## Attributes/Properties
+
+| name | type | description |
+| --- | --- | --- |
+| `value` | property/attribute | Current textarea value. |
+| `label` | attribute | Textarea label. |
+| `message` | attribute | Helper or validation message under the textarea. |
+| `name` | attribute | Form field name. |
+| `required` | attribute | Marks the textarea as required. |
+| `autoHeight` | property | Lets the textarea grow between configured min and max height. |
+| `validation.list` | property | Custom validators from `jb-validation`. |
+| `change` | event | Fired when the value changes. |
 
 ```sh
 npm i jb-textarea
@@ -86,8 +98,7 @@ const result = document.getElementByTagName('jb-textarea').validation.checkValid
 
 ```
 
-## events
-
+## Events
 ```js
 document.querySelector("jb-textarea").addEventListener('change',func);
 document.querySelector("jb-textarea").addEventListener('keydown',func);
@@ -100,13 +111,13 @@ document.querySelector("jb-textarea").addEventListener('enter',func);
 
 ## auto height grow
 
-you can set `autoHeight` to true so when user type something and text overflow a textarea height component will grow by itself in boundary of `--jb-textarea-min-height` and `--jb-textarea-max-height` that you set by css variable 
+you can set `autoHeight` to true so when user type something and text overflow a textarea height component will grow by itself in boundary of `--jb-textarea-min-height` and `--jb-textarea-max-height` that you set by CSS variable 
 
 ```js
 document.querySelector("jb-textarea").autoHeight = true;
 ```
 
-the good point of set boundary with css variable is you can set different min or max base on device by CSS media queries.
+the good point of set boundary with CSS variable is you can set different min or max based on device by CSS media queries.
 
 ## set custom style
 you have 2 way to customize style,
@@ -122,9 +133,9 @@ jb-textarea:states(invalid)::part(label){
 ```
 we have `label`, `textarea-box`, `textarea`, `message` as a supported part in our component. you can also combine them with `disabled`, `invalid` states for different style in different states.
 
-2. using css variable
+2. using CSS variable
 
-| css variable name                     | description                                                                                   |
+| CSS variable name                     | description                                                                                   |
 | -------------                         | -------------                                                                                 |
 | --jb-textarea-margin                  | web-component margin default is `0 12px`                                                      |
 | --jb-textarea-border-radius           | web-component border-radius                                                                   |
@@ -147,6 +158,11 @@ we have `label`, `textarea-box`, `textarea`, `message` as a supported part in ou
 | --jb-textarea-placeholder-font-size   | placeholder font-size default is `initial`                                                    |
 | --jb-textarea-label-color             | label color                                                                                   |    
 | --jb-textarea-label-color-disabled    | label color when disabled                                                                     |
+| --jb-textarea-box-overflow | Customize box overflow. |
+| --jb-textarea-height | Customize height. |
+| --jb-textarea-input-padding | Customize input padding. |
+| --jb-textarea-label-margin | Customize label margin. |
+| --jb-textarea-message-color | Customize message color. |
 
 ## add custom element in textarea box
 
@@ -162,8 +178,7 @@ example:
 </jb-textarea>
 ```
 
-## Other Related Docs:
-
+## Related Docs
 - see [`jb-textarea/react`](https://github.com/javadbat/jb-textarea/tree/main/react) if you want to use this component in react.
 
 - see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components.

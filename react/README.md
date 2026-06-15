@@ -16,8 +16,7 @@ simple textarea react component to input long text
 
 - [storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea)
 
-## installation and setup
-
+## Installation
 ```sh
 npm i jb-textarea-react
 ```
@@ -74,8 +73,7 @@ you can check if an input value meet your validation standard by creating a ref 
 if `isValid` is `true` the value of input is valid.
 
 
-## events
-
+## Events
 ```JSX
 <JBTextarea  onChange={(e)=>{}}></JBTextarea>
 <JBTextarea  onKeydown={(e)=>{}}></JBTextarea>
@@ -88,20 +86,24 @@ if `isValid` is `true` the value of input is valid.
 
 ## auto height grow
 
-you can set `autoHeight` to true so when user type something and text overflow a textarea height component will grow by itself in boundary of `--jb-textarea-min-height` and `--jb-textarea-max-height` that you set by css variable 
+you can set `autoHeight` to true so when user type something and text overflow a textarea height component will grow by itself in boundary of `--jb-textarea-min-height` and `--jb-textarea-max-height` that you set by CSS variable 
 
 ```js
 <JBTextarea  autoHeight></JBTextarea>
 ```
 
-the good point of set boundary with css variable is you can set different min or max base on device by CSS media queries.
+the good point of set boundary with CSS variable is you can set different min or max based on device by CSS media queries.
 
 ## set custom style
 
  see see [jb-textarea](https://github.com/javadbat/jb-textarea) document. there is no difference between these 2 in styling.
 
-## Other Related Docs:
 
+## Shared Documentation
+
+For web-component behavior, events, slots, and CSS variables, see [`jb-textarea`](https://github.com/javadbat/jb-textarea).
+
+## Related Docs
 - see [jb-textarea](https://github.com/javadbat/jb-textarea) if you want to use this component as a web-component in other frameworks.
 
 - see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components.

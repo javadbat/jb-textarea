@@ -21,7 +21,7 @@
   --message-color:var(--jb-textarea-message-color, var(--jb-text-secondary));
   --label-color: var(--jb-textarea-label-color, var(--jb-text-primary));
   --value-color: var(--jb-textarea-value-color,  var(--jb-text-primary));
-  --placeholder-color:  var(--jb-input-placeholder-color, var(--jb-neutral-6));
+  --placeholder-color:  var(--jb-textarea-placeholder-color, var(--jb-neutral-6));
   --base-bg-color:var(--jb-textarea-bgcolor, var(--jb-neutral-10));
   --input-box-bg-color: var(--base-bg-color);
 }
