@@ -1,0 +1,18 @@
+import {Meta, Title, Story, Controls, Stories, Source} from '@storybook/blocks';
+import * as TextareaStories from './JBTextarea.stories';
+
+<Meta of={TextareaStories}/>
+
+<Title>JB Textarea</Title>
+
+Textarea component with validation, auto height, keyboard handling, disabled state, and custom sections.
+
+<Story of={TextareaStories.ActionTest}/>
+<Controls of={TextareaStories.ActionTest}/>
+<Source of={TextareaStories.ActionTest}/>
+
+## Validation
+<Story of={TextareaStories.WithValidation}/>
+
+## Other samples & variants
+<Stories/>
