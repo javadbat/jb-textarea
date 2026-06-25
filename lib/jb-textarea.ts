@@ -2,7 +2,7 @@ import CSS from './jb-textarea.css';
 import VariablesCSS from './variables.css';
 import { ShowValidationErrorParameters, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
-import { JBTextareaElements, ValidationValue } from './types';
+import type { JBTextareaElements, ValidationValue } from './types';
 import { registerDefaultVariables } from 'jb-core/theme';
 import { getRequiredMessage, i18n } from 'jb-core/i18n';
 import { createInputEvent, createKeyboardEvent } from 'jb-core';
@@ -59,6 +59,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
 
   get name() {
     return this.getAttribute('name') || '';
+  }
+  get form () {
+    return this.#internals?.form ?? null;
   }
   set name(value:string){
     this.setAttribute('name', value);
@@ -147,7 +150,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     switch (name) {
       case 'label':
         this.#elements.labelValue.innerHTML = value;
-        this.#internals.ariaLabel = value;
+        if (this.#internals) {
+          this.#internals.ariaLabel = value;
+        }
         if (value == null || value == undefined || value == "") {
           this.#elements.label.classList.add('--hide');
         } else {
@@ -155,14 +160,18 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
         }
         break;
       case 'message':
-        this.#internals.ariaDescription = value;
+        if (this.#internals) {
+          this.#internals.ariaDescription = value;
+        }
         if (!this.#elements.messageBox.classList.contains("error")) {
           this.#elements.messageBox.innerHTML = value;
         }
         break;
       case 'placeholder':
         this.#textareaElement.setAttribute('placeholder', value);
-        this.#internals.ariaPlaceholder = value;
+        if (this.#internals) {
+          this.#internals.ariaPlaceholder = value;
+        }
         break;
       case 'value':
         this.value = value;
@@ -279,20 +288,21 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   showValidationError(error: ShowValidationErrorParameters | string) {
     const message = typeof error == "string" ? error : error.message;
-    this.#internals.states?.add("invalid");
+    this.#internals?.states?.add("invalid");
     this.#elements.messageBox.innerHTML = message;
   }
   clearValidationError() {
     const text = this.getAttribute('message') || '';
-    this.#internals.states?.delete("invalid");
+    this.#internals?.states?.delete("invalid");
     this.#elements.messageBox.innerHTML = text;
   }
   #getInsideValidation(): ValidationItem<ValidationValue>[] {
     const validationList: ValidationItem<ValidationValue>[] = [];
-    if (this.getAttribute("error") !== null && this.getAttribute("error").trim().length > 0) {
+    const error = this.getAttribute("error");
+    if (error !== null && error.trim().length > 0) {
       validationList.push({
         validator: undefined,
-        message: this.getAttribute("error"),
+        message: error,
         stateType: "customError"
       });
     }
@@ -315,21 +325,21 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
  */
   #setValidationResult(result: ValidationResult<ValidationValue>) {
     if (result.isAllValid) {
-      this.#internals.setValidity({}, '');
+      this.#internals?.setValidity({}, '');
     } else {
       const states: ValidityStateFlags = {};
       let message = "";
       result.validationList.forEach((res) => {
         if (!res.isValid) {
           if (res.validation.stateType) { states[res.validation.stateType] = true; }
-          if (message == '') { message = res.message; }
+          if (message == '') { message = res.message ?? ""; }
         }
       });
-      this.#internals.setValidity(states, message);
+      this.#internals?.setValidity(states, message);
     }
   }
   get validationMessage() {
-    return this.#internals.validationMessage;
+    return this.#internals?.validationMessage ?? "";
   }
   /**
  * @public

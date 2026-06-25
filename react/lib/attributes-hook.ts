@@ -1,6 +1,6 @@
-import { JBTextareaWebComponent, type ValidationValue } from "jb-textarea";
+import { type JBTextareaWebComponent, type ValidationValue } from "jb-textarea";
 import { type ValidationItem } from "jb-validation";
-import { RefObject, useEffect } from "react";
+import { type RefObject, useEffect } from "react";
 
 export type JBTextareaAttributes = {
   value?: string | null | undefined,
@@ -10,7 +10,7 @@ export type JBTextareaAttributes = {
   error?: string,
   disabled?:boolean
 }
-export function useJBTextareaAttribute(element: RefObject<JBTextareaWebComponent>, props: JBTextareaAttributes) {
+export function useJBTextareaAttribute(element: RefObject<JBTextareaWebComponent | null>, props: JBTextareaAttributes) {
 
   useEffect(() => {
     const value:string = props.value || '';

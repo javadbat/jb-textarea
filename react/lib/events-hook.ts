@@ -1,5 +1,5 @@
 import { useEvent } from "jb-core/react";
-import { RefObject } from "react";
+import type { RefObject } from "react";
 import type { JBTextareaWebComponent, JBTextareaEventType } from 'jb-textarea';
 
 export type EventProps = {
@@ -21,7 +21,7 @@ export type EventProps = {
   onEnter?: (e: JBTextareaEventType<KeyboardEvent>) => void,
 
 }
-export function useEvents(element: RefObject<JBTextareaWebComponent>, props: EventProps) {
+export function useEvents(element: RefObject<JBTextareaWebComponent | null>, props: EventProps) {
   useEvent(element, 'load', props.onLoad, true);
   useEvent(element, 'init', props.onInit, true);
   useEvent(element, 'change', props.onChange);

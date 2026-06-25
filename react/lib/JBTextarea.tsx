@@ -29,11 +29,7 @@ const JBTextarea = React.forwardRef((props:Props, ref) => {
   {
     //we set this state so when ref change we have a render and our event listener will be updated
     const element = useRef<JBTextareaWebComponent>(null);
-    useImperativeHandle(
-      ref,
-      () => (element ? element.current : undefined),
-      [element],
-    );
+    useImperativeHandle(ref, () => element.current ?? undefined, [element]);
     const {onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad, placeholder, name,autoHeight,disabled,error,required,validationList,value,...otherProps} = props;
     useJBTextareaAttribute(element, {autoHeight,disabled,error,required,validationList,value});
     useEvents(element,{onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad});
