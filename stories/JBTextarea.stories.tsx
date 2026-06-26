@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import {JBTextarea, Props} from 'jb-textarea/react';
+import {JBTextarea} from 'jb-textarea/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import "./styles/styles.css"
-const meta: Meta<Props> = {
+const meta = {
   title: "Components/form elements/JBTextarea",
   component: JBTextarea,
-};
+} satisfies Meta<typeof JBTextarea>;
 export default meta;
-type Story = StoryObj<typeof JBTextarea>;
+type Story = StoryObj<typeof meta>;
 
 export const Normal:Story = {
   args:{
