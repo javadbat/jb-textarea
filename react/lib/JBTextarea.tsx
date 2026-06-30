@@ -7,23 +7,8 @@ import type {JBTextareaWebComponent} from 'jb-textarea';
 import { type EventProps, useEvents } from './events-hook.js';
 import { type JBTextareaAttributes, useJBTextareaAttribute } from './attributes-hook.js';
 import type { JBElementStandardProps } from 'jb-core/react';
+import './module-declaration.js';
 
-declare module "react" {
-    // eslint-disable-next-line @typescript-eslint/no-namespace
-    namespace JSX {
-      interface IntrinsicElements {
-        'jb-textarea': JBTextareaType;
-      }
-      interface JBTextareaType extends React.DetailedHTMLProps<React.HTMLAttributes<JBTextareaWebComponent>, JBTextareaWebComponent> {
-        class?:string,
-        label?: string,
-        name?:string,
-        message?:string,
-        placeholder?:string,
-        // ref:React.RefObject<JBDateInputWebComponent>,
-      }
-    }
-}
 // eslint-disable-next-line react/display-name
 const JBTextarea = React.forwardRef((props:Props, ref) => {
   {
