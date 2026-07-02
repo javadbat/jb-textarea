@@ -2,6 +2,16 @@ import React, { useState } from 'react';
 import {JBTextarea} from 'jb-textarea/react';
 import type { Meta, StoryObj } from '@storybook/react';
 import "./styles/styles.css"
+import { expect, userEvent, waitFor } from 'storybook/test';
+import {
+  appendEventTextarea,
+  getLabelText,
+  getMessageText,
+  getNativeTextarea,
+  getSlotWrapper,
+  getTextarea,
+  waitForTextareaValue,
+} from './test-utils';
 const meta = {
   title: "Components/form elements/JBTextarea",
   component: JBTextarea,
@@ -13,6 +23,18 @@ export const Normal:Story = {
   args:{
     label:'text',
     placeholder:'please type here'
+  },
+  play: async ({ canvasElement, args }) => {
+    const textarea = getTextarea(canvasElement);
+    const nativeTextarea = getNativeTextarea(textarea);
+
+    await waitFor(() => {
+      expect(getLabelText(textarea)).toBe(args.label);
+      expect(nativeTextarea.placeholder).toBe(args.placeholder);
+    });
+
+    await userEvent.type(nativeTextarea, 'hello textarea');
+    await waitForTextareaValue(textarea, 'hello textarea');
   }
 };
 export const Required:Story = {
@@ -20,6 +42,16 @@ export const Required:Story = {
     label:'required text',
     message:'focus and unfocus to textarea to see the error',
     required:true
+  },
+  play: async ({ canvasElement, args }) => {
+    const textarea = getTextarea(canvasElement);
+
+    await waitFor(() => {
+      expect(textarea.required).toBe(true);
+      expect(getMessageText(textarea)).toBe(args.message);
+      expect(textarea.reportValidity()).toBe(false);
+      expect(getMessageText(textarea).length).toBeGreaterThan(0);
+    });
   }
 };
 export const WithError:Story = {
@@ -27,6 +59,15 @@ export const WithError:Story = {
     label:'with error',
     message:'message under textarea',
     error:'error message',
+  },
+  play: async ({ canvasElement, args }) => {
+    const textarea = getTextarea(canvasElement);
+
+    await waitFor(() => {
+      expect(textarea.reportValidity()).toBe(false);
+      expect(getMessageText(textarea)).toBe(args.error);
+      expect(textarea.validationMessage).toBe(args.error);
+    });
   }
 };
 export const WithValidation:Story = {
@@ -48,6 +89,27 @@ export const WithValidation:Story = {
         message:"you cant enter f char"
       }
     ]
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+
+    textarea.value = 'abc';
+    expect(textarea.reportValidity()).toBe(false);
+    await waitFor(() => {
+      expect(getMessageText(textarea)).toBe('you must enter 10 char at least');
+    });
+
+    textarea.value = 'abcdefghij';
+    expect(textarea.reportValidity()).toBe(false);
+    await waitFor(() => {
+      expect(getMessageText(textarea)).toBe('you cant enter f char');
+    });
+
+    textarea.value = 'abcdeghijk';
+    expect(textarea.reportValidity()).toBe(true);
+    await waitFor(() => {
+      expect(getMessageText(textarea)).toBe('');
+    });
   }
 };
 
@@ -66,6 +128,15 @@ export const Disabled:Story = {
     label:'disabled',
     placeholder:'this textarea is disabled',
     disabled:true
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+    const nativeTextarea = getNativeTextarea(textarea);
+
+    await waitFor(() => {
+      expect(textarea.disabled).toBe(true);
+      expect(nativeTextarea.disabled).toBe(true);
+    });
   }
 };
 
@@ -74,6 +145,15 @@ export const DisabledWithValue:Story = {
     label:'disabled',
     value:'here is the textarea value',
     disabled:true
+  },
+  play: async ({ canvasElement, args }) => {
+    const textarea = getTextarea(canvasElement);
+
+    await waitFor(() => {
+      expect(textarea.disabled).toBe(true);
+      expect(textarea.value).toBe(args.value);
+      expect(getNativeTextarea(textarea).value).toBe(args.value);
+    });
   }
 };
 
@@ -105,6 +185,21 @@ export const ActionTest:Story = {
   args:{
     label:'text',
     placeholder:'please type here'
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+    const nativeTextarea = getNativeTextarea(textarea);
+
+    await waitFor(() => {
+      expect(textarea.autoHeight).toBe(true);
+    });
+
+    const initialHeight = nativeTextarea.style.height;
+    textarea.value = 'long text '.repeat(100);
+
+    await waitFor(() => {
+      expect(nativeTextarea.style.height).not.toBe(initialHeight);
+    });
   }
 };
 export const InlineStart:Story = {
@@ -114,6 +209,11 @@ export const InlineStart:Story = {
   args:{
     label:'text',
     placeholder:'please type here'
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+
+    expect(getSlotWrapper(textarea, '.inline-start-section-wrapper').querySelector('slot')?.name).toBe('inline-start-section');
   }
 };
 export const InlineEnd:Story = {
@@ -123,6 +223,11 @@ export const InlineEnd:Story = {
   args:{
     label:'text',
     placeholder:'please type here'
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+
+    expect(getSlotWrapper(textarea, '.inline-end-section-wrapper').querySelector('slot')?.name).toBe('inline-end-section');
   }
 };
 
@@ -133,6 +238,11 @@ export const BlockStart:Story = {
   args:{
     label:'text',
     placeholder:'please type here'
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+
+    expect(getSlotWrapper(textarea, '.block-start-section-wrapper').querySelector('slot')?.name).toBe('block-start-section');
   }
 };
 
@@ -143,6 +253,11 @@ export const BlockEnd:Story = {
   args:{
     label:'text',
     placeholder:'please type here'
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+
+    expect(getSlotWrapper(textarea, '.block-end-section-wrapper').querySelector('slot')?.name).toBe('block-end-section');
   }
 };
 
@@ -155,5 +270,45 @@ export const RTL = {
     themes:{
       themeOverride:'rtl'
     }
+  },
+  play: async ({ canvasElement, args }) => {
+    const textarea = getTextarea(canvasElement);
+
+    await waitFor(() => {
+      expect(getLabelText(textarea)).toBe(args.label);
+      expect(getNativeTextarea(textarea).placeholder).toBe(args.placeholder);
+    });
   }
+};
+
+export const EventTest: Story = {
+  render: () => <JBTextarea label="event test" required />,
+  play: async ({ canvasElement }) => {
+    const { textarea, events } = await appendEventTextarea(canvasElement);
+    const nativeTextarea = getNativeTextarea(textarea);
+
+    expect(textarea.reportValidity()).toBe(false);
+
+    nativeTextarea.dispatchEvent(new InputEvent('beforeinput', { data: 'a', inputType: 'insertText', bubbles: true, cancelable: true, composed: true }));
+    nativeTextarea.value = 'a';
+    nativeTextarea.dispatchEvent(new InputEvent('input', { data: 'a', inputType: 'insertText', bubbles: true, composed: true }));
+    nativeTextarea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));
+    nativeTextarea.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', bubbles: true, cancelable: true }));
+    nativeTextarea.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', bubbles: true, cancelable: true }));
+    nativeTextarea.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+
+    await waitFor(() => {
+      expect(textarea.value).toBe('a');
+      expect(events).toEqual(expect.arrayContaining([
+        'invalid',
+        'beforeinput',
+        'input',
+        'keydown',
+        'keypress',
+        'enter',
+        'keyup',
+        'change',
+      ]));
+    });
+  },
 };
