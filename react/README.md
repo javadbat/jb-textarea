@@ -132,6 +132,20 @@ the good point of set boundary with CSS variable is you can set different min or
 
  see see [jb-textarea](https://github.com/javadbat/jb-textarea) document. there is no difference between these 2 in styling.
 
+## add custom element in textarea box
+
+Pass custom prefix or suffix content as children with `slot="start-section"` or `slot="end-section"`.
+
+```jsx
+<JBTextarea label="Description">
+  <span slot="start-section">Notes</span>
+  <span slot="end-section">optional</span>
+</JBTextarea>
+```
+
+## Accessibility notes
+
+Set `label` for the textarea name and use `message` for helper text. When `autoHeight` is enabled, keep the configured max height large enough that keyboard users can still review entered content comfortably.
 
 ## Shared Documentation
 
