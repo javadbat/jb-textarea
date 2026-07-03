@@ -182,7 +182,7 @@ we have `label`, `textarea-box`, `textarea`, `message`, `inline-start-section-wr
 
 | CSS variable name                     | description                                                                                   |
 | -------------                         | -------------                                                                                 |
-| --jb-textarea-margin                  | web-component margin default is `0 12px`                                                      |
+| --jb-textarea-margin                  | web-component margin default is `0 0.75rem`                                                      |
 | --jb-textarea-border-radius           | web-component border-radius                                                                   |
 | --jb-textarea-border-width            | web-component border-width default is `1px`                                                   |
 | --jb-textarea-border-color            | border color of select in normal mode                                                         |
@@ -197,7 +197,7 @@ we have `label`, `textarea-box`, `textarea`, `message`, `inline-start-section-wr
 | --jb-textarea-value-color-disabled    | color of value when disabled                                                                  |
 | --jb-textarea-message-font-size       | font size of message we show under input                                                      |
 | --jb-textarea-message-error-color     | change color of error we show under input                                                     |
-| --jb-textarea-min-height              | minimum height of text area default is `80px`                                                 |
+| --jb-textarea-min-height              | minimum height of text area default is `5rem`                                                 |
 | --jb-textarea-max-height              | minimum height of text area default is `none`                                                 |
 | --jb-textarea-placeholder-color       | placeholder color default is 'initial'                                                        |
 | --jb-textarea-placeholder-font-size   | placeholder font-size default is `initial`                                                    |
