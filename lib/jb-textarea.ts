@@ -60,10 +60,10 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   get name() {
     return this.getAttribute('name') || '';
   }
-  get form () {
+  get form() {
     return this.#internals?.form ?? null;
   }
-  set name(value:string){
+  set name(value: string) {
     this.setAttribute('name', value);
   }
   initialValue = "";
@@ -86,8 +86,8 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     const shadowRoot = this.attachShadow({
       mode: 'open',
       delegatesFocus: true,
-      clonable:true,
-      serializable:true
+      clonable: true,
+      serializable: true
     });
     registerDefaultVariables();
     const html = `<style>${CSS} ${VariablesCSS}</style>` + '\n' + renderHTML();
@@ -114,8 +114,8 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.#elements.textarea.addEventListener('keydown', this.#onInputKeyDown.bind(this));
   }
 
-  #onInputBlur(e: FocusEvent){
-    this.#validation.checkValidity({showError:true})
+  #onInputBlur(e: FocusEvent) {
+    this.#validation.checkValidity({ showError: true })
   }
 
   autoHeight = false;
@@ -211,7 +211,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
       e.preventDefault();
     }
   }
-  
+
   #onInputKeyPress(e: KeyboardEvent) {
     const event = createKeyboardEvent('keypress', e, { cancelable: true });
     const isEventNotPrevented = this.dispatchEvent(event);
@@ -309,7 +309,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     if (this.required) {
       validationList.push({
         validator: /.{1}/g,
-        message: getRequiredMessage(i18n,this.getAttribute("label")),
+        message: getRequiredMessage(i18n, this.getAttribute("label")),
         stateType: "valueMissing"
       });
     }
@@ -317,6 +317,10 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
   #checkValidity(showError: boolean) {
     if (!this.isAutoValidationDisabled) {
+      if (this.#internals?.states.has("invalid")) {
+        // if we currently showing error to user it make sure error get updated (when failed validation changed of function return different string as an error) 
+        showError = true;
+      }
       return this.#validation.checkValidity({ showError });
     }
   }
