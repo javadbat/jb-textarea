@@ -1,1 +1,1 @@
-export * from './dist/jb-textarea.js';
+export * from './web-component/dist/jb-textarea.js';

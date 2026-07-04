@@ -3,8 +3,9 @@ import type { ReactComponentBuildConfig, WebComponentBuildConfig } from "../../t
 export const webComponentList: WebComponentBuildConfig[] = [
   {
     name: "jb-textarea",
-    path: "./lib/jb-textarea.ts",
-    outputPath: "./dist/jb-textarea.js",
+    path: "./web-component/lib/jb-textarea.ts",
+    outputPath: "./web-component/dist/jb-textarea.js",
+    tsConfigPath: "./web-component/tsconfig.json",
     umdName: "JBTextarea",
     external: ["jb-validation", "jb-core", "jb-core/theme","jb-core/i18n"],
     globals: {
