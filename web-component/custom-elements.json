@@ -259,7 +259,7 @@
               "description": "Border color in focus state."
             },
             {
-              "name": "--jb-textarea-message-error-color",
+              "name": "--jb-textarea-message-color-error",
               "description": "Validation error message color."
             }
           ]

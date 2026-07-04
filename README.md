@@ -188,15 +188,15 @@ we have `label`, `textarea-box`, `textarea`, `message`, `inline-start-section-wr
 | --jb-textarea-border-color            | border color of select in normal mode                                                         |
 | --jb-textarea-border-color-disabled   | border color when disabled                                                                    |
 | --jb-textarea-border-color-focus      | border color of select in normal mode                                                         |
-| --jb-textarea-bgcolor                 | background color of input                                                                     |
-| --jb-textarea-bgcolor-disabled        | background color of input when disabled                                                       |
+| --jb-textarea-bg-color                 | background color of input                                                                     |
+| --jb-textarea-bg-color-disabled        | background color of input when disabled                                                       |
 | --jb-textarea-border-bottom-width     | border bottom thickness default is `3px`                                                      |
 | --jb-textarea-label-font-size         | font size of input label default is `0.8em`                                                   |
 | --jb-textarea-value-font-size         | font size of input value default is `1.1em`                                                   |
 | --jb-textarea-value-color             | color of value                                                                                |
 | --jb-textarea-value-color-disabled    | color of value when disabled                                                                  |
 | --jb-textarea-message-font-size       | font size of message we show under input                                                      |
-| --jb-textarea-message-error-color     | change color of error we show under input                                                     |
+| --jb-textarea-message-color-error     | change color of error we show under input                                                     |
 | --jb-textarea-min-height              | minimum height of text area default is `5rem`                                                 |
 | --jb-textarea-max-height              | minimum height of text area default is `none`                                                 |
 | --jb-textarea-placeholder-color       | placeholder color default is 'initial'                                                        |
