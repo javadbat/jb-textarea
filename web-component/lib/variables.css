@@ -7,23 +7,23 @@
   --border-width:var(--jb-textarea-border-width, 1px);
   --border-bottom-width:var(--jb-textarea-border-bottom-width, 3px);
   /* put message and label forward base on border radius*/
-  --inline-space: calc(var(--border-radius) / 1.75);
+  --inline-space: var(--jb-textarea-inline-space, calc(var(--border-radius) / 1.75));
   --label-margin: var(--jb-textarea-label-margin, 0.125rem var(--inline-space));
   --label-font-size:var(--jb-textarea-label-font-size, 0.8rem);
   --value-font-size:var(--jb-textarea-value-font-size, 1rem);
   --input-padding:var(--jb-textarea-input-padding, 0.125rem 0.75rem 0 0.75rem);
   --placeholder-font-size:var(--jb-textarea-placeholder-font-size, var(--value-font-size));
   --message-font-size:var(--jb-textarea-message-font-size, 0.7rem);
-  --inline-slots-padding:0.375rem 0.625rem;
+  --inline-slots-padding: var(--jb-textarea-inline-slots-padding, 0.375rem 0.625rem);
   /* Theme/Color */
   --base-border-color:var(--jb-textarea-border-color, var(--jb-neutral-10));
-  --border-color:var(--base-border-color);
+  --border-color: var(--jb-textarea-border-color-current, var(--base-border-color));
   --message-color:var(--jb-textarea-message-color, var(--jb-text-secondary));
   --label-color: var(--jb-textarea-label-color, var(--jb-text-primary));
   --value-color: var(--jb-textarea-value-color,  var(--jb-text-primary));
   --placeholder-color:  var(--jb-textarea-placeholder-color, var(--jb-neutral-6));
   --base-bg-color:var(--jb-textarea-bg-color, var(--jb-neutral-10));
-  --input-box-bg-color: var(--base-bg-color);
+  --input-box-bg-color: var(--jb-textarea-input-box-bg-color, var(--base-bg-color));
   /* Other */
   --margin: var(--jb-textarea-margin, 0.75rem 0);
   --box-overflow: var(--jb-textarea-box-overflow, hidden);

@@ -186,6 +186,7 @@ we have `label`, `textarea-box`, `textarea`, `message`, `inline-start-section-wr
 | --jb-textarea-border-radius           | web-component border-radius                                                                   |
 | --jb-textarea-border-width            | web-component border-width default is `1px`                                                   |
 | --jb-textarea-border-color            | border color of select in normal mode                                                         |
+| --jb-textarea-border-color-current    | Current computed border color.                                                                |
 | --jb-textarea-border-color-disabled   | border color when disabled                                                                    |
 | --jb-textarea-border-color-focus      | border color of select in normal mode                                                         |
 | --jb-textarea-bg-color                 | background color of input                                                                     |
@@ -206,6 +207,9 @@ we have `label`, `textarea-box`, `textarea`, `message`, `inline-start-section-wr
 | --jb-textarea-box-overflow | Customize box overflow. |
 | --jb-textarea-height | Customize height. |
 | --jb-textarea-input-padding | Customize input padding. |
+| --jb-textarea-input-box-bg-color | Current computed textarea box background color. |
+| --jb-textarea-inline-space | Inline label/message spacing derived from border radius. |
+| --jb-textarea-inline-slots-padding | Inline slot padding. |
 | --jb-textarea-label-margin | Customize label margin. |
 | --jb-textarea-message-color | Customize message color. |
 
