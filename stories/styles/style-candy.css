@@ -1,0 +1,25 @@
+.candy-textarea {
+    display: block;
+    width: 100%;
+    --jb-textarea-bg-color: #fff5fb;
+    --jb-textarea-bg-color-disabled: #fce7f3;
+    --jb-textarea-border-color: #f9a8d4;
+    --jb-textarea-border-color-focus: #a3195b;
+    --jb-textarea-border-radius: 1.25rem;
+    --jb-textarea-border-width: 1px;
+    --jb-textarea-border-bottom-width: 3px;
+    --jb-textarea-border-bottom-width-focus: 4px;
+    --jb-textarea-box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.75);
+    --jb-textarea-box-shadow-focus: 0 0 0 0.25rem rgb(244 114 182 / 0.18);
+    --jb-textarea-label-color: #7a174a;
+    --jb-textarea-label-font-weight: 800;
+    --jb-textarea-value-color: #7a174a;
+    --jb-textarea-value-color-disabled: #be80a5;
+    --jb-textarea-placeholder-color: #be185d;
+    --jb-textarea-message-color: #9d174d;
+    --jb-textarea-message-color-error: var(--jb-primary-pressed);
+}
+
+.candy-textarea::part(textarea-box) {
+    overflow: hidden;
+}

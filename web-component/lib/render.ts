@@ -1,6 +1,6 @@
 export function renderHTML(): string {
   return /* html */ `
-  <div class="jb-textarea-web-component">
+  <div class="jb-textarea-web-component" part="component">
     <label class="--hide" part="label"><span class="label-value"></span><span>:</span></label>
     <div class="textarea-box" part="textarea-box">
         <div class="block-start-section-wrapper" part="block-start-section-wrapper">

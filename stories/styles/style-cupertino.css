@@ -1,0 +1,24 @@
+.cupertino-textarea {
+    display: block;
+    width: 100%;
+    --jb-textarea-bg-color: var(--jb-text-contrast);
+    --jb-textarea-bg-color-disabled: #f5f5f7;
+    --jb-textarea-border-color: #d2d2d7;
+    --jb-textarea-border-color-focus: var(--jb-focus-color);
+    --jb-textarea-border-radius: 0.625rem;
+    --jb-textarea-border-width: 1px;
+    --jb-textarea-border-bottom-width: 1px;
+    --jb-textarea-border-bottom-width-focus: 1px;
+    --jb-textarea-box-shadow-focus: 0 0 0 0.25rem rgb(0 122 255 / 0.16);
+    --jb-textarea-label-color: var(--jb-text-primary);
+    --jb-textarea-label-font-weight: 600;
+    --jb-textarea-value-color: var(--jb-text-primary);
+    --jb-textarea-value-color-disabled: #86868b;
+    --jb-textarea-placeholder-color: #86868b;
+    --jb-textarea-message-color: #6e6e73;
+    --jb-textarea-message-color-error: var(--jb-success);
+}
+
+.cupertino-textarea::part(textarea) {
+    line-height: 1.5;
+}

@@ -4,7 +4,7 @@
 }
 
 .jb-textarea-web-component {
-    width: 100%;
+    width: var(--width);
     margin: var(--margin);
 
     label {
@@ -12,6 +12,7 @@
         margin: var(--label-margin);
         display: block;
         font-size: var(--label-font-size);
+        font-weight: var(--label-font-weight);
         color: var(--label-color);
 
         &.--hide {
@@ -21,18 +22,19 @@
 
     .textarea-box {
         width: 100%;
+        margin: var(--box-margin);
         box-sizing: border-box;
         border: solid var(--border-width) var(--border-color);
         background-color: var(--input-box-bg-color);
         border-bottom: solid var(--border-bottom-width) var(--border-color);
         border-radius: var(--border-radius);
         overflow: var(--box-overflow);
+        box-shadow: var(--box-shadow);
         display: grid;
         grid-template-columns: auto 1fr auto;
         grid-template-rows: auto 1fr auto;
         grid-template-areas: "slot-block-start slot-block-start slot-block-start" "slot-inline-start textarea slot-inline-end" "slot-block-end slot-block-end slot-block-end";
         transition: ease 0.3s all;
-        overflow: hidden;
         textarea {
             grid-area: textarea;
             border: none;
@@ -46,6 +48,9 @@
             display: block;
             font-family: inherit;
             font-size: var(--value-font-size);
+            font-weight: var(--textarea-font-weight);
+            text-align: var(--textarea-text-align);
+            direction: var(--textarea-direction);
             margin: 0;
             border-radius: 0;
             resize: vertical;
@@ -108,6 +113,7 @@
     }
 
     .message-box {
+        display: var(--message-box-display);
         font-size: var(--message-font-size);
         padding: 0.125rem var(--inline-space);
         color: var(--message-color);
@@ -117,4 +123,10 @@
         }
     }
 
+}
+
+:host(:focus-within) .jb-textarea-web-component .textarea-box {
+    border-width: var(--border-width-focus);
+    border-bottom-width: var(--border-bottom-width-focus);
+    box-shadow: var(--box-shadow-focus);
 }

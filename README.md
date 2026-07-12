@@ -180,38 +180,7 @@ we have `label`, `textarea-box`, `textarea`, `message`, `inline-start-section-wr
 
 2. using CSS variable
 
-| CSS variable name                     | description                                                                                   |
-| -------------                         | -------------                                                                                 |
-| --jb-textarea-margin                  | web-component margin default is `0 0.75rem`                                                      |
-| --jb-textarea-border-radius           | web-component border-radius                                                                   |
-| --jb-textarea-border-width            | web-component border-width default is `1px`                                                   |
-| --jb-textarea-border-color            | border color of select in normal mode                                                         |
-| --jb-textarea-border-color-current    | Current computed border color.                                                                |
-| --jb-textarea-border-color-disabled   | border color when disabled                                                                    |
-| --jb-textarea-border-color-focus      | border color of select in normal mode                                                         |
-| --jb-textarea-bg-color                 | background color of input                                                                     |
-| --jb-textarea-bg-color-disabled        | background color of input when disabled                                                       |
-| --jb-textarea-border-bottom-width     | border bottom thickness default is `3px`                                                      |
-| --jb-textarea-label-font-size         | font size of input label default is `0.8em`                                                   |
-| --jb-textarea-value-font-size         | font size of input value default is `1.1em`                                                   |
-| --jb-textarea-value-color             | color of value                                                                                |
-| --jb-textarea-value-color-disabled    | color of value when disabled                                                                  |
-| --jb-textarea-message-font-size       | font size of message we show under input                                                      |
-| --jb-textarea-message-color-error     | change color of error we show under input                                                     |
-| --jb-textarea-min-height              | minimum height of text area default is `5rem`                                                 |
-| --jb-textarea-max-height              | minimum height of text area default is `none`                                                 |
-| --jb-textarea-placeholder-color       | placeholder color default is 'initial'                                                        |
-| --jb-textarea-placeholder-font-size   | placeholder font-size default is `initial`                                                    |
-| --jb-textarea-label-color             | label color                                                                                   |    
-| --jb-textarea-label-color-disabled    | label color when disabled                                                                     |
-| --jb-textarea-box-overflow | Customize box overflow. |
-| --jb-textarea-height | Customize height. |
-| --jb-textarea-input-padding | Customize input padding. |
-| --jb-textarea-input-box-bg-color | Current computed textarea box background color. |
-| --jb-textarea-inline-space | Inline label/message spacing derived from border radius. |
-| --jb-textarea-inline-slots-padding | Inline slot padding. |
-| --jb-textarea-label-margin | Customize label margin. |
-| --jb-textarea-message-color | Customize message color. |
+For complete styling guidance, live examples, official parts, custom states, and copyable style recipes, see [Styling](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea-styling).
 
 ## add custom element in textarea box
 

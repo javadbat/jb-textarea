@@ -1,0 +1,31 @@
+.terminal-textarea {
+    display: block;
+    width: 100%;
+    --jb-textarea-bg-color: var(--jb-surface);
+    --jb-textarea-bg-color-disabled: var(--jb-background);
+    --jb-textarea-border-color: var(--jb-border-color);
+    --jb-textarea-border-color-focus: var(--jb-focus-color);
+    --jb-textarea-border-radius: 0.25rem;
+    --jb-textarea-border-width: 1px;
+    --jb-textarea-border-bottom-width: 1px;
+    --jb-textarea-border-bottom-width-focus: 1px;
+    --jb-textarea-box-shadow-focus: 0 0 0 0.125rem var(--jb-focus-color);
+    --jb-textarea-label-color: var(--jb-text-primary);
+    --jb-textarea-label-font-weight: 600;
+    --jb-textarea-value-color: var(--jb-focus-color);
+    --jb-textarea-value-color-disabled: var(--jb-text-disabled);
+    --jb-textarea-placeholder-color: var(--jb-text-secondary);
+    --jb-textarea-message-color: var(--jb-text-secondary);
+    --jb-textarea-message-color-error: #ff5f56;
+    --jb-textarea-textarea-font-weight: 600;
+}
+
+.terminal-textarea::part(label),
+.terminal-textarea::part(textarea),
+.terminal-textarea::part(message) {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+.terminal-textarea:state(invalid)::part(textarea-box) {
+    border-color: #ff5f56;
+}

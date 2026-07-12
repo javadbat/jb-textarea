@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {JBTextarea} from 'jb-textarea/react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import "./styles/styles.css"
 import { expect, userEvent, waitFor } from 'storybook/test';
 import {

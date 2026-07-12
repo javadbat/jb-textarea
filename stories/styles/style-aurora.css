@@ -1,0 +1,29 @@
+.aurora-textarea {
+    display: block;
+    width: 100%;
+    --jb-textarea-bg-color: var(--jb-surface);
+    --jb-textarea-bg-color-disabled: var(--jb-background);
+    --jb-textarea-border-color: var(--jb-border-color);
+    --jb-textarea-border-color-focus: var(--jb-focus-color);
+    --jb-textarea-border-radius: 1rem;
+    --jb-textarea-border-width: 1px;
+    --jb-textarea-border-bottom-width: 1px;
+    --jb-textarea-border-bottom-width-focus: 1px;
+    --jb-textarea-box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.04);
+    --jb-textarea-box-shadow-focus: 0 0 0 0.25rem oklch(83% 0.11 185 / 0.2);
+    --jb-textarea-label-color: var(--jb-text-primary);
+    --jb-textarea-label-font-weight: 600;
+    --jb-textarea-value-color: var(--jb-text-primary);
+    --jb-textarea-value-color-disabled: var(--jb-text-disabled);
+    --jb-textarea-placeholder-color: var(--jb-text-secondary);
+    --jb-textarea-message-color: var(--jb-text-secondary);
+    --jb-textarea-message-color-error: #ff8fb8;
+}
+
+.aurora-textarea::part(label) {
+    text-shadow: 0 0 0.75rem oklch(83% 0.11 185 / 0.5);
+}
+
+.aurora-textarea:state(invalid)::part(textarea-box) {
+    box-shadow: 0 0 0 0.25rem oklch(70% 0.16 350 / 0.2);
+}

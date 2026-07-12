@@ -1,0 +1,276 @@
+import { Meta, Source, Story, Title } from '@storybook/addon-docs/blocks';
+import * as StyleStories from './Styles.stories';
+import antDesignThemeCss from '../../../docs/styles/ant-design.css?raw';
+import auroraThemeCss from '../../../docs/styles/aurora.css?raw';
+import bootstrapThemeCss from '../../../docs/styles/bootstrap.css?raw';
+import candyThemeCss from '../../../docs/styles/candy.css?raw';
+import carbonThemeCss from '../../../docs/styles/carbon.css?raw';
+import cupertinoThemeCss from '../../../docs/styles/cupertino.css?raw';
+import fluentThemeCss from '../../../docs/styles/fluent.css?raw';
+import forestThemeCss from '../../../docs/styles/forest.css?raw';
+import materialThemeCss from '../../../docs/styles/material.css?raw';
+import porcelainThemeCss from '../../../docs/styles/porcelain.css?raw';
+import sunsetThemeCss from '../../../docs/styles/sunset.css?raw';
+import terminalThemeCss from '../../../docs/styles/terminal.css?raw';
+import antDesignTextareaCss from './styles/style-ant-design.css?raw';
+import auroraTextareaCss from './styles/style-aurora.css?raw';
+import bootstrapTextareaCss from './styles/style-bootstrap.css?raw';
+import candyTextareaCss from './styles/style-candy.css?raw';
+import carbonTextareaCss from './styles/style-carbon.css?raw';
+import cupertinoTextareaCss from './styles/style-cupertino.css?raw';
+import fluentTextareaCss from './styles/style-fluent.css?raw';
+import forestTextareaCss from './styles/style-forest.css?raw';
+import materialTextareaCss from './styles/style-material.css?raw';
+import porcelainTextareaCss from './styles/style-porcelain.css?raw';
+import sunsetTextareaCss from './styles/style-sunset.css?raw';
+import terminalTextareaCss from './styles/style-terminal.css?raw';
+
+<Meta title="Components/form elements/JBTextarea/Styling" />
+
+<Title>Styling</Title>
+
+`JBTextarea` is the multiline counterpart to `JBInput`. It follows the same token model for borders, color, typography, focus, disabled, and invalid states, then adds textarea-specific height and slot surfaces for multiline composition.
+
+## Live Gallery
+
+<Story of={StyleStories.Gallery} />
+
+<Source of={StyleStories.Gallery} />
+
+## Common Design Tokens
+
+Use the core theme docs as the source of truth for shared design-system variables:
+
+- [Theme Colors](../../jb-core/theme/stories/colors.mdx) explains the general color palette variables, default colors, customization approaches, and color generation helpers.
+- [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) explains shared size and radius variables.
+- [Theme Custom Galleries](https://javadbat.github.io/design-system/?path=/docs/theme-custom-material--docs) gathers the shared custom style recipes across components.
+
+Textarea recipes should use those common tokens where possible, then map them into `--jb-textarea-*` variables only where the textarea needs a component-specific value.
+
+## Styling Model
+
+Use three layers when styling textarea examples:
+
+- Common design tokens are documented in [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx).
+- Reusable example theme packs live in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) and can be shared across components.
+- Component recipe files live in [`modules/jb-textarea/stories/styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-textarea/stories/styles).
+- Public component variables use the `--jb-textarea-*` prefix and are the stable styling API.
+
+Each example uses one shared example theme pack from [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) and one textarea-specific recipe from [`modules/jb-textarea/stories/styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-textarea/stories/styles). The style story applies both classes directly to `JBTextarea`.
+
+## Recommended Customization Path
+
+1. Use `--jb-textarea-*` variables first for size, colors, typography, spacing, borders, shadows, and state values.
+2. Match `jb-input` variables when the textarea should look like the multiline version of an input.
+3. Use common theme variables from [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) when the style should align with the design system.
+4. Put reusable theme-pack values in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) only when they should be shared by multiple component demos.
+5. Use `::part(...)` only for official exposed parts such as `::part(label)`, `::part(textarea-box)`, `::part(textarea)`, `::part(message)`, and slot wrappers.
+6. Add a new component variable only when a needed internal surface cannot be customized with the current public variables or official parts.
+
+## Parts And States
+
+<table>
+  <thead>
+    <tr><th>Part</th><th>Element</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>component</code></td><td>Root shadow wrapper</td><td>Use for wrapper-level layout and effects.</td></tr>
+    <tr><td><code>label</code></td><td>Label element</td><td>Use for label typography details beyond public label variables.</td></tr>
+    <tr><td><code>textarea-box</code></td><td>Wrapper around textarea and slot sections</td><td>Use for border, focus, invalid, or disabled state accents.</td></tr>
+    <tr><td><code>textarea</code></td><td>Inner native textarea</td><td>Use for targeted native textarea styling.</td></tr>
+    <tr><td><code>message</code></td><td>Helper or validation message element</td><td>Use for helper text and validation message emphasis.</td></tr>
+    <tr><td><code>inline-start-section-wrapper</code></td><td>Wrapper for the inline-start-section slot</td><td>Use for inline adornments before the textarea.</td></tr>
+    <tr><td><code>inline-end-section-wrapper</code></td><td>Wrapper for the inline-end-section slot</td><td>Use for inline adornments after the textarea.</td></tr>
+    <tr><td><code>block-start-section-wrapper</code></td><td>Wrapper for the block-start-section slot</td><td>Use for content above the textarea inside the box.</td></tr>
+    <tr><td><code>block-end-section-wrapper</code></td><td>Wrapper for the block-end-section slot</td><td>Use for content below the textarea inside the box.</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr><th>Custom State</th><th>Meaning</th><th>Example Selector</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>disabled</code></td><td>Applied when the textarea is disabled.</td><td><code>jb-textarea:state(disabled)::part(textarea-box)</code></td></tr>
+    <tr><td><code>invalid</code></td><td>Applied while validation error text is visible.</td><td><code>jb-textarea:state(invalid)::part(message)</code></td></tr>
+  </tbody>
+</table>
+
+## CSS Variables
+
+<table>
+  <thead>
+    <tr><th>Variable</th><th>Category</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--jb-textarea-width</code></td><td>Size</td><td>Host width.</td></tr>
+    <tr><td><code>--jb-textarea-height</code></td><td>Size</td><td>Base textarea height.</td></tr>
+    <tr><td><code>--jb-textarea-min-height</code></td><td>Size</td><td>Minimum textarea height, especially for auto-height mode.</td></tr>
+    <tr><td><code>--jb-textarea-max-height</code></td><td>Size</td><td>Maximum textarea height, especially for auto-height mode.</td></tr>
+    <tr><td><code>--jb-textarea-height-xs</code></td><td>Size</td><td>Textarea height for <code>size="xs"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-height-sm</code></td><td>Size</td><td>Textarea height for <code>size="sm"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-height-lg</code></td><td>Size</td><td>Textarea height for <code>size="lg"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-height-xl</code></td><td>Size</td><td>Textarea height for <code>size="xl"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-min-height-xs</code></td><td>Size</td><td>Minimum height for <code>size="xs"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-min-height-sm</code></td><td>Size</td><td>Minimum height for <code>size="sm"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-min-height-lg</code></td><td>Size</td><td>Minimum height for <code>size="lg"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-min-height-xl</code></td><td>Size</td><td>Minimum height for <code>size="xl"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-border-radius</code></td><td>Size</td><td>Base textarea border radius.</td></tr>
+    <tr><td><code>--jb-textarea-border-radius-xs</code></td><td>Size</td><td>Border radius for <code>size="xs"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-border-radius-sm</code></td><td>Size</td><td>Border radius for <code>size="sm"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-border-radius-lg</code></td><td>Size</td><td>Border radius for <code>size="lg"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-border-radius-xl</code></td><td>Size</td><td>Border radius for <code>size="xl"</code>.</td></tr>
+    <tr><td><code>--jb-textarea-border-width</code></td><td>Size</td><td>Textarea border width.</td></tr>
+    <tr><td><code>--jb-textarea-border-bottom-width</code></td><td>Size</td><td>Textarea bottom border width.</td></tr>
+    <tr><td><code>--jb-textarea-border-width-focus</code></td><td>Size</td><td>Textarea border width while focused.</td></tr>
+    <tr><td><code>--jb-textarea-border-bottom-width-focus</code></td><td>Size</td><td>Textarea bottom border width while focused.</td></tr>
+    <tr><td><code>--jb-textarea-inline-space</code></td><td>Size</td><td>Inline label and message spacing derived from radius.</td></tr>
+    <tr><td><code>--jb-textarea-label-margin</code></td><td>Size</td><td>Label margin.</td></tr>
+    <tr><td><code>--jb-textarea-label-font-size</code></td><td>Size</td><td>Base label font size.</td></tr>
+    <tr><td><code>--jb-textarea-value-font-size</code></td><td>Size</td><td>Base textarea value font size.</td></tr>
+    <tr><td><code>--jb-textarea-input-padding</code></td><td>Size</td><td>Base native textarea padding.</td></tr>
+    <tr><td><code>--jb-textarea-placeholder-font-size</code></td><td>Size</td><td>Placeholder font size.</td></tr>
+    <tr><td><code>--jb-textarea-message-font-size</code></td><td>Size</td><td>Base message font size.</td></tr>
+    <tr><td><code>--jb-textarea-inline-slots-padding</code></td><td>Size</td><td>Base inline slot padding.</td></tr>
+    <tr><td><code>--jb-textarea-border-color</code></td><td>Theme/Color</td><td>Textarea border color.</td></tr>
+    <tr><td><code>--jb-textarea-border-color-current</code></td><td>Theme/Color</td><td>Current computed border color override.</td></tr>
+    <tr><td><code>--jb-textarea-border-color-disabled</code></td><td>Theme/Color</td><td>Textarea border color while disabled.</td></tr>
+    <tr><td><code>--jb-textarea-border-color-focus</code></td><td>Theme/Color</td><td>Textarea border color while focused.</td></tr>
+    <tr><td><code>--jb-textarea-message-color</code></td><td>Theme/Color</td><td>Helper message color.</td></tr>
+    <tr><td><code>--jb-textarea-message-color-error</code></td><td>Theme/Color</td><td>Validation message color.</td></tr>
+    <tr><td><code>--jb-textarea-label-color</code></td><td>Theme/Color</td><td>Label color.</td></tr>
+    <tr><td><code>--jb-textarea-label-color-disabled</code></td><td>Theme/Color</td><td>Label color while disabled.</td></tr>
+    <tr><td><code>--jb-textarea-value-color</code></td><td>Theme/Color</td><td>Textarea value color.</td></tr>
+    <tr><td><code>--jb-textarea-value-color-disabled</code></td><td>Theme/Color</td><td>Textarea value color while disabled.</td></tr>
+    <tr><td><code>--jb-textarea-placeholder-color</code></td><td>Theme/Color</td><td>Placeholder color.</td></tr>
+    <tr><td><code>--jb-textarea-bg-color</code></td><td>Theme/Color</td><td>Textarea box background color.</td></tr>
+    <tr><td><code>--jb-textarea-bg-color-disabled</code></td><td>Theme/Color</td><td>Textarea box background color while disabled.</td></tr>
+    <tr><td><code>--jb-textarea-input-box-bg-color</code></td><td>Theme/Color</td><td>Current computed textarea box background color override.</td></tr>
+    <tr><td><code>--jb-textarea-margin</code></td><td>Other</td><td>Host margin.</td></tr>
+    <tr><td><code>--jb-textarea-label-font-weight</code></td><td>Other</td><td>Label font weight.</td></tr>
+    <tr><td><code>--jb-textarea-box-margin</code></td><td>Other</td><td>Textarea box margin.</td></tr>
+    <tr><td><code>--jb-textarea-box-overflow</code></td><td>Other</td><td>Textarea box overflow.</td></tr>
+    <tr><td><code>--jb-textarea-box-shadow</code></td><td>Other</td><td>Textarea box shadow.</td></tr>
+    <tr><td><code>--jb-textarea-box-shadow-focus</code></td><td>Other</td><td>Textarea box shadow while focused.</td></tr>
+    <tr><td><code>--jb-textarea-textarea-text-align</code></td><td>Other</td><td>Native textarea text alignment.</td></tr>
+    <tr><td><code>--jb-textarea-textarea-direction</code></td><td>Other</td><td>Native textarea text direction.</td></tr>
+    <tr><td><code>--jb-textarea-textarea-font-weight</code></td><td>Other</td><td>Native textarea font weight.</td></tr>
+    <tr><td><code>--jb-textarea-message-box-display</code></td><td>Other</td><td>Message box display value.</td></tr>
+  </tbody>
+</table>
+
+## Style Recipes
+
+### Carbon
+<Story of={StyleStories.Carbon} />
+<Source of={StyleStories.Carbon} />
+Shared style:
+<Source code={carbonThemeCss} language="css" />
+Textarea style:
+<Source code={carbonTextareaCss} language="css" />
+
+### Aurora
+<Story of={StyleStories.Aurora} />
+<Source of={StyleStories.Aurora} />
+Shared style:
+<Source code={auroraThemeCss} language="css" />
+Textarea style:
+<Source code={auroraTextareaCss} language="css" />
+
+### Forest
+<Story of={StyleStories.Forest} />
+<Source of={StyleStories.Forest} />
+Shared style:
+<Source code={forestThemeCss} language="css" />
+Textarea style:
+<Source code={forestTextareaCss} language="css" />
+
+### Sunset
+<Story of={StyleStories.Sunset} />
+<Source of={StyleStories.Sunset} />
+Shared style:
+<Source code={sunsetThemeCss} language="css" />
+Textarea style:
+<Source code={sunsetTextareaCss} language="css" />
+
+### Porcelain
+<Story of={StyleStories.Porcelain} />
+<Source of={StyleStories.Porcelain} />
+Shared style:
+<Source code={porcelainThemeCss} language="css" />
+Textarea style:
+<Source code={porcelainTextareaCss} language="css" />
+
+### Candy
+<Story of={StyleStories.Candy} />
+<Source of={StyleStories.Candy} />
+Shared style:
+<Source code={candyThemeCss} language="css" />
+Textarea style:
+<Source code={candyTextareaCss} language="css" />
+
+### Terminal
+<Story of={StyleStories.Terminal} />
+<Source of={StyleStories.Terminal} />
+Shared style:
+<Source code={terminalThemeCss} language="css" />
+Textarea style:
+<Source code={terminalTextareaCss} language="css" />
+
+### Material
+<Story of={StyleStories.Material} />
+<Source of={StyleStories.Material} />
+Shared style:
+<Source code={materialThemeCss} language="css" />
+Textarea style:
+<Source code={materialTextareaCss} language="css" />
+
+### Fluent
+<Story of={StyleStories.Fluent} />
+<Source of={StyleStories.Fluent} />
+Shared style:
+<Source code={fluentThemeCss} language="css" />
+Textarea style:
+<Source code={fluentTextareaCss} language="css" />
+
+### Bootstrap
+<Story of={StyleStories.Bootstrap} />
+<Source of={StyleStories.Bootstrap} />
+Shared style:
+<Source code={bootstrapThemeCss} language="css" />
+Textarea style:
+<Source code={bootstrapTextareaCss} language="css" />
+
+### Cupertino
+<Story of={StyleStories.Cupertino} />
+<Source of={StyleStories.Cupertino} />
+Shared style:
+<Source code={cupertinoThemeCss} language="css" />
+Textarea style:
+<Source code={cupertinoTextareaCss} language="css" />
+
+### Ant Design
+<Story of={StyleStories.AntDesign} />
+<Source of={StyleStories.AntDesign} />
+Shared style:
+<Source code={antDesignThemeCss} language="css" />
+Textarea style:
+<Source code={antDesignTextareaCss} language="css" />
+
+## Theme File Pattern
+
+Use [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) as the common design-token guides. Theme-pack files should keep reusable demo variables in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles), then each component should keep its own style CSS in its story [`styles`](https://github.com/javadbat/design-system/tree/main/modules/jb-textarea/stories/styles) folder.
+
+```css
+/* https://github.com/javadbat/design-system/blob/main/docs/styles/carbon.css */
+.theme-name-style {
+  /* shared design-system variables */
+}
+
+/* https://github.com/javadbat/design-system/blob/main/modules/jb-textarea/stories/styles/style-carbon.css */
+.theme-name-textarea {
+  /* textarea-specific variables and official parts */
+}
+```
+
+This keeps common theme tokens reusable and lets each component page show only the CSS it needs.

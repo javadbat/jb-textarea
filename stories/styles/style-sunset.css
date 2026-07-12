@@ -1,0 +1,24 @@
+.sunset-textarea {
+    display: block;
+    width: 100%;
+    --jb-textarea-bg-color: #9a4160;
+    --jb-textarea-bg-color-disabled: #7f304a;
+    --jb-textarea-border-color: rgb(255 209 102 / 0.45);
+    --jb-textarea-border-color-focus: var(--jb-focus-color);
+    --jb-textarea-border-radius: 0.875rem;
+    --jb-textarea-border-width: 1px;
+    --jb-textarea-border-bottom-width: 1px;
+    --jb-textarea-border-bottom-width-focus: 2px;
+    --jb-textarea-box-shadow-focus: 0 0.75rem 1.5rem rgb(86 30 50 / 0.22);
+    --jb-textarea-label-color: #fff8ed;
+    --jb-textarea-label-font-weight: 700;
+    --jb-textarea-value-color: #fff8ed;
+    --jb-textarea-value-color-disabled: #d7a3b3;
+    --jb-textarea-placeholder-color: #ffe0e9;
+    --jb-textarea-message-color: #ffe0e9;
+    --jb-textarea-message-color-error: var(--jb-focus-color);
+}
+
+.sunset-textarea:state(invalid)::part(textarea-box) {
+    border-color: var(--jb-focus-color);
+}

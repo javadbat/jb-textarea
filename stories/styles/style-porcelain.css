@@ -1,0 +1,25 @@
+.porcelain-textarea {
+    display: block;
+    width: 100%;
+    --jb-textarea-bg-color: var(--jb-surface);
+    --jb-textarea-bg-color-disabled: #f2f7fc;
+    --jb-textarea-border-color: #c9ddf2;
+    --jb-textarea-border-color-focus: #2f65a7;
+    --jb-textarea-border-radius: 0.75rem;
+    --jb-textarea-border-width: 1px;
+    --jb-textarea-border-bottom-width: 1px;
+    --jb-textarea-border-bottom-width-focus: 2px;
+    --jb-textarea-box-shadow: 0 0.5rem 1.25rem rgb(47 101 167 / 0.08);
+    --jb-textarea-box-shadow-focus: 0 0 0 0.2rem rgb(47 101 167 / 0.14);
+    --jb-textarea-label-color: #1f3d63;
+    --jb-textarea-label-font-weight: 600;
+    --jb-textarea-value-color: #1f3d63;
+    --jb-textarea-value-color-disabled: #8aa5c1;
+    --jb-textarea-placeholder-color: #7794b0;
+    --jb-textarea-message-color: #47617d;
+    --jb-textarea-message-color-error: #bf3f4a;
+}
+
+.porcelain-textarea::part(textarea) {
+    line-height: 1.55;
+}

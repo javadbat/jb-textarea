@@ -209,6 +209,10 @@
           ],
           "cssParts": [
             {
+              "name": "component",
+              "description": "Root shadow wrapper."
+            },
+            {
               "name": "label",
               "description": "The label element."
             },
@@ -241,7 +245,25 @@
               "description": "Wrapper for the block-end-section slot."
             }
           ],
+          "cssStates": [
+            {
+              "name": "disabled",
+              "description": "Applied when the textarea is disabled."
+            },
+            {
+              "name": "invalid",
+              "description": "Applied while validation error text is visible."
+            }
+          ],
           "cssProperties": [
+            {
+              "name": "--jb-textarea-width",
+              "description": "Host width."
+            },
+            {
+              "name": "--jb-textarea-height",
+              "description": "Base textarea height."
+            },
             {
               "name": "--jb-textarea-min-height",
               "description": "Minimum textarea height used by autoHeight."
@@ -251,16 +273,200 @@
               "description": "Maximum textarea height used by autoHeight."
             },
             {
+              "name": "--jb-textarea-height-xs",
+              "description": "Textarea height for size xs."
+            },
+            {
+              "name": "--jb-textarea-height-sm",
+              "description": "Textarea height for size sm."
+            },
+            {
+              "name": "--jb-textarea-height-lg",
+              "description": "Textarea height for size lg."
+            },
+            {
+              "name": "--jb-textarea-height-xl",
+              "description": "Textarea height for size xl."
+            },
+            {
+              "name": "--jb-textarea-min-height-xs",
+              "description": "Minimum textarea height for size xs."
+            },
+            {
+              "name": "--jb-textarea-min-height-sm",
+              "description": "Minimum textarea height for size sm."
+            },
+            {
+              "name": "--jb-textarea-min-height-lg",
+              "description": "Minimum textarea height for size lg."
+            },
+            {
+              "name": "--jb-textarea-min-height-xl",
+              "description": "Minimum textarea height for size xl."
+            },
+            {
+              "name": "--jb-textarea-border-radius",
+              "description": "Base textarea border radius."
+            },
+            {
+              "name": "--jb-textarea-border-radius-xs",
+              "description": "Textarea border radius for size xs."
+            },
+            {
+              "name": "--jb-textarea-border-radius-sm",
+              "description": "Textarea border radius for size sm."
+            },
+            {
+              "name": "--jb-textarea-border-radius-lg",
+              "description": "Textarea border radius for size lg."
+            },
+            {
+              "name": "--jb-textarea-border-radius-xl",
+              "description": "Textarea border radius for size xl."
+            },
+            {
+              "name": "--jb-textarea-border-width",
+              "description": "Textarea border width."
+            },
+            {
+              "name": "--jb-textarea-border-bottom-width",
+              "description": "Textarea bottom border width."
+            },
+            {
+              "name": "--jb-textarea-border-width-focus",
+              "description": "Textarea border width while focused."
+            },
+            {
+              "name": "--jb-textarea-border-bottom-width-focus",
+              "description": "Textarea bottom border width while focused."
+            },
+            {
+              "name": "--jb-textarea-inline-space",
+              "description": "Inline label and message spacing derived from border radius."
+            },
+            {
+              "name": "--jb-textarea-label-margin",
+              "description": "Label margin."
+            },
+            {
+              "name": "--jb-textarea-label-font-size",
+              "description": "Base label font size."
+            },
+            {
+              "name": "--jb-textarea-value-font-size",
+              "description": "Base textarea value font size."
+            },
+            {
+              "name": "--jb-textarea-input-padding",
+              "description": "Native textarea padding."
+            },
+            {
+              "name": "--jb-textarea-placeholder-font-size",
+              "description": "Placeholder font size."
+            },
+            {
+              "name": "--jb-textarea-message-font-size",
+              "description": "Base message font size."
+            },
+            {
+              "name": "--jb-textarea-inline-slots-padding",
+              "description": "Inline slot padding."
+            },
+            {
               "name": "--jb-textarea-border-color",
               "description": "Border color in normal state."
+            },
+            {
+              "name": "--jb-textarea-border-color-current",
+              "description": "Current computed border color override."
+            },
+            {
+              "name": "--jb-textarea-border-color-disabled",
+              "description": "Border color while disabled."
             },
             {
               "name": "--jb-textarea-border-color-focus",
               "description": "Border color in focus state."
             },
             {
+              "name": "--jb-textarea-message-color",
+              "description": "Helper message color."
+            },
+            {
               "name": "--jb-textarea-message-color-error",
               "description": "Validation error message color."
+            },
+            {
+              "name": "--jb-textarea-label-color",
+              "description": "Label color."
+            },
+            {
+              "name": "--jb-textarea-label-color-disabled",
+              "description": "Label color while disabled."
+            },
+            {
+              "name": "--jb-textarea-value-color",
+              "description": "Textarea value color."
+            },
+            {
+              "name": "--jb-textarea-value-color-disabled",
+              "description": "Textarea value color while disabled."
+            },
+            {
+              "name": "--jb-textarea-placeholder-color",
+              "description": "Placeholder color."
+            },
+            {
+              "name": "--jb-textarea-bg-color",
+              "description": "Textarea box background color."
+            },
+            {
+              "name": "--jb-textarea-bg-color-disabled",
+              "description": "Textarea box background color while disabled."
+            },
+            {
+              "name": "--jb-textarea-input-box-bg-color",
+              "description": "Current computed textarea box background color override."
+            },
+            {
+              "name": "--jb-textarea-margin",
+              "description": "Host margin."
+            },
+            {
+              "name": "--jb-textarea-label-font-weight",
+              "description": "Label font weight."
+            },
+            {
+              "name": "--jb-textarea-box-margin",
+              "description": "Textarea box margin."
+            },
+            {
+              "name": "--jb-textarea-box-overflow",
+              "description": "Textarea box overflow."
+            },
+            {
+              "name": "--jb-textarea-box-shadow",
+              "description": "Textarea box shadow."
+            },
+            {
+              "name": "--jb-textarea-box-shadow-focus",
+              "description": "Textarea box shadow while focused."
+            },
+            {
+              "name": "--jb-textarea-textarea-text-align",
+              "description": "Native textarea text alignment."
+            },
+            {
+              "name": "--jb-textarea-textarea-direction",
+              "description": "Native textarea text direction."
+            },
+            {
+              "name": "--jb-textarea-textarea-font-weight",
+              "description": "Native textarea font weight."
+            },
+            {
+              "name": "--jb-textarea-message-box-display",
+              "description": "Message box display value."
             }
           ]
         }

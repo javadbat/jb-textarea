@@ -1,0 +1,25 @@
+.forest-textarea {
+    display: block;
+    width: 100%;
+    --jb-textarea-bg-color: #173f2e;
+    --jb-textarea-bg-color-disabled: #203a2c;
+    --jb-textarea-border-color: #6f8f69;
+    --jb-textarea-border-color-focus: #f6d95f;
+    --jb-textarea-border-radius: 0.75rem;
+    --jb-textarea-border-width: 1px;
+    --jb-textarea-border-bottom-width: 2px;
+    --jb-textarea-border-bottom-width-focus: 3px;
+    --jb-textarea-box-shadow-focus: 0 0 0 0.2rem rgb(246 217 95 / 0.24);
+    --jb-textarea-label-color: #fff8d2;
+    --jb-textarea-label-font-weight: 700;
+    --jb-textarea-value-color: #f4e7bb;
+    --jb-textarea-value-color-disabled: #8ba58e;
+    --jb-textarea-placeholder-color: #c7d8b5;
+    --jb-textarea-message-color: #d9eadb;
+    --jb-textarea-message-color-error: #ffb86b;
+}
+
+.forest-textarea::part(inline-start-section-wrapper),
+.forest-textarea::part(inline-end-section-wrapper) {
+    color: #f6d95f;
+}
