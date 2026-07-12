@@ -2,8 +2,13 @@
 
 ## Unreleased
 
+### Added
+
+- Added the standard `formResetCallback()` to restore `initialValue` and clear validation state.
+
 ### Changed
 
+- Standardized `invalid` custom-state and `ariaInvalid` updates in validation display and cleanup callbacks.
 - Added the React `initialValue` prop and forwarded `value` and `initialValue` directly as React 19 custom-element properties.
 - Breaking: renamed `--jb-textarea-bgcolor` to `--jb-textarea-bg-color`.
 - Breaking: renamed `--jb-textarea-bgcolor-disabled` to `--jb-textarea-bg-color-disabled`.

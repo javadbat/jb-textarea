@@ -67,6 +67,11 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     this.setAttribute('name', value);
   }
   initialValue = "";
+  formResetCallback() {
+    this.value = this.initialValue;
+    this.#validation.reset();
+    this.#internals?.setValidity({}, '');
+  }
   get isDirty(): boolean {
     return this.#value !== this.initialValue;
   }
@@ -289,11 +294,13 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   showValidationError(error: ShowValidationErrorParameters | string) {
     const message = typeof error == "string" ? error : error.message;
     this.#internals?.states?.add("invalid");
+    if (this.#internals) this.#internals.ariaInvalid = "true";
     this.#elements.messageBox.innerHTML = message;
   }
   clearValidationError() {
     const text = this.getAttribute('message') || '';
     this.#internals?.states?.delete("invalid");
+    if (this.#internals) this.#internals.ariaInvalid = "false";
     this.#elements.messageBox.innerHTML = text;
   }
   #getInsideValidation(): ValidationItem<ValidationValue>[] {
