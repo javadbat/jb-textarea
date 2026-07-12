@@ -126,6 +126,7 @@ export const Gallery: Story = {
   ),
 };
 
+export const Default: Story = { name: "Default", render: () => <TextareaStyleSample className="" /> };
 export const Carbon: Story = { name: "Carbon", render: () => <TextareaStyleSample className="carbon-style" /> };
 export const Aurora: Story = { name: "Aurora", render: () => <TextareaStyleSample className="aurora-style aurora-textarea" /> };
 export const Forest: Story = { name: "Forest", render: () => <TextareaStyleSample className="forest-style forest-textarea" /> };
