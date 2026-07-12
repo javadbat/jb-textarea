@@ -3,7 +3,6 @@ import { type ValidationItem } from "jb-validation";
 import { type RefObject, useEffect } from "react";
 
 export type JBTextareaAttributes = {
-  value?: string | null | undefined,
   validationList?:ValidationItem<ValidationValue>[],
   autoHeight?: boolean,
   required?:boolean
@@ -11,13 +10,6 @@ export type JBTextareaAttributes = {
   disabled?:boolean
 }
 export function useJBTextareaAttribute(element: RefObject<JBTextareaWebComponent | null>, props: JBTextareaAttributes) {
-
-  useEffect(() => {
-    const value:string = props.value || '';
-    if(element.current){
-      element.current.value = value;
-    }
-  }, [props.value]);
 
   useEffect(() => {
     if(element.current){
