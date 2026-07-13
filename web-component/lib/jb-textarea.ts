@@ -50,6 +50,8 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   #required = false;
   set required(value: boolean) {
     this.#required = value;
+    this.#elements.textarea.required = value;
+    if (this.#internals) this.#internals.ariaRequired = value ? "true" : "false";
     this.#validation.checkValiditySync({ showError: false });
   }
   get required() {
@@ -295,12 +297,16 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
     const message = typeof error == "string" ? error : error.message;
     this.#internals?.states?.add("invalid");
     if (this.#internals) this.#internals.ariaInvalid = "true";
+    this.#elements.textarea.setAttribute("aria-invalid", "true");
+    this.#elements.textarea.setAttribute("aria-errormessage", "message");
     this.#elements.messageBox.innerHTML = message;
   }
   clearValidationError() {
     const text = this.getAttribute('message') || '';
     this.#internals?.states?.delete("invalid");
     if (this.#internals) this.#internals.ariaInvalid = "false";
+    this.#elements.textarea.setAttribute("aria-invalid", "false");
+    this.#elements.textarea.removeAttribute("aria-errormessage");
     this.#elements.messageBox.innerHTML = text;
   }
   #getInsideValidation(): ValidationItem<ValidationValue>[] {
