@@ -29,6 +29,17 @@
   ],
   "main": "index.js",
   "types": "./web-component/dist/jb-textarea.d.ts",
+  "exports": {
+    ".": {
+      "types": "./web-component/dist/jb-textarea.d.ts",
+      "default": "./index.js"
+    },
+    "./react": {
+      "types": "./react/dist/JBTextarea.d.ts",
+      "default": "./react/index.js"
+    },
+    "./*": "./*"
+  },
   "customElements": "web-component/custom-elements.json",
   "repository": {
 		"type": "git",
