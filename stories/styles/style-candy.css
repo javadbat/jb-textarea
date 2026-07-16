@@ -18,6 +18,8 @@
     --jb-textarea-placeholder-color: #be185d;
     --jb-textarea-message-color: #9d174d;
     --jb-textarea-message-color-error: var(--jb-primary-pressed);
+    --jb-textarea-label-margin: 0 0 0.375rem;
+    --jb-textarea-message-padding: 0.375rem 0 0;
 }
 
 .candy-textarea::part(textarea-box) {

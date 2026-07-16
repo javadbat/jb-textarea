@@ -17,6 +17,8 @@
     --jb-textarea-placeholder-color: #6c757d;
     --jb-textarea-message-color: #6c757d;
     --jb-textarea-message-color-error: #dc3545;
+    --jb-textarea-label-margin: 0 0 0.375rem;
+    --jb-textarea-message-padding: 0.375rem 0 0;
 }
 
 .bootstrap-textarea:state(invalid)::part(textarea-box) {

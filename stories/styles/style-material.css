@@ -17,6 +17,8 @@
     --jb-textarea-placeholder-color: #5f6368;
     --jb-textarea-message-color: var(--jb-text-secondary);
     --jb-textarea-message-color-error: #d93025;
+    --jb-textarea-label-margin: 0 0 0.375rem;
+    --jb-textarea-message-padding: 0.375rem 0 0;
 }
 
 .material-textarea::part(label) {

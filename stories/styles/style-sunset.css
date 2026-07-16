@@ -17,6 +17,8 @@
     --jb-textarea-placeholder-color: #ffe0e9;
     --jb-textarea-message-color: #ffe0e9;
     --jb-textarea-message-color-error: var(--jb-focus-color);
+    --jb-textarea-label-margin: 0 0 0.375rem;
+    --jb-textarea-message-padding: 0.375rem 0 0;
 }
 
 .sunset-textarea:state(invalid)::part(textarea-box) {

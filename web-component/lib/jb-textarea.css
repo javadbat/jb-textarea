@@ -30,10 +30,6 @@
         grid-template-rows: auto 1fr auto;
         grid-template-areas: "slot-block-start slot-block-start slot-block-start" "slot-inline-start textarea slot-inline-end" "slot-block-end slot-block-end slot-block-end";
         transition: ease 0.3s all;
-        &:has(textarea:focus-visible) {
-            outline: 2px solid var(--jb-textarea-focus-ring-color, Highlight);
-            outline-offset: 2px;
-        }
         textarea {
             grid-area: textarea;
             border: none;
@@ -110,7 +106,7 @@
     .message-box {
         display: var(--message-box-display);
         font-size: var(--message-font-size);
-        padding: 0.125rem var(--inline-space);
+        padding: var(--message-padding);
         color: var(--message-color);
 
         &:empty {

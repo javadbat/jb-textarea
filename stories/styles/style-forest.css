@@ -17,6 +17,8 @@
     --jb-textarea-placeholder-color: #c7d8b5;
     --jb-textarea-message-color: #d9eadb;
     --jb-textarea-message-color-error: #ffb86b;
+    --jb-textarea-label-margin: 0 0 0.375rem;
+    --jb-textarea-message-padding: 0.375rem 0 0;
 }
 
 .forest-textarea::part(inline-start-section-wrapper),

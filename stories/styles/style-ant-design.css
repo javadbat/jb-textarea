@@ -17,6 +17,8 @@
     --jb-textarea-placeholder-color: #8c8c8c;
     --jb-textarea-message-color: var(--jb-text-secondary);
     --jb-textarea-message-color-error: #ff4d4f;
+    --jb-textarea-label-margin: 0 0 0.375rem;
+    --jb-textarea-message-padding: 0.375rem 0 0;
 }
 
 .ant-textarea::part(label) {
