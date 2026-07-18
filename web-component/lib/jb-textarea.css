@@ -115,9 +115,3 @@
     }
 
 }
-
-:host(:focus-within) .jb-textarea-web-component .textarea-box {
-    border-width: var(--border-width-focus);
-    border-bottom-width: var(--border-bottom-width-focus);
-    box-shadow: var(--box-shadow-focus);
-}

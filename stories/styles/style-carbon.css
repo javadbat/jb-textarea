@@ -6,12 +6,12 @@ jb-textarea.carbon-style {
     --jb-textarea-border-color: var(--jb-border-color);
     --jb-textarea-border-color-focus: var(--jb-primary);
     --jb-textarea-border-radius: 0;
-    --jb-textarea-border-width: 1px;
+    --jb-textarea-border-width: 0;
     --jb-textarea-border-bottom-width: 1px;
     --jb-textarea-border-bottom-width-focus: 2px;
-    --jb-textarea-box-shadow-focus: 0 0 0 1px var(--jb-primary);
+    --jb-textarea-box-shadow-focus: inset 0 0 0 2px var(--jb-focus-color);
     --jb-textarea-label-color: var(--jb-text-primary);
-    --jb-textarea-label-font-weight: 600;
+    --jb-textarea-label-font-weight: 400;
     --jb-textarea-value-color: var(--jb-text-contrast);
     --jb-textarea-value-color-disabled: #8d8d8d;
     --jb-textarea-placeholder-color: #8d8d8d;
@@ -23,8 +23,8 @@ jb-textarea.carbon-style {
 
 jb-textarea.carbon-style::part(label),
 jb-textarea.carbon-style::part(message) {
-    text-transform: uppercase;
-    letter-spacing: 0;
+    text-transform: none;
+    letter-spacing: 0.01em;
 }
 
 jb-textarea.carbon-style:state(invalid)::part(textarea-box) {
