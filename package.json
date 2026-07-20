@@ -14,7 +14,7 @@
     "web component",
     "web-component"
   ],
-  "version": "3.12.3",
+  "version": "3.13.0",
   "bugs": "https://github.com/javadbat/jb-textarea/issues",
   "homepage": "https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea",
   "license": "MIT",
@@ -46,8 +46,8 @@
 		"url": "git@github.com:javadbat/jb-textarea.git"
   },
   "dependencies": {
-    "jb-validation":">=0.4.0",
-    "jb-core":">=0.25.0",
-    "jb-form":">=0.7.1"
+    "jb-validation":">=1.0.0",
+    "jb-core":">=0.30.0",
+    "jb-form":">=0.12.0"
   }
 }
