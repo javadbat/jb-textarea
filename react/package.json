@@ -31,6 +31,6 @@
 		"url": "git@github.com:javadbat/jb-textarea.git"
   },
   "dependencies": {
-    "jb-textarea": ">=3.2.0"
+    "jb-textarea": "^3.2.0"
   }
 }
