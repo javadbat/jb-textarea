@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [3.13.1] - 2026-07-27
 
 ### Added
 
@@ -10,6 +10,10 @@
 
 - Added `initialValue` as the default and reset text; it seeds `value` only until the live value is explicitly set.
 - Updated the React wrapper so an omitted `value` does not overwrite `initialValue`, while explicit `null` still clears the live value.
+
+### Fixed
+
+- fix redundant outline when focus.
 
 ## [3.13.0] - 2026-07-19
 
