@@ -63,7 +63,7 @@ npm i jb-textarea
 | `validation` | `ValidationHelper<string>` | yes | Validation helper from `jb-validation`; set `validation.list` for custom rules. |
 | `disabled` | `boolean` | no | Disables the inner textarea and sets the `disabled` custom state. |
 | `required` | `boolean` | no | Enables required validation. |
-| `initialValue` | `string` | no | Baseline value used by `isDirty`. |
+| `initialValue` | `string` | no | Default and reset value. It initializes `value` until the live value is explicitly set. |
 | `isDirty` | `boolean` | yes | `true` when current `value` differs from `initialValue`. |
 | `validationMessage` | `string` | yes | Current native validation message from `ElementInternals`. |
 

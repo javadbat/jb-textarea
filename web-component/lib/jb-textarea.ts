@@ -19,9 +19,14 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   get value() {
     return this.#value;
   }
-  set value(value) {
-    this.#value = value;
-    this.#textareaElement.value = value;
+  set value(value: string) {
+    this.#isDirty = true;
+    this.#setValue(value);
+  }
+  #setValue(value: string | null) {
+    const normalizedValue = value ?? "";
+    this.#value = normalizedValue;
+    this.#textareaElement.value = normalizedValue;
     if (this.autoHeight) {
       this.#changeHeightToContentSize();
     }
@@ -68,9 +73,22 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   set name(value: string) {
     this.setAttribute('name', value);
   }
-  initialValue = "";
+  #initialValue = "";
+  // Tracks whether the live value has been explicitly set. This is separate
+  // from the public isDirty comparison against initialValue.
+  #isDirty = false;
+  get initialValue() {
+    return this.#initialValue;
+  }
+  set initialValue(value: string) {
+    this.#initialValue = value ?? "";
+    if (!this.#isDirty) {
+      this.#setValue(this.#initialValue);
+    }
+  }
   formResetCallback() {
-    this.value = this.initialValue;
+    this.#isDirty = false;
+    this.#setValue(this.initialValue);
     this.#validation.reset();
     this.#internals?.setValidity({}, '');
   }
@@ -140,8 +158,10 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
 
   #initProp() {
-    this.value = this.getAttribute('value') || '';
-
+    const valueAttribute = this.getAttribute('value');
+    if (valueAttribute !== null) {
+      this.value = valueAttribute;
+    }
   }
 
   static get observedAttributes() {
@@ -234,6 +254,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   #onInputInput(e: InputEvent) {
     const inputText = (e.target as HTMLTextAreaElement).value;
     //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
+    if (this.#value !== inputText) {
+      this.#isDirty = true;
+    }
     this.#value = inputText;
     if (this.autoHeight) {
       this.#changeHeightToContentSize();
@@ -260,6 +283,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
 
     const inputText = (e.target as HTMLTextAreaElement).value;
     //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
+    if (this.#value !== inputText) {
+      this.#isDirty = true;
+    }
     this.#value = inputText;
     this.#checkValidity(false);
     const event = createKeyboardEvent('keyup', e, { cancelable: true });
@@ -281,6 +307,9 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   #onInputChange(e: Event) {
     const inputText = (e.target as HTMLTextAreaElement).value;
     //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
+    if (this.#value !== inputText) {
+      this.#isDirty = true;
+    }
     this.#value = inputText;
     this.#checkValidity(true);
     const dispatchedEvent = this.#dispatchChangeEvent();

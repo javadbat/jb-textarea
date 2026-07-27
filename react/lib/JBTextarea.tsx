@@ -18,8 +18,9 @@ const JBTextarea = React.forwardRef((props:Props, ref) => {
     const {onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad, placeholder, name,autoHeight,disabled,error,initialValue,required,validationList,value,...otherProps} = props;
     useJBTextareaAttribute(element, {autoHeight,disabled,error,required,validationList});
     useEvents(element,{onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad});
+    const valueProps = value === undefined ? {} : { value: value ?? "" };
     return (
-      <jb-textarea ref={element} value={value ?? ""} initialValue={initialValue ?? ""} name={name} label={props.label} message={props.message} placeholder={placeholder} {...otherProps}>
+      <jb-textarea ref={element} initialValue={initialValue ?? ""} {...valueProps} name={name} label={props.label} message={props.message} placeholder={placeholder} {...otherProps}>
         {props.children}
       </jb-textarea>
     );

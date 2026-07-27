@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {JBTextarea} from 'jb-textarea/react';
+import { JBButton } from 'jb-button/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import "./styles/styles.css"
 import { expect, userEvent, waitFor } from 'storybook/test';
@@ -36,6 +37,99 @@ export const Normal:Story = {
     await userEvent.type(nativeTextarea, 'hello textarea');
     await waitForTextareaValue(textarea, 'hello textarea');
   }
+};
+export const InitialValue: Story = {
+  render: (args) => {
+    const formRef = React.useRef<HTMLFormElement>(null);
+    return (
+      <form ref={formRef}>
+        <JBTextarea {...args} />
+        <JBButton onClick={() => formRef.current?.reset()}>Reset</JBButton>
+      </form>
+    );
+  },
+  args: {
+    label: 'initial value',
+    initialValue: 'initial value',
+  },
+  play: async ({ canvasElement, args }) => {
+    const textarea = getTextarea(canvasElement);
+    const nativeTextarea = getNativeTextarea(textarea);
+    const resetButton = canvasElement.querySelector('jb-button')?.shadowRoot?.querySelector<HTMLButtonElement>('button');
+
+    expect(resetButton).toBeTruthy();
+
+    await waitFor(() => {
+      expect(textarea.initialValue).toBe(args.initialValue);
+      expect(textarea.value).toBe(args.initialValue);
+      expect(nativeTextarea.value).toBe(args.initialValue);
+      expect(textarea.isDirty).toBe(false);
+    });
+
+    // This story targets live-value precedence and form reset. Keyboard editing
+    // remains covered by the textarea's dedicated interaction stories.
+    textarea.value = 'changed value';
+
+    await waitFor(() => {
+      expect(textarea.value).toBe('changed value');
+      expect(nativeTextarea.value).toBe('changed value');
+      expect(textarea.isDirty).toBe(true);
+    });
+
+    textarea.initialValue = 'reset value';
+
+    await waitFor(() => {
+      expect(textarea.initialValue).toBe('reset value');
+      expect(textarea.value).toBe('changed value');
+      expect(nativeTextarea.value).toBe('changed value');
+      expect(textarea.isDirty).toBe(true);
+    });
+
+    await userEvent.click(resetButton!);
+
+    await waitFor(() => {
+      expect(textarea.value).toBe('reset value');
+      expect(textarea.initialValue).toBe(textarea.value);
+      expect(nativeTextarea.value).toBe('reset value');
+      expect(textarea.isDirty).toBe(false);
+    });
+  },
+};
+
+export const InitialValueDoesNotOverrideValue: Story = {
+  args: {
+    initialValue: 'initial value',
+    value: 'current value',
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+    const nativeTextarea = getNativeTextarea(textarea);
+
+    await waitFor(() => {
+      expect(textarea.initialValue).toBe('initial value');
+      expect(textarea.value).toBe('current value');
+      expect(nativeTextarea.value).toBe('current value');
+      expect(textarea.isDirty).toBe(true);
+    });
+  },
+};
+
+export const ExplicitNullValueDoesNotFallBackToInitialValue: Story = {
+  args: {
+    initialValue: 'initial value',
+    value: null,
+  },
+  play: async ({ canvasElement }) => {
+    const textarea = getTextarea(canvasElement);
+    const nativeTextarea = getNativeTextarea(textarea);
+
+    await waitFor(() => {
+      expect(textarea.initialValue).toBe('initial value');
+      expect(textarea.value).toBe('');
+      expect(nativeTextarea.value).toBe('');
+      expect(textarea.isDirty).toBe(true);
+    });
+  },
 };
 export const Required:Story = {
   args:{

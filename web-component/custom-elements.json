@@ -111,7 +111,7 @@
             {
               "kind": "field",
               "name": "initialValue",
-              "description": "Baseline value used by isDirty.",
+              "description": "Default and reset value. It initializes value until the live value is explicitly set.",
               "type": {
                 "text": "string"
               }
