@@ -67,11 +67,15 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   get name() {
     return this.getAttribute('name') || '';
   }
+  set name(value: string) {
+    if (value) {
+      this.setAttribute('name', value);
+    } else {
+      this.removeAttribute('name');
+    }
+  }
   get form() {
     return this.#internals?.form ?? null;
-  }
-  set name(value: string) {
-    this.setAttribute('name', value);
   }
   #initialValue = "";
   // Tracks whether the live value has been explicitly set. This is separate

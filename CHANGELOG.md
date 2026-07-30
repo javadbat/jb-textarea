@@ -1,10 +1,14 @@
 # Changelog
 
-## Unreleased
+## [3.13.2] - 2026-07-30
 
 ### Added
 
 - Added the standard `formDisabledCallback()` to synchronize the component disabled state with disabled forms and fieldsets.
+
+### Fixed
+
+- fix name assignment property
 
 ## [3.13.1] - 2026-07-27
 
