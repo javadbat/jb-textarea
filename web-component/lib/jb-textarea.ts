@@ -5,7 +5,7 @@ import type { JBFormInputStandards } from 'jb-form';
 import type { JBTextareaElements, ValidationValue } from './types';
 import { registerDefaultVariables } from 'jb-core/theme';
 import { getRequiredMessage, i18n } from 'jb-core/i18n';
-import { createInputEvent, createKeyboardEvent } from 'jb-core';
+import { createInputEvent, createKeyboardEvent, parseBooleanAttribute } from 'jb-core';
 import { renderHTML } from './render';
 //export all internal type for user easier access
 export * from './types.js';
@@ -211,7 +211,7 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
         this.value = value;
         break;
       case 'required':
-        this.required = value === '' || value === 'true';
+        this.required = parseBooleanAttribute(value);
         break;
       case "error":
         this.reportValidity();
