@@ -12,9 +12,7 @@ simple textarea react component to input long text
 - help you manage validation in easy way
 - config auto height grow ability with max height
 
-- [codeSandbox preview](https://3f63dj.csb.app/samples/jb-textarea) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBTextarea.tsx) if you want to see and play with code
-
-Storybook: [JBTextarea docs](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-jbtextarea)
+Explore the [basic textarea demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--normal), [validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--with-validation), [auto-height and state binding](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--action-test), [custom slots](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--inline-start), and [events](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--event-test). For standalone code, use the [CodeSandbox preview](https://3f63dj.csb.app/samples/jb-textarea) or [CodeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBTextarea.tsx).
 
 ## Installation
 ```sh
@@ -29,29 +27,33 @@ import {JBTextarea} from 'jb-textarea/react';
 
 ## When to use
 
-Use `JBTextarea` when the user needs to enter multi-line text, long descriptions, comments, notes, or any free-form text that can span multiple lines.
+Use `JBTextarea` when the user needs to enter multi-line text, long descriptions, comments, notes, or any free-form text that can span multiple lines. See the [basic textarea demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--normal).
 
 ## Props
 
 | prop | type | description |
 | --- | --- | --- |
-| `value` | `string \| null \| undefined` | Controlled textarea value. `null` and `undefined` are normalized to an empty string. |
-| `label` | `string` | Visible label text and accessible label. |
+| `value` | `string \| null \| undefined` | Controlled textarea value. `null` and `undefined` are normalized to an empty string; see the [value demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--normal). |
+| `label` | `string` | Visible label text and accessible label; see the [RTL demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--rtl). |
 | `message` | `string` | Helper text shown when no validation error is visible. |
 | `name` | `string` | Form field name. |
-| `placeholder` | `string` | Placeholder forwarded to the inner textarea. |
-| `validationList` | `ValidationItem<ValidationValue>[]` | Custom validation rules from `jb-validation`. |
-| `autoHeight` | `boolean` | Lets the textarea grow between configured min and max height. |
-| `required` | `boolean` | Enables required validation. |
-| `error` | `string` | External validation error message. |
-| `disabled` | `boolean` | Disables the textarea. |
+| `placeholder` | `string` | Placeholder forwarded to the inner textarea; see [RTL captions](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--rtl). |
+| `validationList` | `ValidationItem<ValidationValue>[]` | Custom validation rules from `jb-validation`; see [custom validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--with-validation). |
+| `autoHeight` | `boolean` | Lets the textarea grow between configured min and max height; see the [auto-height demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--action-test). |
+| `required` | `boolean` | Enables required validation; see [required](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--required). |
+| `error` | `string` | External validation error message; see [error](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--with-error). |
+| `disabled` | `boolean` | Disables the textarea; see [disabled](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--disabled). |
 
 ## get and set value
+
+Use the controlled `value` prop and `onChange`; see the [normal value demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--normal) and [initial/reset flow](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--initial-value).
 
 ```jsx
 <JBTextarea label="label" value={valueState} onChange={(e)=>{setValueState(e.target.value)}}></JBTextarea>
 ```
 ## set validation
+
+Pass a `validationList` for custom rules; see the [custom validation demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--with-validation).
 
 you can set validation to your input by creating a validationList array and passing in to validationList props:
 
@@ -84,6 +86,8 @@ you can set validation to your input by creating a validationList array and pass
 
 ## check validation
 
+Use a ref to call `checkValidity()` or `reportValidity()`; see the [event/validation demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--event-test).
+
 you can check if an input value meet your validation standard by creating a ref of the element using `React.createRef()`.
 ```javascript
     const elementRef = React.createRef();
@@ -93,6 +97,8 @@ if `isValid` is `true` the value of input is valid.
 
 
 ## Events
+
+The wrapper forwards input, keyboard, focus, blur, change, and custom Enter events; see the [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--event-test) and [Enter demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--on-enter-test).
 ```JSX
 <JBTextarea  onChange={(e)=>{}}></JBTextarea>
 <JBTextarea  onKeyDown={(e)=>{}}></JBTextarea>
@@ -120,7 +126,8 @@ if `isValid` is `true` the value of input is valid.
 
 ## auto height grow
 
-you can set `autoHeight` to true so when user type something and text overflow a textarea height component will grow by itself in boundary of `--jb-textarea-min-height` and `--jb-textarea-max-height` that you set by CSS variable 
+Set `autoHeight` to grow between the configured CSS min/max heights; see the [auto-height demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--action-test).
+
 
 ```js
 <JBTextarea  autoHeight></JBTextarea>
@@ -128,13 +135,17 @@ you can set `autoHeight` to true so when user type something and text overflow a
 
 the good point of set boundary with CSS variable is you can set different min or max based on device by CSS media queries.
 
+## RTL
+
+Use the same labels and placeholders in right-to-left layouts; see the [RTL demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--rtl).
+
 ## set custom style
 
- see see [jb-textarea](https://github.com/javadbat/jb-textarea) document. there is no difference between these 2 in styling.
+See the shared [jb-textarea styling guidance](../README.md#set-custom-style) and [style gallery](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea-style--gallery); there is no styling difference between the React and web-component versions.
 
 ## add custom element in textarea box
 
-Pass custom prefix or suffix content as children with `slot="start-section"` or `slot="end-section"`.
+Pass custom prefix or suffix content as children with `slot="inline-start-section"`, `slot="inline-end-section"`, `slot="block-start-section"`, or `slot="block-end-section"`; see the [slot demos](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--inline-start).
 
 ```jsx
 <JBTextarea label="Description">
@@ -145,7 +156,7 @@ Pass custom prefix or suffix content as children with `slot="start-section"` or 
 
 ## Accessibility notes
 
-Set `label` for the textarea name and use `message` for helper text. When `autoHeight` is enabled, keep the configured max height large enough that keyboard users can still review entered content comfortably.
+Set `label` for the textarea name and use `message` for helper text. When `autoHeight` is enabled, keep the configured max height large enough that keyboard users can still review entered content comfortably. See the [basic textarea](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--normal) and [RTL](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--rtl) demos.
 
 ## Shared Documentation
 
