@@ -1,7 +1,7 @@
 .cupertino-textarea {
     display: block;
     width: 100%;
-    --jb-textarea-bg-color: var(--jb-text-contrast);
+    --jb-textarea-bg-color: var(--jb-text-inverse);
     --jb-textarea-bg-color-disabled: #f5f5f7;
     --jb-textarea-border-color: #d2d2d7;
     --jb-textarea-border-color-focus: var(--jb-focus-color);

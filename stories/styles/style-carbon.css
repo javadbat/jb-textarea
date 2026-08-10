@@ -12,7 +12,7 @@ jb-textarea.carbon-style {
     --jb-textarea-box-shadow-focus: inset 0 0 0 2px var(--jb-focus-color);
     --jb-textarea-label-color: var(--jb-text-primary);
     --jb-textarea-label-font-weight: 400;
-    --jb-textarea-value-color: var(--jb-text-contrast);
+    --jb-textarea-value-color: var(--jb-text-inverse);
     --jb-textarea-value-color-disabled: #8d8d8d;
     --jb-textarea-placeholder-color: #8d8d8d;
     --jb-textarea-message-color: var(--jb-text-secondary);
