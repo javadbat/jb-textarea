@@ -22,11 +22,11 @@
   /* Theme/Color */
   --base-border-color:var(--jb-textarea-border-color, var(--jb-neutral-10));
   --border-color: var(--jb-textarea-border-color-current, var(--base-border-color));
-  --message-color:var(--jb-textarea-message-color, var(--jb-text-secondary));
-  --label-color: var(--jb-textarea-label-color, var(--jb-text-primary));
-  --value-color: var(--jb-textarea-value-color,  var(--jb-text-primary));
+  --message-color:var(--jb-textarea-message-color, var(--jb-content-secondary));
+  --label-color: var(--jb-textarea-label-color, var(--jb-content-primary));
+  --value-color: var(--jb-textarea-value-color,  var(--jb-content-primary));
   --placeholder-color:  var(--jb-textarea-placeholder-color, var(--jb-neutral-6));
-  --base-bg-color:var(--jb-textarea-bg-color, var(--jb-neutral-10));
+  --base-bg-color:var(--jb-textarea-bg-color, var(--jb-surface-secondary));
   --input-box-bg-color: var(--jb-textarea-input-box-bg-color, var(--base-bg-color));
   /* Other */
   --margin: var(--jb-textarea-margin, 0.75rem 0);
