@@ -1,7 +1,7 @@
 .porcelain-textarea {
     display: block;
     width: 100%;
-    --jb-textarea-bg-color: var(--jb-surface);
+    --jb-textarea-bg-color: var(--jb-surface-primary);
     --jb-textarea-bg-color-disabled: #f2f7fc;
     --jb-textarea-border-color: #c9ddf2;
     --jb-textarea-border-color-focus: #2f65a7;

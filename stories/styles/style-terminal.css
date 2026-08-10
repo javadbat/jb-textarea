@@ -1,8 +1,8 @@
 .terminal-textarea {
     display: block;
     width: 100%;
-    --jb-textarea-bg-color: var(--jb-surface);
-    --jb-textarea-bg-color-disabled: var(--jb-background);
+    --jb-textarea-bg-color: var(--jb-surface-primary);
+    --jb-textarea-bg-color-disabled: var(--jb-surface-secondary);
     --jb-textarea-border-color: var(--jb-border-color);
     --jb-textarea-border-color-focus: var(--jb-focus-color);
     --jb-textarea-border-radius: 0.25rem;
@@ -10,12 +10,12 @@
     --jb-textarea-border-bottom-width: 1px;
     --jb-textarea-border-bottom-width-focus: 1px;
     --jb-textarea-box-shadow-focus: 0 0 0 0.125rem var(--jb-focus-color);
-    --jb-textarea-label-color: var(--jb-text-primary);
+    --jb-textarea-label-color: var(--jb-content-primary);
     --jb-textarea-label-font-weight: 600;
     --jb-textarea-value-color: var(--jb-focus-color);
     --jb-textarea-value-color-disabled: var(--jb-text-disabled);
-    --jb-textarea-placeholder-color: var(--jb-text-secondary);
-    --jb-textarea-message-color: var(--jb-text-secondary);
+    --jb-textarea-placeholder-color: var(--jb-content-secondary);
+    --jb-textarea-message-color: var(--jb-content-secondary);
     --jb-textarea-message-color-error: #ff5f56;
     --jb-textarea-label-margin: 0 0 0.375rem;
     --jb-textarea-message-padding: 0.375rem 0 0;

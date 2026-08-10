@@ -1,8 +1,8 @@
 .ant-textarea {
     display: block;
     width: 100%;
-    --jb-textarea-bg-color: var(--jb-surface);
-    --jb-textarea-bg-color-disabled: var(--jb-background);
+    --jb-textarea-bg-color: var(--jb-surface-primary);
+    --jb-textarea-bg-color-disabled: var(--jb-surface-secondary);
     --jb-textarea-height: 5rem;
     --jb-textarea-min-height: 2rem;
     --jb-textarea-border-color: #d9d9d9;
@@ -12,17 +12,17 @@
     --jb-textarea-border-bottom-width: 1px;
     --jb-textarea-border-bottom-width-focus: 1px;
     --jb-textarea-box-shadow-focus: 0 0 0 0.125rem oklch(58% 0.2 255 / 0.16);
-    --jb-textarea-label-color: var(--jb-text-primary);
+    --jb-textarea-label-color: var(--jb-content-primary);
     --jb-textarea-label-font-size: 0.875rem;
     --jb-textarea-label-font-weight: 400;
     --jb-textarea-value-font-size: 0.875rem;
     --jb-textarea-placeholder-font-size: 0.875rem;
     --jb-textarea-message-font-size: 0.75rem;
     --jb-textarea-input-padding: 0.25rem 0.6875rem;
-    --jb-textarea-value-color: var(--jb-text-primary);
+    --jb-textarea-value-color: var(--jb-content-primary);
     --jb-textarea-value-color-disabled: var(--jb-text-disabled);
     --jb-textarea-placeholder-color: #8c8c8c;
-    --jb-textarea-message-color: var(--jb-text-secondary);
+    --jb-textarea-message-color: var(--jb-content-secondary);
     --jb-textarea-message-color-error: #ff4d4f;
     --jb-textarea-label-margin: 0 0 0.25rem;
     --jb-textarea-message-padding: 0.25rem 0 0;
