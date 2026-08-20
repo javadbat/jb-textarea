@@ -422,3 +422,9 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
 }
 
 defineWebComponent('jb-textarea', JBTextareaWebComponent);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "jb-textarea": JBTextareaWebComponent;
+  }
+}
