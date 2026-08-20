@@ -1,3 +1,4 @@
+import { defineWebComponent, JBBaseComponent, createInputEvent, createKeyboardEvent, parseBooleanAttribute } from "jb-core";
 import CSS from './jb-textarea.css';
 import VariablesCSS from './variables.css';
 import { ShowValidationErrorParameters, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
@@ -5,13 +6,12 @@ import type { JBFormInputStandards } from 'jb-form';
 import type { JBTextareaElements, ValidationValue } from './types';
 import { registerDefaultVariables } from 'jb-core/theme';
 import { getRequiredMessage, i18n } from 'jb-core/i18n';
-import { createInputEvent, createKeyboardEvent, parseBooleanAttribute } from 'jb-core';
 import { renderHTML } from './render';
 //export all internal type for user easier access
 export * from './types.js';
 
 
-export class JBTextareaWebComponent extends HTMLElement implements WithValidation, JBFormInputStandards<string> {
+export class JBTextareaWebComponent extends JBBaseComponent implements WithValidation, JBFormInputStandards<string> {
   static get formAssociated() {
     return true;
   }
@@ -421,8 +421,4 @@ export class JBTextareaWebComponent extends HTMLElement implements WithValidatio
   }
 }
 
-const myElementNotExists = !customElements.get('jb-textarea');
-if (myElementNotExists) {
-  //prevent duplicate registering
-  window.customElements.define('jb-textarea', JBTextareaWebComponent);
-}
+defineWebComponent('jb-textarea', JBTextareaWebComponent);
