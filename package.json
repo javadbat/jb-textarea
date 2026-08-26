@@ -43,7 +43,7 @@
   "customElements": "web-component/custom-elements.json",
   "repository": {
 		"type": "git",
-		"url": "git@github.com:javadbat/jb-textarea.git"
+		"url": "https://github.com/javadbat/jb-textarea.git"
   },
   "dependencies": {
     "jb-validation":"^1.0.0",

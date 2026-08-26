@@ -28,7 +28,7 @@
   "types": "./dist/JBTextarea.d.ts",
   "repository": {
 		"type": "git",
-		"url": "git@github.com:javadbat/jb-textarea.git"
+		"url": "https://github.com/javadbat/jb-textarea.git"
   },
   "dependencies": {
     "jb-textarea": "^3.2.0"
