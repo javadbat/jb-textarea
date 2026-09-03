@@ -298,7 +298,7 @@ export const ActionTest:Story = {
 };
 export const InlineStart:Story = {
   render: (args) => <JBTextarea {...args}>
-    <div style={{width:'100%', height:'100%', backgroundColor:'red'}} slot="inline-start-section"></div>
+    <div style={{width:'100%', height:'100%', backgroundColor:'red'}} slot="inline-start"></div>
   </JBTextarea>,
   args:{
     label:'text',
@@ -307,12 +307,12 @@ export const InlineStart:Story = {
   play: async ({ canvasElement }) => {
     const textarea = getTextarea(canvasElement);
 
-    expect(getSlotWrapper(textarea, '.inline-start-section-wrapper').querySelector('slot')?.name).toBe('inline-start-section');
+    expect(getSlotWrapper(textarea, '.inline-start-wrapper').querySelector('slot')?.name).toBe('inline-start');
   }
 };
 export const InlineEnd:Story = {
   render: (args) => <JBTextarea {...args}>
-    <div style={{width:'100%', height:'100%', backgroundColor:'red'}} slot="inline-end-section"></div>
+    <div style={{width:'100%', height:'100%', backgroundColor:'red'}} slot="inline-end"></div>
   </JBTextarea>,
   args:{
     label:'text',
@@ -321,13 +321,13 @@ export const InlineEnd:Story = {
   play: async ({ canvasElement }) => {
     const textarea = getTextarea(canvasElement);
 
-    expect(getSlotWrapper(textarea, '.inline-end-section-wrapper').querySelector('slot')?.name).toBe('inline-end-section');
+    expect(getSlotWrapper(textarea, '.inline-end-wrapper').querySelector('slot')?.name).toBe('inline-end');
   }
 };
 
 export const BlockStart:Story = {
   render: (args) => <JBTextarea {...args}>
-    <div style={{width:'100%', height:'2rem', backgroundColor:'red'}} slot="block-start-section"></div>
+    <div style={{width:'100%', height:'2rem', backgroundColor:'red'}} slot="block-start"></div>
   </JBTextarea>,
   args:{
     label:'text',
@@ -336,13 +336,13 @@ export const BlockStart:Story = {
   play: async ({ canvasElement }) => {
     const textarea = getTextarea(canvasElement);
 
-    expect(getSlotWrapper(textarea, '.block-start-section-wrapper').querySelector('slot')?.name).toBe('block-start-section');
+    expect(getSlotWrapper(textarea, '.block-start-wrapper').querySelector('slot')?.name).toBe('block-start');
   }
 };
 
 export const BlockEnd:Story = {
   render: (args) => <JBTextarea {...args}>
-    <div style={{width:'100%', height:'2rem', backgroundColor:'red'}} slot="block-end-section"></div>
+    <div style={{width:'100%', height:'2rem', backgroundColor:'red'}} slot="block-end"></div>
   </JBTextarea>,
   args:{
     label:'text',
@@ -351,7 +351,7 @@ export const BlockEnd:Story = {
   play: async ({ canvasElement }) => {
     const textarea = getTextarea(canvasElement);
 
-    expect(getSlotWrapper(textarea, '.block-end-section-wrapper').querySelector('slot')?.name).toBe('block-end-section');
+    expect(getSlotWrapper(textarea, '.block-end-wrapper').querySelector('slot')?.name).toBe('block-end');
   }
 };
 

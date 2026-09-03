@@ -24,12 +24,26 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
     this.#setValue(value);
   }
   #setValue(value: string | null) {
+    if (value === null || value === undefined) {
+      this.#clearValue();
+      return;
+    }
     const normalizedValue = value ?? "";
     this.#value = normalizedValue;
     this.#textareaElement.value = normalizedValue;
+    this.#updateFormValue();
     if (this.autoHeight) {
       this.#changeHeightToContentSize();
     }
+  }
+  #clearValue() {
+    this.#value = "";
+    this.#textareaElement.value = "";
+    this.#updateFormValue();
+    if (this.autoHeight) this.#changeHeightToContentSize();
+  }
+  #updateFormValue() {
+    this.#internals?.setFormValue(this.#value);
   }
   #isAutoValidationDisabled = false;
   get isAutoValidationDisabled(): boolean {
@@ -90,11 +104,14 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
       this.#setValue(this.#initialValue);
     }
   }
-  formResetCallback() {
+  reset() {
     this.#isDirty = false;
     this.#setValue(this.initialValue);
     this.#validation.reset();
     this.#internals?.setValidity({}, '');
+  }
+  formResetCallback() {
+    this.reset();
   }
   formDisabledCallback(disabled: boolean) {
     this.disabled = disabled;
@@ -126,7 +143,7 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
     const element = document.createElement('template');
     element.innerHTML = html;
     shadowRoot.appendChild(element.content.cloneNode(true));
-    this.#textareaElement = shadowRoot.querySelector('.textarea-box textarea')!;
+    this.#textareaElement = shadowRoot.querySelector('.control textarea')!;
     this.#elements = {
       textarea: this.#textareaElement,
       label: shadowRoot.querySelector('label')!,
@@ -142,7 +159,7 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
     this.#elements.textarea.addEventListener('input', (e) => this.#onInputInput((e as unknown as InputEvent)));
     this.#elements.textarea.addEventListener('blur', (e) => this.#onInputBlur((e as unknown as FocusEvent)));
     this.#elements.textarea.addEventListener('keypress', this.#onInputKeyPress.bind(this));
-    this.#elements.textarea.addEventListener('keyup', this.#onInputKeyup.bind(this));
+    this.#elements.textarea.addEventListener('keyup', this.#onInputKeyUp.bind(this));
     this.#elements.textarea.addEventListener('keydown', this.#onInputKeyDown.bind(this));
   }
 
@@ -265,6 +282,7 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
       this.#isDirty = true;
     }
     this.#value = inputText;
+    this.#updateFormValue();
     if (this.autoHeight) {
       this.#changeHeightToContentSize();
     }
@@ -286,7 +304,7 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
     const event = new InputEvent("input", inputInitObject);
     this.dispatchEvent(event);
   }
-  #onInputKeyup(e: KeyboardEvent) {
+  #onInputKeyUp(e: KeyboardEvent) {
 
     const inputText = (e.target as HTMLTextAreaElement).value;
     //here is the rare  time we update #value directly because we want trigger event that may read value directly from dom
@@ -294,6 +312,7 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
       this.#isDirty = true;
     }
     this.#value = inputText;
+    this.#updateFormValue();
     this.#checkValidity(false);
     const event = createKeyboardEvent('keyup', e, { cancelable: true });
 
@@ -318,6 +337,7 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
       this.#isDirty = true;
     }
     this.#value = inputText;
+    this.#updateFormValue();
     this.#checkValidity(true);
     const dispatchedEvent = this.#dispatchChangeEvent();
     if (dispatchedEvent.defaultPrevented) {
@@ -393,6 +413,9 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
   }
   get validationMessage() {
     return this.#internals?.validationMessage ?? "";
+  }
+  get validity() {
+    return this.#internals?.validity;
   }
   /**
  * @public

@@ -9,8 +9,8 @@
     --jb-textarea-border-width: 1px;
     --jb-textarea-border-bottom-width: 1px;
     --jb-textarea-border-bottom-width-focus: 2px;
-    --jb-textarea-box-shadow: 0 0.5rem 1.25rem rgb(47 101 167 / 0.08);
-    --jb-textarea-box-shadow-focus: 0 0 0 0.2rem rgb(47 101 167 / 0.14);
+    --jb-control-shadow: 0 0.5rem 1.25rem rgb(47 101 167 / 0.08);
+    --jb-control-shadow-focus: 0 0 0 0.2rem rgb(47 101 167 / 0.14);
     --jb-textarea-label-color: #1f3d63;
     --jb-textarea-label-font-weight: 600;
     --jb-textarea-value-color: #1f3d63;

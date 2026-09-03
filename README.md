@@ -73,6 +73,7 @@ npm i jb-textarea
 | --- | --- | --- |
 | `checkValidity()` | `boolean` | Runs validation without showing the error message. Dispatches `invalid` when invalid; see the [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--event-test). |
 | `reportValidity()` | `boolean` | Runs validation and shows the first error message. Dispatches `invalid` when invalid; see [validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--with-error). |
+| `reset()` | `void` | Restores `initialValue` and clears displayed validation. |
 
 ## get and set value
 
@@ -182,14 +183,14 @@ jb-textarea::part(label){
 jb-textarea:states(invalid)::part(label){
   color:red;
 }
-jb-textarea:states(invalid)::part(textarea-box){
+jb-textarea:states(invalid)::part(control){
   border-color:red;
 }
 jb-textarea:states(disabled)::part(textarea){
   cursor:not-allowed;
 }
 ```
-we have `label`, `textarea-box`, `textarea`, `message`, `inline-start-section-wrapper`, `inline-end-section-wrapper`, `block-start-section-wrapper`, and `block-end-section-wrapper` as supported parts in our component. you can also combine them with `disabled`, `invalid` states for different style in different states.
+we have `label`, `control`, `textarea`, `message`, `inline-start-wrapper`, `inline-end-wrapper`, `block-start-wrapper`, and `block-end-wrapper` as supported parts in our component. you can also combine them with `disabled`, `invalid` states for different style in different states.
 
 2. using CSS variable
 
@@ -197,23 +198,23 @@ For complete styling guidance, live examples, official parts, custom states, and
 
 ## add custom element in textarea box
 
-in jb-textarea you can put icon or any other custom html DOM in textarea box. to doing so you just have to place custom DOM in `jb-textarea` tag and add `slot="inline-start-section"` or `slot="inline-end-section"` or `slot="block-start-section"` or `slot="block-end-section"` to place it before or after input field. See the [inline-start](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--inline-start), [inline-end](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--inline-end), [block-start](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--block-start), and [block-end](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--block-end) demos.
+in jb-textarea you can put icon or any other custom html DOM in textarea box. to doing so you just have to place custom DOM in `jb-textarea` tag and add `slot="inline-start"` or `slot="inline-end"` or `slot="block-start"` or `slot="block-end"` to place it before or after input field. See the [inline-start](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--inline-start), [inline-end](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--inline-end), [block-start](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--block-start), and [block-end](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--block-end) demos.
 
 | slot | description |
 | --- | --- |
-| `inline-start-section` | Inline content before the textarea. |
-| `inline-end-section` | Inline content after the textarea. |
-| `block-start-section` | Block content above the textarea inside the textarea box. |
-| `block-end-section` | Block content below the textarea inside the textarea box. |
+| `inline-start` | Inline content before the textarea. |
+| `inline-end` | Inline content after the textarea. |
+| `block-start` | Block content above the textarea inside the textarea box. |
+| `block-end` | Block content below the textarea inside the textarea box. |
 
 example:
 
 ```HTML
 <jb-textarea>
-    <div slot="inline-start-section">before</div>
-    <div slot="inline-end-section">after</div>
-    <div slot="block-start-section">in Top</div>
-    <div slot="block-end-section">in Bottom</div>
+    <div slot="inline-start">before</div>
+    <div slot="inline-end">after</div>
+    <div slot="block-start">in Top</div>
+    <div slot="block-end">in Bottom</div>
 </jb-textarea>
 ```
 

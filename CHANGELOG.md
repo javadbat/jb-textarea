@@ -1,5 +1,14 @@
 # Changelog
 
+
+## [4.0.0] - 2026-09-03
+
+### Changed
+
+- Standardized private DOM event handlers on the `#on<Target><Event>()` naming convention.
+- Standardized private empty-value and form synchronization helpers as `#clearValue()` and `#updateFormValue()`.
+- Added the standard public `reset()` method; native form reset delegates to the same behavior.
+- Breaking: renamed the root part to `root`, textarea container part to `control`, and directional slots to logical names.
 ## [3.14.0] - 2026-09-02
 
 ### Changed

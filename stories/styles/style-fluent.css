@@ -18,10 +18,10 @@
     --jb-textarea-message-color-error: #a4262c;
     --jb-textarea-label-margin: 0 0 0.375rem;
     --jb-textarea-message-padding: 0.375rem 0 0;
-    --jb-textarea-box-shadow: 0 0.0625rem 0.1875rem oklch(0% 0 0 / 0.08);
-    --jb-textarea-box-shadow-focus: 0 0 0 0.125rem rgb(0 120 212 / 0.18);
+    --jb-control-shadow: 0 0.0625rem 0.1875rem oklch(0% 0 0 / 0.08);
+    --jb-control-shadow-focus: 0 0 0 0.125rem rgb(0 120 212 / 0.18);
 }
 
-.fluent-textarea:state(invalid)::part(textarea-box) {
+.fluent-textarea:state(invalid)::part(control) {
     border-color: #a4262c;
 }

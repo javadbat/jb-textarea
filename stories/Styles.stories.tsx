@@ -75,8 +75,8 @@ function TextareaStyleSample({ className }: { className: string }) {
     }}>
       <JBTextarea className={className} label="Project notes" placeholder="Write a short update" message="Multiline helper text" />
       <JBTextarea className={className} label="Review summary" value={"Ready for design review.\nIncludes accessibility notes."}>
-        <TextareaAdornment slot="inline-start-section">#</TextareaAdornment>
-        <TextareaAdornment slot="inline-end-section">OK</TextareaAdornment>
+        <TextareaAdornment slot="inline-start">#</TextareaAdornment>
+        <TextareaAdornment slot="inline-end">OK</TextareaAdornment>
       </JBTextarea>
       <JBTextarea className={className} label="Validation error" value="Too short" error="Write at least 24 characters" />
       <JBTextarea className={className} label="Disabled" value="This content is locked." disabled />

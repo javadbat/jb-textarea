@@ -11,7 +11,7 @@
     --jb-textarea-border-width: 1px;
     --jb-textarea-border-bottom-width: 1px;
     --jb-textarea-border-bottom-width-focus: 1px;
-    --jb-textarea-box-shadow-focus: 0 0 0 0.125rem oklch(58% 0.2 255 / 0.16);
+    --jb-control-shadow-focus: 0 0 0 0.125rem oklch(58% 0.2 255 / 0.16);
     --jb-textarea-label-color: var(--jb-content-primary);
     --jb-textarea-label-font-size: 0.875rem;
     --jb-textarea-label-font-weight: 400;
@@ -32,6 +32,6 @@
     font-weight: 400;
 }
 
-.ant-textarea:state(invalid)::part(textarea-box) {
+.ant-textarea:state(invalid)::part(control) {
     border-color: #ff4d4f;
 }

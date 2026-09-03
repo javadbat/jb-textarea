@@ -137,6 +137,10 @@
           ],
           "methods": [
             {
+              "name": "reset",
+              "description": "Restores initialValue and clears displayed validation."
+            },
+            {
               "name": "checkValidity",
               "description": "Runs validation without showing the error message and returns whether the textarea is valid.",
               "return": {
@@ -191,25 +195,25 @@
           ],
           "slots": [
             {
-              "name": "inline-start-section",
+              "name": "inline-start",
               "description": "Inline content before the textarea."
             },
             {
-              "name": "inline-end-section",
+              "name": "inline-end",
               "description": "Inline content after the textarea."
             },
             {
-              "name": "block-start-section",
+              "name": "block-start",
               "description": "Block content above the textarea inside the textarea box."
             },
             {
-              "name": "block-end-section",
+              "name": "block-end",
               "description": "Block content below the textarea inside the textarea box."
             }
           ],
           "cssParts": [
             {
-              "name": "component",
+              "name": "root",
               "description": "Root shadow wrapper."
             },
             {
@@ -217,7 +221,7 @@
               "description": "The label element."
             },
             {
-              "name": "textarea-box",
+              "name": "control",
               "description": "The wrapper around textarea and slot sections."
             },
             {
@@ -229,20 +233,20 @@
               "description": "The helper or validation message element."
             },
             {
-              "name": "inline-start-section-wrapper",
-              "description": "Wrapper for the inline-start-section slot."
+              "name": "inline-start",
+              "description": "Wrapper for the inline-start slot."
             },
             {
-              "name": "inline-end-section-wrapper",
-              "description": "Wrapper for the inline-end-section slot."
+              "name": "inline-end",
+              "description": "Wrapper for the inline-end slot."
             },
             {
-              "name": "block-start-section-wrapper",
-              "description": "Wrapper for the block-start-section slot."
+              "name": "block-start",
+              "description": "Wrapper for the block-start slot."
             },
             {
-              "name": "block-end-section-wrapper",
-              "description": "Wrapper for the block-end-section slot."
+              "name": "block-end",
+              "description": "Wrapper for the block-end slot."
             }
           ],
           "cssStates": [
@@ -425,7 +429,7 @@
               "description": "Textarea box background color while disabled."
             },
             {
-              "name": "--jb-textarea-input-box-bg-color",
+              "name": "--jb-textarea-control-bg-color",
               "description": "Current computed textarea box background color override."
             },
             {
@@ -437,19 +441,19 @@
               "description": "Label font weight."
             },
             {
-              "name": "--jb-textarea-box-margin",
+              "name": "--jb-control-margin",
               "description": "Textarea box margin."
             },
             {
-              "name": "--jb-textarea-box-overflow",
+              "name": "--jb-control-overflow",
               "description": "Textarea box overflow."
             },
             {
-              "name": "--jb-textarea-box-shadow",
+              "name": "--jb-control-shadow",
               "description": "Textarea box shadow."
             },
             {
-              "name": "--jb-textarea-box-shadow-focus",
+              "name": "--jb-control-shadow-focus",
               "description": "Textarea box shadow while focused."
             },
             {

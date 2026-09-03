@@ -11,7 +11,7 @@
     --jb-textarea-border-bottom-width: 1px;
     --jb-textarea-border-width-focus: 2px;
     --jb-textarea-border-bottom-width-focus: 2px;
-    --jb-textarea-box-shadow-focus: none;
+    --jb-control-shadow-focus: none;
     --jb-textarea-label-color: var(--jb-content-secondary);
     --jb-textarea-label-font-weight: 500;
     --jb-textarea-label-font-size: 0.75rem;
@@ -29,6 +29,6 @@
     font-weight: 500;
 }
 
-.material-textarea:state(invalid)::part(textarea-box) {
+.material-textarea:state(invalid)::part(control) {
     border-color: var(--jb-error);
 }

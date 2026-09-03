@@ -15,12 +15,12 @@
         }
     }
 
-    .textarea-box {
+    .control {
         width: 100%;
         margin: var(--box-margin);
         box-sizing: border-box;
         border: solid var(--border-width) var(--border-color);
-        background-color: var(--input-box-bg-color);
+        background-color: var(--control-bg-color);
         border-bottom: solid var(--border-bottom-width) var(--border-color);
         border-radius: var(--border-radius);
         overflow: var(--box-overflow);
@@ -57,26 +57,26 @@
                 font-size: var(--placeholder-font-size);
             }
         }
-        .block-start-section-wrapper{grid-area: slot-block-start;}
-        .block-end-section-wrapper{grid-area: slot-block-end;}
-        .inline-start-section-wrapper{grid-area: slot-inline-start;}
-        .inline-end-section-wrapper{grid-area: slot-inline-end;}
-        .block-start-section-wrapper, .block-end-section-wrapper{
+        .block-start-wrapper{grid-area: slot-block-start;}
+        .block-end-wrapper{grid-area: slot-block-end;}
+        .inline-start-wrapper{grid-area: slot-inline-start;}
+        .inline-end-wrapper{grid-area: slot-inline-end;}
+        .block-start-wrapper, .block-end-wrapper{
             display: flex;
             height: auto;
             width: 100%;
             align-items: center;
             justify-content: start;
         }
-        .inline-start-section-wrapper, .inline-end-section-wrapper {
+        .inline-start-wrapper, .inline-end-wrapper {
             display: flex;
             height: 100%;
             width: auto;
             align-items: center;
             justify-content: center;
         }
-        ::slotted([slot="block-start-section"]),
-        ::slotted([slot="block-end-section"]) {
+        ::slotted([slot="block-start"]),
+        ::slotted([slot="block-end"]) {
             height: auto;
             display: flex;
             justify-content: start;
@@ -89,8 +89,8 @@
             width: auto;
             box-sizing: border-box;
         }
-        ::slotted([slot="inline-start-section"]),
-        ::slotted([slot="inline-end-section"]) {
+        ::slotted([slot="inline-start"]),
+        ::slotted([slot="inline-end"]) {
             height: 100%;
             display: flex;
             justify-content: center;

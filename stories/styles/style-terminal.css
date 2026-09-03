@@ -9,7 +9,7 @@
     --jb-textarea-border-width: 1px;
     --jb-textarea-border-bottom-width: 1px;
     --jb-textarea-border-bottom-width-focus: 1px;
-    --jb-textarea-box-shadow-focus: 0 0 0 0.125rem var(--jb-focus-color);
+    --jb-control-shadow-focus: 0 0 0 0.125rem var(--jb-focus-color);
     --jb-textarea-label-color: var(--jb-content-primary);
     --jb-textarea-label-font-weight: 600;
     --jb-textarea-value-color: var(--jb-focus-color);
@@ -28,6 +28,6 @@
     font-family: Consolas, "Courier New", monospace;
 }
 
-.terminal-textarea:state(invalid)::part(textarea-box) {
+.terminal-textarea:state(invalid)::part(control) {
     border-color: #ff5f56;
 }

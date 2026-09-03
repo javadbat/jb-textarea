@@ -9,7 +9,7 @@
     --jb-textarea-border-width: 1px;
     --jb-textarea-border-bottom-width: 1px;
     --jb-textarea-border-bottom-width-focus: 2px;
-    --jb-textarea-box-shadow-focus: 0 0.75rem 1.5rem rgb(86 30 50 / 0.22);
+    --jb-control-shadow-focus: 0 0.75rem 1.5rem rgb(86 30 50 / 0.22);
     --jb-textarea-label-color: #fff8ed;
     --jb-textarea-label-font-weight: 700;
     --jb-textarea-value-color: #fff8ed;
@@ -21,6 +21,6 @@
     --jb-textarea-message-padding: 0.375rem 0 0;
 }
 
-.sunset-textarea:state(invalid)::part(textarea-box) {
+.sunset-textarea:state(invalid)::part(control) {
     border-color: var(--jb-focus-color);
 }

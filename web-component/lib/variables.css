@@ -27,14 +27,14 @@
   --value-color: var(--jb-textarea-value-color,  var(--jb-content-primary));
   --placeholder-color:  var(--jb-textarea-placeholder-color, var(--jb-neutral-6));
   --base-bg-color:var(--jb-textarea-bg-color, var(--jb-surface-secondary));
-  --input-box-bg-color: var(--jb-textarea-input-box-bg-color, var(--base-bg-color));
+  --control-bg-color: var(--jb-textarea-control-bg-color, var(--base-bg-color));
   /* Other */
   --margin: var(--jb-textarea-margin, 0.75rem 0);
   --label-font-weight: var(--jb-textarea-label-font-weight, 300);
-  --box-margin: var(--jb-textarea-box-margin, 0px);
-  --box-overflow: var(--jb-textarea-box-overflow, hidden);
-  --box-shadow: var(--jb-textarea-box-shadow, none);
-  --box-shadow-focus: var(--jb-textarea-box-shadow-focus, none);
+  --box-margin: var(--jb-control-margin, 0px);
+  --box-overflow: var(--jb-control-overflow, hidden);
+  --box-shadow: var(--jb-control-shadow, none);
+  --box-shadow-focus: var(--jb-control-shadow-focus, none);
   --textarea-text-align: var(--jb-textarea-textarea-text-align, initial);
   --textarea-direction: var(--jb-textarea-textarea-direction, inherit);
   --textarea-font-weight: var(--jb-textarea-textarea-font-weight, initial);
@@ -44,7 +44,7 @@
   --message-color:var(--jb-textarea-message-color-error, var(--jb-red));
 }
 :host(:state(disabled)){
-  --input-box-bg-color: var(--jb-textarea-bg-color-disabled, hsl(from var(--base-bg-color) h 12% 66.1));
+  --control-bg-color: var(--jb-textarea-bg-color-disabled, hsl(from var(--base-bg-color) h 12% 66.1));
   --border-color: var(--jb-textarea-border-color-disabled, hsl(from var(--base-border-color) h 12% 66.1));
   --value-color:var(--jb-textarea-value-color-disabled, var(--jb-neutral-3));
   --label-color:var(--jb-textarea-label-color-disabled, var(--jb-neutral-3));

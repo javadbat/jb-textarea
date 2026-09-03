@@ -64,7 +64,7 @@ Each example uses one shared example theme pack from [`docs/styles`](https://git
 2. Match `jb-input` variables when the textarea should look like the multiline version of an input.
 3. Use common theme variables from [Theme Colors](../../jb-core/theme/stories/colors.mdx) and [Theme Sizes](../../jb-core/theme/stories/sizes.mdx) when the style should align with the design system.
 4. Put reusable theme-pack values in [`docs/styles`](https://github.com/javadbat/design-system/tree/main/docs/styles) only when they should be shared by multiple component demos.
-5. Use `::part(...)` only for official exposed parts such as `::part(label)`, `::part(textarea-box)`, `::part(textarea)`, `::part(message)`, and slot wrappers.
+5. Use `::part(...)` only for official exposed parts such as `::part(label)`, `::part(control)`, `::part(textarea)`, `::part(message)`, and slot wrappers.
 6. Add a new component variable only when a needed internal surface cannot be customized with the current public variables or official parts.
 
 ## Parts And States
@@ -76,13 +76,13 @@ Each example uses one shared example theme pack from [`docs/styles`](https://git
   <tbody>
     <tr><td><code>component</code></td><td>Root shadow wrapper</td><td>Use for wrapper-level layout and effects.</td></tr>
     <tr><td><code>label</code></td><td>Label element</td><td>Use for label typography details beyond public label variables.</td></tr>
-    <tr><td><code>textarea-box</code></td><td>Wrapper around textarea and slot sections</td><td>Use for border, focus, invalid, or disabled state accents.</td></tr>
+    <tr><td><code>control</code></td><td>Wrapper around textarea and slot sections</td><td>Use for border, focus, invalid, or disabled state accents.</td></tr>
     <tr><td><code>textarea</code></td><td>Inner native textarea</td><td>Use for targeted native textarea styling.</td></tr>
     <tr><td><code>message</code></td><td>Helper or validation message element</td><td>Use for helper text and validation message emphasis.</td></tr>
-    <tr><td><code>inline-start-section-wrapper</code></td><td>Wrapper for the inline-start-section slot</td><td>Use for inline adornments before the textarea.</td></tr>
-    <tr><td><code>inline-end-section-wrapper</code></td><td>Wrapper for the inline-end-section slot</td><td>Use for inline adornments after the textarea.</td></tr>
-    <tr><td><code>block-start-section-wrapper</code></td><td>Wrapper for the block-start-section slot</td><td>Use for content above the textarea inside the box.</td></tr>
-    <tr><td><code>block-end-section-wrapper</code></td><td>Wrapper for the block-end-section slot</td><td>Use for content below the textarea inside the box.</td></tr>
+    <tr><td><code>inline-start-wrapper</code></td><td>Wrapper for the inline-start slot</td><td>Use for inline adornments before the textarea.</td></tr>
+    <tr><td><code>inline-end-wrapper</code></td><td>Wrapper for the inline-end slot</td><td>Use for inline adornments after the textarea.</td></tr>
+    <tr><td><code>block-start-wrapper</code></td><td>Wrapper for the block-start slot</td><td>Use for content above the textarea inside the box.</td></tr>
+    <tr><td><code>block-end-wrapper</code></td><td>Wrapper for the block-end slot</td><td>Use for content below the textarea inside the box.</td></tr>
   </tbody>
 </table>
 
@@ -91,7 +91,7 @@ Each example uses one shared example theme pack from [`docs/styles`](https://git
     <tr><th>Custom State</th><th>Meaning</th><th>Example Selector</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>disabled</code></td><td>Applied when the textarea is disabled.</td><td><code>jb-textarea:state(disabled)::part(textarea-box)</code></td></tr>
+    <tr><td><code>disabled</code></td><td>Applied when the textarea is disabled.</td><td><code>jb-textarea:state(disabled)::part(control)</code></td></tr>
     <tr><td><code>invalid</code></td><td>Applied while validation error text is visible.</td><td><code>jb-textarea:state(invalid)::part(message)</code></td></tr>
   </tbody>
 </table>
@@ -145,13 +145,13 @@ Each example uses one shared example theme pack from [`docs/styles`](https://git
     <tr><td><code>--jb-textarea-placeholder-color</code></td><td>Theme/Color</td><td>Placeholder color.</td></tr>
     <tr><td><code>--jb-textarea-bg-color</code></td><td>Theme/Color</td><td>Textarea box background color.</td></tr>
     <tr><td><code>--jb-textarea-bg-color-disabled</code></td><td>Theme/Color</td><td>Textarea box background color while disabled.</td></tr>
-    <tr><td><code>--jb-textarea-input-box-bg-color</code></td><td>Theme/Color</td><td>Current computed textarea box background color override.</td></tr>
+    <tr><td><code>--jb-textarea-control-bg-color</code></td><td>Theme/Color</td><td>Current computed textarea box background color override.</td></tr>
     <tr><td><code>--jb-textarea-margin</code></td><td>Other</td><td>Host margin.</td></tr>
     <tr><td><code>--jb-textarea-label-font-weight</code></td><td>Other</td><td>Label font weight.</td></tr>
-    <tr><td><code>--jb-textarea-box-margin</code></td><td>Other</td><td>Textarea box margin.</td></tr>
-    <tr><td><code>--jb-textarea-box-overflow</code></td><td>Other</td><td>Textarea box overflow.</td></tr>
-    <tr><td><code>--jb-textarea-box-shadow</code></td><td>Other</td><td>Textarea box shadow.</td></tr>
-    <tr><td><code>--jb-textarea-box-shadow-focus</code></td><td>Other</td><td>Textarea box shadow while focused.</td></tr>
+    <tr><td><code>--jb-control-margin</code></td><td>Other</td><td>Textarea box margin.</td></tr>
+    <tr><td><code>--jb-control-overflow</code></td><td>Other</td><td>Textarea box overflow.</td></tr>
+    <tr><td><code>--jb-control-shadow</code></td><td>Other</td><td>Textarea box shadow.</td></tr>
+    <tr><td><code>--jb-control-shadow-focus</code></td><td>Other</td><td>Textarea box shadow while focused.</td></tr>
     <tr><td><code>--jb-textarea-textarea-text-align</code></td><td>Other</td><td>Native textarea text alignment.</td></tr>
     <tr><td><code>--jb-textarea-textarea-direction</code></td><td>Other</td><td>Native textarea text direction.</td></tr>
     <tr><td><code>--jb-textarea-textarea-font-weight</code></td><td>Other</td><td>Native textarea font weight.</td></tr>

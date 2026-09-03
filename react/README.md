@@ -145,12 +145,12 @@ See the shared [jb-textarea styling guidance](../README.md#set-custom-style) and
 
 ## add custom element in textarea box
 
-Pass custom prefix or suffix content as children with `slot="inline-start-section"`, `slot="inline-end-section"`, `slot="block-start-section"`, or `slot="block-end-section"`; see the [slot demos](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--inline-start).
+Pass custom prefix or suffix content as children with `slot="inline-start"`, `slot="inline-end"`, `slot="block-start"`, or `slot="block-end"`; see the [slot demos](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--inline-start).
 
 ```jsx
 <JBTextarea label="Description">
-  <span slot="start-section">Notes</span>
-  <span slot="end-section">optional</span>
+  <span slot="inline-start">Notes</span>
+  <span slot="inline-end">optional</span>
 </JBTextarea>
 ```
 

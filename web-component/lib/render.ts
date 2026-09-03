@@ -1,20 +1,20 @@
 export function renderHTML(): string {
   return /* html */ `
-  <div class="jb-textarea-web-component" part="component">
+  <div class="jb-textarea-web-component" part="root">
     <label for="textarea" class="--hide" part="label"><span class="label-value"></span><span aria-hidden="true">:</span></label>
-    <div class="textarea-box" part="textarea-box">
-        <div class="block-start-section-wrapper" part="block-start-section-wrapper">
-          <slot name="block-start-section"></slot>
+    <div class="control" part="control">
+        <div class="block-start-wrapper" part="block-start">
+          <slot name="block-start"></slot>
         </div>
-        <div class="inline-start-section-wrapper" part="inline-start-section-wrapper">
-            <slot name="inline-start-section"></slot>
+        <div class="inline-start-wrapper" part="inline-start">
+            <slot name="inline-start"></slot>
         </div>
         <textarea id="textarea" class="textarea-input" part="textarea" aria-describedby="message"></textarea>
-        <div class="inline-end-section-wrapper" part="inline-end-section-wrapper">
-            <slot name="inline-end-section"></slot>
+        <div class="inline-end-wrapper" part="inline-end">
+            <slot name="inline-end"></slot>
         </div>
-        <div class="block-end-section-wrapper" part="block-end-section-wrapper">
-            <slot name="block-end-section"></slot>
+        <div class="block-end-wrapper" part="block-end">
+            <slot name="block-end"></slot>
         </div>
     </div>
     <div id="message" class="message-box" part="message" aria-live="polite" aria-atomic="true"></div>
