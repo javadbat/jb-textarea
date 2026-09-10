@@ -10,7 +10,7 @@
   --border-width-focus: var(--jb-textarea-border-width-focus, var(--border-width));
   --border-bottom-width-focus: var(--jb-textarea-border-bottom-width-focus, var(--border-bottom-width));
   /* put message and label forward base on border radius*/
-  --inline-space: var(--jb-textarea-inline-space, min(calc(var(--border-radius) / 1.75), calc(--height / 2)));
+  --inline-space: var(--jb-textarea-inline-space, min(calc(var(--border-radius) / 1.75), calc(var(--height) / 2)));
   --label-margin: var(--jb-textarea-label-margin, 0.125rem var(--inline-space));
   --label-font-size:var(--jb-textarea-label-font-size, 0.8rem);
   --value-font-size:var(--jb-textarea-value-font-size, 1rem);
