@@ -23,6 +23,7 @@
         background-color: var(--control-bg-color);
         border-bottom: solid var(--border-bottom-width) var(--border-color);
         border-radius: var(--border-radius);
+        corner-shape: var(--box-corner-shape);
         overflow: var(--box-overflow);
         box-shadow: var(--box-shadow);
         display: grid;

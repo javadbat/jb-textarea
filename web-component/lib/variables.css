@@ -33,8 +33,9 @@
   --label-font-weight: var(--jb-textarea-label-font-weight, 300);
   --box-margin: var(--jb-control-margin, 0px);
   --box-overflow: var(--jb-control-overflow, hidden);
-  --box-shadow: var(--jb-control-shadow, none);
-  --box-shadow-focus: var(--jb-control-shadow-focus, none);
+  --box-shadow: var(--jb-control-shadow);
+  --box-shadow-focus: var(--jb-control-shadow-focus);
+  --box-corner-shape: var(--jb-textarea-corner-shape, var(--jb-corner-shape));
   --textarea-text-align: var(--jb-textarea-textarea-text-align, initial);
   --textarea-direction: var(--jb-textarea-textarea-direction, inherit);
   --textarea-font-weight: var(--jb-textarea-textarea-font-weight, initial);
