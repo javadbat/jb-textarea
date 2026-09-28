@@ -147,6 +147,8 @@ const result = document.querySelector('jb-textarea').validation.checkValidity({s
 | `enter` | yes | From `keypress` when Enter is pressed; see the [Enter demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--on-enter-test). |
 | `invalid` | no | When `checkValidity()` or `reportValidity()` finds an invalid value; see [validation](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--event-test). |
 
+React users receive these events through the React wrapper: `onChange` is a React change event and `onChangeNative` receives this raw native `change` event. See the [React documentation](https://github.com/javadbat/jb-textarea/tree/main/react#events).
+
 ```js
 document.querySelector("jb-textarea").addEventListener('change',func);
 document.querySelector("jb-textarea").addEventListener('keydown',func);

@@ -1,6 +1,17 @@
 # Changelog
 
 
+## [4.1.0] - 2026-09-03
+
+### Added
+
+- add corner shape token support.
+
+### Changed
+
+- change react component onChange event to react onChange event type.
+- add `onChangeNative` event to react component to listen to native web-component `change` event.
+
 ## [4.0.0] - 2026-09-03
 
 ### Changed

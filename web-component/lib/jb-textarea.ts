@@ -1,7 +1,7 @@
 import { defineWebComponent, JBBaseComponent, createInputEvent, createKeyboardEvent, parseBooleanAttribute } from "jb-core";
 import CSS from './jb-textarea.css';
 import VariablesCSS from './variables.css';
-import { ShowValidationErrorParameters, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
+import { type ShowValidationErrorParameters, ValidationHelper, type ValidationItem, type ValidationResult, type WithValidation } from 'jb-validation';
 import type { JBFormInputStandards } from 'jb-form';
 import type { JBTextareaElements, ValidationValue } from './types';
 import { registerDefaultVariables } from 'jb-core/theme';
@@ -60,10 +60,9 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
     this.#disabled = value;
     this.#elements.textarea.disabled = value;
     if (value) {
-      //TODO: remove as any when typescript support
-      (this.#internals as any).states?.add("disabled");
+      this.#internals?.states?.add("disabled");
     } else {
-      (this.#internals as any).states?.delete("disabled");
+      this.#internals?.states?.delete("disabled");
     }
   }
   #required = false;
@@ -192,7 +191,7 @@ export class JBTextareaWebComponent extends JBBaseComponent implements WithValid
     return ['label', 'message', 'value', 'placeholder', "required", "error"];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
     // do something when an attribute has changed
     this.#onAttributeChange(name, newValue);
   }

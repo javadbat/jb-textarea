@@ -9,18 +9,17 @@ import { type JBTextareaAttributes, useJBTextareaAttribute } from './attributes-
 import type { JBElementStandardProps } from 'jb-core/react';
 import './module-declaration.js';
 
-// eslint-disable-next-line react/display-name
 const JBTextarea = React.forwardRef((props:Props, ref) => {
   {
     //we set this state so when ref change we have a render and our event listener will be updated
     const element = useRef<JBTextareaWebComponent>(null);
-    useImperativeHandle(ref, () => element.current ?? undefined, [element]);
-    const {onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad, placeholder, name,autoHeight,disabled,error,initialValue,required,validationList,value,...otherProps} = props;
+    useImperativeHandle(ref, () => element.current ?? undefined, []);
+    const {onBeforeInput,onBlur,onChange, onChangeNative,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad, placeholder, name,autoHeight,disabled,error,initialValue,required,validationList,value,...otherProps} = props;
     useJBTextareaAttribute(element, {autoHeight,disabled,error,required,validationList});
-    useEvents(element,{onBeforeInput,onBlur,onChange,onEnter,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad});
+    useEvents(element,{onBeforeInput,onBlur,onEnter,onChangeNative,onFocus,onInput,onKeyDown,onKeyUp,onInit,onLoad});
     const valueProps = value === undefined ? {} : { value: value ?? "" };
     return (
-      <jb-textarea ref={element} initialValue={initialValue ?? ""} {...valueProps} name={name} label={props.label} message={props.message} placeholder={placeholder} {...otherProps}>
+      <jb-textarea ref={element} initialValue={initialValue ?? ""} {...valueProps} onChange={onChange} onInput={onChange} name={name} label={props.label} message={props.message} placeholder={placeholder} {...otherProps}>
         {props.children}
       </jb-textarea>
     );

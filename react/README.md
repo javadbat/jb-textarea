@@ -46,7 +46,7 @@ Use `JBTextarea` when the user needs to enter multi-line text, long descriptions
 
 ## get and set value
 
-Use the controlled `value` prop and `onChange`; see the [normal value demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--normal) and [initial/reset flow](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--initial-value).
+Use the controlled `value` prop and `onChange` (a React change event whose `event.target` is the `jb-textarea` component); see the [normal value demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--normal) and [initial/reset flow](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--initial-value).
 
 ```jsx
 <JBTextarea label="label" value={valueState} onChange={(e)=>{setValueState(e.target.value)}}></JBTextarea>
@@ -98,8 +98,10 @@ if `isValid` is `true` the value of input is valid.
 
 ## Events
 
-The wrapper forwards input, keyboard, focus, blur, change, and custom Enter events; see the [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--event-test) and [Enter demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--on-enter-test).
-```JSX
+The React wrapper supports `onEnter`, `onInput`, `onBeforeInput`, `onFocus`, `onBlur`, `onKeyUp`, `onKeyDown`, `onChange`, `onChangeNative`, plus the `onLoad` and `onInit` lifecycle events; see the [event demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--event-test) and [Enter demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-jbtextarea--on-enter-test). These handlers receive the `jb-textarea` component as `event.target`.
+
+`onChange` is the React change handler (`React.ChangeEvent<JBTextareaWebComponent>`) and is wired through the JSX event props, so it behaves like React's change event on a controlled textarea: it runs on each edit and on the committed change. Use `onChangeNative` when you specifically need the web component's native `change` event (`Event`). The native event is typically dispatched when the user commits a value, usually on blur; `onInput` runs for each edit. If both props are provided, they can both observe a native `change` event.
+```jsx
 <JBTextarea  onChange={(e)=>{}}></JBTextarea>
 <JBTextarea  onKeyDown={(e)=>{}}></JBTextarea>
 <JBTextarea  onKeyUp={(e)=>{}}></JBTextarea>
@@ -109,11 +111,14 @@ The wrapper forwards input, keyboard, focus, blur, change, and custom Enter even
 <JBTextarea  onBlur={(e)=>{}}></JBTextarea>
 // custom event for when user press enter
 <JBTextarea  onEnter={(e)=>{}}></JBTextarea>
+{/* Native web-component change event, distinct from React onChange. */}
+<JBTextarea  onChangeNative={(e)=>{}}></JBTextarea>
 ```
 
 | prop | event |
 | --- | --- |
-| `onChange` | `change` |
+| `onChange` | React `change` event (`React.ChangeEvent`) |
+| `onChangeNative` | native `change` event (`Event`) |
 | `onInput` | `input` |
 | `onBeforeInput` | `beforeinput` |
 | `onKeyDown` | `keydown` |
@@ -173,6 +178,7 @@ For web-component behavior, events, slots, and CSS variables, see [`jb-textarea`
 
 - Import `JBTextarea` from `jb-textarea/react`; the wrapper imports and registers the underlying `jb-textarea` web component.
 - Use `value` for controlled text and `onChange` or `onInput` to update React state.
+- `onChange` receives a React change event (`React.ChangeEvent<JBTextareaWebComponent>`); use `onChangeNative` when you need the web component's raw native `change` event (`Event`).
 - Use `autoHeight` for growing textareas and CSS variables for min/max height.
 - Use exact React prop casing such as `onKeyDown`, `onKeyUp`, and `onBeforeInput`.
 - Use `error` for externally controlled validation errors.
